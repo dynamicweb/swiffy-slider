@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Swiffy Slider - Examples of lightweight vanilla js sliders</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nicolai Høeg Pedersen, Dynamicweb Software">
+    <meta name="description" content="Example of Swiffy Slider usages as seen in the real world.">
+
+    <link rel="stylesheet" href="../assets/css/swiffy-slider.min.css">
+    <script src="../assets/js/swiffy-slider.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/img/swiffysliderlogo/SwiffyIcon.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js" defer></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js" defer></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            hljs.highlightAll();
+        });
+
+        function showAndHightlightCode(sliderElement) {
+            const highlightButton = window.event.target;
+            if (!sliderElement) {
+                sliderElement = highlightButton.parentElement.querySelector(".swiffy-slider");
+            }
+            if (!sliderElement) {
+                sliderElement = highlightButton.parentElement;
+            }
+            //Remove excess indention from markup
+            const lines = sliderElement.outerHTML.split("\n");
+            const lastLine = lines[lines.length - 1];
+            const numberOfSpacers = lastLine.indexOf("<");
+            const spaceString = lastLine.substring(0, numberOfSpacers);
+            console.log(numberOfSpacers.length);
+            let markup = "";
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.startsWith(spaceString)) {
+                    markup += line.substring(numberOfSpacers) + "\n";
+                } else {
+                    markup += line + "\n";
+                }
+            }
+
+            const highlightedCode = hljs.highlight(markup, {
+                language: 'html'
+            }).value;
+
+            const newPre = document.createElement("pre");
+            newPre.classList.add("p-2");
+            newPre.classList.add("p-lg-4");
+            newPre.classList.add("my-2");
+            newPre.classList.add("my-lg-4");
+            newPre.classList.add("bg-light");
+            const newCode = document.createElement("code");
+            newCode.classList.add("language-html");
+            newCode.innerHTML = highlightedCode;
+            newPre.appendChild(newCode);
+
+            highlightButton.parentElement.insertBefore(newPre, null);
+            highlightButton.remove();
+        }
+    </script>
+    <style>
+        html,
+        body {
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            scroll-snap-type: y proximity;
+            scroll-behavior: smooth;
+        }
+        
+        code {
+            border: 1px solid #ececec;
+            border-radius: .25rem;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            border-radius: 0;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        
+        .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .btn-primary {
+            color: #fff;
+            background-color: #DF1E1E;
+            border-color: #DF1E1E;
+        }
+        
+        .btn-outline-primary {
+            color: #DF1E1E;
+            border-color: #DF1E1E;
+        }
+        
+        .btn-outline-white {
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .btn-link {
+            color: #520000;
+        }
+        
+        .nav-link.active {
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            position: absolute;
+            border-bottom: 2px solid #fff;
+            display: block;
+            left: .5rem;
+            width: calc(100% - 1rem);
+            height: 2px;
+            content: "";
+        }
+        
+        #movieSection {
+            background-color: rgb(20, 20, 20);
+            min-height: 100vh;
+            background-image: url("../assets/img/movies/cinema.webp");
+            background-size: cover;
+            position: relative;
+        }
+        
+        #movieSection::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .7);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.6) 100%);
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header style="background-color: #DF1E1E;z-index: 1;" class="text-white position-sticky top-0">
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md p-1 text-white navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../">
+                    <img src="../assets/img/swiffysliderlogo/SwiffySliderLogoRedOnWhite.svg" width="150" height="45" alt="Swiffy logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="../">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="../docs">Docs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" href="../examples">Examples</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="../configuration">Configuration</a>
+                        </li>
+                    </ul>
+                    <div class="col-md-3 text-md-end">
+                        <a href="https://github.com/dynamicweb/swiffy-slider/" class=" me-2" title="Swiffy Slider on Github">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+                                    </svg></a>
+                        <a href="https://github.com/dynamicweb/swiffy-slider/releases/latest" target="_blank" class="btn text-white btn-outline-white">Download</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section style="background-color: #DF1E1E;">
+            <div class="container text-white py-3 pt-lg-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="display-5">Swiffy Slider examples</h1>
+                        <p class="lead">Get inspiration from a number of responsive examples as seen in real websites.</p>
+                        <p>
+                            Most examples are using <a href="https://getbootstrap.com/" target="_blank" rel="noreferrer" class="link-light">Bootstrap 5</a> for slider content, but could be any markup and CSS.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="container pt-3">
+            <h2>Image carousel</h2>
+            <p>Simple image carousel with even sized images</p>
+            <div class="swiffy-slider slider-item-ratio slider-item-ratio-16x9">
+                <ul class="slider-container">
+                    <li><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
+                    <li><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
+                    <li><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
+                </ul>
+
+                <button type="button" class="slider-nav" aria-label="Go to previous"></button>
+                <button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
+
+                <div class="slider-indicators">
+                    <button aria-label="Go to slide" class="active"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                </div>
+            </div>
+            <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+        </div>
+
+        <div class="container pt-3">
+            <h2>Image carousel</h2>
+            <p>Simple image carousel with uneven sized images, ratios and lazy loading</p>
+            <p>
+                <small>This example uses <code>.slider-item-ratio</code> to make the images fill the slide. Set <code>object-fit: contain</code> on the image to make the image scale within the slide box and become fully visible</small>
+            </p>
+            <p>
+                Indicators is in 2 versions - one for larger displays and one for small displays uising Bootstrap respsonsive utilities. But shows how to use indicator options on the <code>.slider-indicators</code> element directly
+            </p>
+            <div class="swiffy-slider slider-item-reveal slider-nav-round slider-item-ratio slider-item-ratio-21x9">
+                <ul class="slider-container">
+                    <li><img src="../assets/img/photos/img4.webp" loading="lazy" alt="..."></li>
+                    <li><img src="../assets/img/photos/img5.webp" loading="lazy" alt="..."></li>
+                    <li><img src="../assets/img/photos/img6.webp" loading="lazy" alt="..."></li>
+                    <li><img src="../assets/img/photos/img7.webp" loading="lazy" alt="..."></li>
+                </ul>
+
+                <button type="button" class="slider-nav" aria-label="Go left"></button>
+                <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                <div class="slider-indicators slider-indicators-square d-none d-md-flex">
+                    <button class="active" aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                </div>
+
+                <div class="slider-indicators slider-indicators-sm slider-indicators-dark slider-indicators-round d-md-none slider-indicators-highlight">
+                    <button class="active" aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                </div>
+            </div>
+            <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+        </div>
+
+        <div style="background-color: #f1f1f1;">
+            <div class="container pt-3">
+                <h2>Stories</h2>
+                <p>Combining grid, images and text content to create visual appealing content</p>
+                <div class="swiffy-slider slider-nav-round">
+                    <ul class="slider-container">
+                        <li>
+                            <div class="card rounded-0 h-100">
+                                <div class="row g-0 h-100">
+                                    <div class="col-md-6 col-xl-5 d-flex align-items-center p-2 p-md-3 p-xl-5">
+                                        <div class="card-body p-1 p-md-3 p-xl-5">
+                                            <p class="lead">Why use this slider</p>
+                                            <h2 class="card-title" style="color:#DF1E1E;">Swiffy Slider Benefits</h2>
+                                            <p class="card-text mt-3">Super fast lightweight slider and carousel with amazing touch support and user experience.</p>
+                                            <p>Super simple setup using just markup and few powerful configuration options</p>
+                                            <p class="card-text"><small class="text-muted">Remember to check out on mobile</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-7">
+                                        <img src="../assets/img/photos/img1.webp" class="card-img d-none d-md-block" loading="lazy" style="height: 100%; object-fit: cover;" alt="...">
+                                        <img src="../assets/img/photos/img1.webp" class="card-img d-block d-md-none" loading="lazy" style="width: 100%; object-fit: cover;" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card rounded-0 h-100">
+                                <div class="row g-0 h-100">
+                                    <div class="col-md-6 col-xl-7">
+                                        <img src="../assets/img/photos/img2.webp" class="card-img d-none d-md-block" loading="lazy" style="height: 100%; object-fit: cover" alt="...">
+                                        <img src="../assets/img/photos/img2.webp" class="card-img d-block d-md-none" loading="lazy" style="width: 100%; object-fit: cover" alt="...">
+                                    </div>
+                                    <div class="col-md-6 col-xl-5 d-flex align-items-center p-2 p-md-3 p-xl-5">
+                                        <div class="card-body p-1 p-md-3 p-xl-5">
+                                            <p class="lead">Dreaming about cars</p>
+                                            <h2 class="card-title" style="color:#DF1E1E;">Vintage cars from another era</h2>
+                                            <p class="card-text mt-3">First, there’s the design of the car itself. Classic cars were created very much in an analogue world where designers used pencil and paper to create elegant shapes and flowing lines that would just not be possible
+                                                on the computer-based design software used by modern car designers.</p>
+                                            <p class="card-text"><small class="text-muted">Handcrafted like good code</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card rounded-0 h-100 text-white">
+                                <img src="../assets/img/photos/img3.webp" class="card-img h-100" style="max-height: 100%; max-width: 100%; object-fit: cover" alt="...">
+                                <div class="card-img-overlay d-flex align-items-start align-items-md-center justify-content-center flex-column">
+                                    <h2 class="card-title h1 d-block d-md-inline-block">The Aston Martin DB5</h2>
+                                    <p class="card-text lead col-md-8 col-lg-6">The Aston Martin DB5 is a British luxury grand tourer (GT) that was made by Aston Martin and designed by the Italian coachbuilder Carrozzeria Touring Superleggera. </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <button type="button" class="slider-nav" aria-label="Go left"></button>
+                    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                    <div class="slider-indicators">
+                        <button class="active" aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                    </div>
+                </div>
+                <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+            </div>
+        </div>
+
+        <div class="container pt-3">
+            <h2>Articles</h2>
+            <p>Card based design with shadows using photos, description and button</p>
+            <div class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark">
+                <ul class="slider-container py-4">
+                    <li>
+                        <div class="card shadow h-100">
+                            <div class="ratio ratio-16x9">
+                                <img src="../assets/img/photos/img7.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-3 p-xl-5">
+                                <h3 class="card-title h5">See the world</h3>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div><a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card shadow h-100">
+                            <div class="ratio ratio-16x9">
+                                <img src="../assets/img/photos/img8.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-3 p-xl-5">
+                                <h3 class="card-title h5">Tranquil locations far away</h3>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card shadow h-100">
+                            <div class="ratio ratio-16x9">
+                                <img src="../assets/img/photos/img9.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-3 p-xl-5">
+                                <h3 class="card-title h5">Road trip in the wilderness</h3>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card shadow h-100">
+                            <div class="ratio ratio-16x9">
+                                <img src="../assets/img/photos/img4.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body  p-3 p-xl-5">
+                                <h3 class="card-title h5">To the hidden lake side</h3>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card shadow h-100">
+                            <div class="ratio ratio-16x9">
+                                <img src="../assets/img/photos/img5.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body  p-3 p-xl-5">
+                                <h3 class="card-title h5">Up, up, up in the Air</h3>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card shadow h-100">
+                            <div class="ratio ratio-16x9">
+                                <img src="../assets/img/photos/img6.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body  p-3 p-xl-5">
+                                <h3 class="card-title h5">A climbers birds view</h3>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <button type="button" class="slider-nav" aria-label="Go left"></button>
+                <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                <div class="slider-indicators">
+                    <button class="active" aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                </div>
+            </div>
+            <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+        </div>
+
+
+        <section style="background-color: #f1f1f1;">
+            <div class="container pt-3">
+                <h2>Visual statements</h2>
+                <p>Slides with no gap and different background colors to make statements stand out. Shows indicators outside on mobile only</p>
+
+                <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark">
+                    <div class="slider-container">
+                        <div class="p-3 p-xl-5 text-light" style="background-color: #354f52;">
+                            <h3 class="text-uppercase h5">Benefits from using our products</h3>
+                            <p>
+                                I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
+                            </p>
+                            <button class="btn btn-outline-light">Read more</button>
+                        </div>
+                        <div class="p-3 p-xl-5 text-light" style="background-color: #2f3e46;">
+                            <h3 class="text-uppercase h5">Join the webinar this week</h3>
+                            <p>
+                                Hoodie iceland literally slow-carb kombucha kickstarter cloud bread irony aesthetic wayfarers prism kinfolk occupy pok pok lo-fi. Letterpress crucifix distillery bespoke austin coloring book photo booth 8-bit.
+                            </p>
+                            <button class="btn btn-outline-light">Sign up</button>
+                        </div>
+                        <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
+                            <h3 class="text-uppercase h5">Understand what sliders can do for your business</h3>
+                            <p>
+                                Gochujang edison bulb church-key gentrify you probably haven't heard of them, artisan selfies. Live-edge tousled wolf cronut shaman.
+                            </p>
+                            <button class="btn btn-outline-light">Sign up</button>
+                        </div>
+                        <div class="p-3 p-xl-5 text-light" style="background-color: #354f52;">
+                            <h3 class="text-uppercase h5">Benefits from using our products</h3>
+                            <p>
+                                I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
+                            </p>
+                            <button class="btn btn-outline-light">Read more</button>
+                        </div>
+                        <div class="p-3 p-xl-5 text-light" style="background-color: #2f3e46;">
+                            <h3 class="text-uppercase h5">Join the webinar this week</h3>
+                            <p>
+                                I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
+                            </p>
+                            <button class="btn btn-outline-light">Sign up</button>
+                        </div>
+                        <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
+                            <h3 class="text-uppercase h5">Understand what sliders can do for your business</h3>
+                            <p>
+                                I'm baby edison bulb etsy franzen fixie messenger bag ugh hell of farm-to-table brunch. Tumeric hashtag meh pabst organic next level meggings whatever hella listicle.
+                            </p>
+                            <button class="btn btn-outline-light">Sign up</button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="slider-nav" aria-label="Go left"></button>
+                    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                    <div class="slider-indicators d-md-none">
+                        <button class="active" aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                    </div>
+                </div>
+                <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+            </div>
+        </section>
+
+        <section style="background-color: #fff;">
+            <div class="container pt-3">
+                <h2>News ticker</h2>
+                <p>Autoplaying thin carousel with just text in different colors and sizes. Indicators moved using inline style on the <code>slider-indicators</code> element</p>
+
+                <div class="swiffy-slider slider-item-show3 slider-nav-dark slider-nav-visible slider-nav-outside slider-item-snapstart my-3 slider-nav-sm my-xl-5 slider-indicators-square slider-indicators-outside slider-indicators-dark">
+                    <div class="slider-container">
+                        <div>
+                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 11:12</h3>
+                            <strong>Never seen before:</strong> Billion people taking clickbait on SoMe every hour. <small class="text-muted text-uppercase">People</small>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 10:02</h3>
+                            <span class="badge bg-warning text-dark"><strong>BREAKING</strong></span> Great and superfast websites can be made with simple technology. <small class="text-muted text-uppercase">Religion</small>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:48</h3>
+                            Google, Facebook and Apple announces they will respect privacy. <small class="text-muted text-uppercase">Corp BS</small>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:32</h3>
+                            <span class="badge bg-success"><strong>Style</strong></span> Get fantastic lunch recipes for developers working at home. <small class="text-muted text-uppercase">Awesome</small>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:28</h3>
+                            <strong>Just released:</strong> an even more fat-ass framework that can render markup <small class="text-muted text-uppercase">Music</small>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 08:08</h3>
+                            Swiffy Slider is very nice, neat and fast. <small class="text-muted text-uppercase">Simple</small>
+                        </div>
+                    </div>
+
+                    <button type="button" class="slider-nav" aria-label="Go left"></button>
+                    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                    <div class="slider-indicators" style="justify-content:right;margin-left: 3rem;">
+                        <button class="active" aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                        <button aria-label="Go to slide"></button>
+                    </div>
+
+                </div>
+                <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+            </div>
+        </section>
+
+        <section style="background-color: #f1f1f1;">
+            <div class="container pt-3">
+                <h2>Logo band</h2>
+                <p>Fixed height logos in a band with autoplay. Using ratios with custom ratio size. The swiffy-slider instance has padding and shadow to elevate the band. Navigation is always visible and placed outside the slide container</p>
+
+                <div class="swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white shadow-lg py-3 py-lg-4"
+                    data-slider-nav-autoplay-interval="2000">
+                    <div class="slider-container">
+                        <div><img src="../assets/img/brandlogos/css-3.svg" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/DWLogoColor_sm.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/javascript-1.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/bootstrap-5.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/eslint-1.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/github-2.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/html-1.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/svelte-wordmark-1.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/next-js.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/webpack-icon.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/react-2.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/star-wars-4.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/vue-9.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/meteor-5.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/nuxt-2.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/nodejs-1.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/prettier-2.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/angular-icon-1.svg" loading="lazy" alt="..."></div>
+                        <div><img src="../assets/img/brandlogos/github-icon.svg" loading="lazy" alt="..."></div>
+                    </div>
+
+                    <button type="button" class="slider-nav" aria-label="Go left"></button>
+                    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                </div>
+                <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+            </div>
+        </section>
+
+        <div class="container pt-3">
+            <h2>Product slider</h2>
+            <p>Simple and neat product slider using product photos with a background color that is the design element</p>
+            <div class="swiffy-slider slider-item-show3 slider-nav-round slider-nav-page">
+                <ul class="slider-container">
+                    <li>
+                        <div class="card border-0">
+                            <div class="ratio ratio-1x1">
+                                <img src="../assets/img/shoes/shoe1.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-0 pt-2">
+                                <div class="d-flex">
+                                    <h3 class="flex-grow-1 h5">LeBron 18</h3>
+                                    <p class="px-2">$200</p>
+                                </div>
+                                <p class="card-text">Basketball Shoes</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card border-0">
+                            <div class="ratio ratio-1x1">
+                                <img src="../assets/img/shoes/shoe2.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-0 pt-2">
+                                <div class="d-flex">
+                                    <h3 class="flex-grow-1 h5">Nike Air Vapormax 2021 FK</h3>
+                                    <p class="px-2">$200</p>
+                                </div>
+                                <p class="card-text">Women's Shoes</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card border-0">
+                            <div class="ratio ratio-1x1">
+                                <img src="../assets/img/shoes/shoe3.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-0 pt-2">
+                                <div class="d-flex">
+                                    <h3 class="flex-grow-1 h5">Nike Air Force 1 Fontanka</h3>
+                                    <p class="px-2">$110</p>
+                                </div>
+                                <p class="card-text">Women's Shoes</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card border-0">
+                            <div class="ratio ratio-1x1">
+                                <img src="../assets/img/shoes/shoe4.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-0 pt-2">
+                                <div class="d-flex">
+                                    <h3 class="flex-grow-1 h5">Kyrie 7</h3>
+                                    <p class="px-2">$130</p>
+                                </div>
+                                <p class="card-text">Basketball Shoes</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card border-0">
+                            <div class="ratio ratio-1x1">
+                                <img src="../assets/img/shoes/shoe5.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-0 pt-2">
+                                <div class="d-flex">
+                                    <h3 class="flex-grow-1 h5">Kyrie 7</h3>
+                                    <p class="px-2">$110</p>
+                                </div>
+                                <p class="card-text">Big Kids' Basketball Shoes</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card border-0">
+                            <div class="ratio ratio-1x1">
+                                <img src="../assets/img/shoes/shoe6.webp" class="card-img-top" loading="lazy" alt="...">
+                            </div>
+                            <div class="card-body p-0 pt-2">
+                                <div class="d-flex">
+                                    <h3 class="flex-grow-1 h5">Nike Air Max 90 Premium</h3>
+                                    <p class="px-2">$130</p>
+                                </div>
+                                <p class="card-text">Men's Shoes</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <button type="button" class="slider-nav" aria-label="Go left"></button>
+                <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+            </div>
+            <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+        </div>
+
+
+
+        <section style="background-color: #f1f1f1;">
+            <style>
+                #slider2 .card {
+                    border-radius: .75rem!important;
+                }
+                
+                #slider2 .card .card-img-top {
+                    border-radius: .75rem!important;
+                }
+            </style>
+            <div class="container pt-3">
+                <h2>Product slider 2</h2>
+                <p>Product slider revealing next product and emphasizing each product using shadows. Navigation is placed outside with expand so they flow outside the content area on larger displays</p>
+                <div class="swiffy-slider slider-item-show3 slider-item-reveal slider-nav-dark slider-nav-outside-expand">
+                    <ul class="slider-container py-4" id="slider2">
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe1.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>LeBron 18</strong>
+                                        <p class="card-text">Basketball Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$200</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe2.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>Nike Air Vapormax 2021 FK</strong>
+                                        <p class="card-text">Women's Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$200</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe3.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>Nike Air Force 1 Fontanka</strong>
+                                        <p class="card-text">Women's Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$110</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe4.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>Kyrie 7</strong>
+                                        <p class="card-text">Basketball Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$130</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe5.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>Kyrie 7</strong>
+                                        <p class="card-text">Big Kids' Basketball Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$110</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe6.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>Nike Air Max 90 Premium</strong>
+                                        <p class="card-text">Men's Shoes</p>
+                                        <div class="px-md-2">$130</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe1.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>LeBron 18</strong>
+                                        <p class="card-text">Basketball Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$200</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe2.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>Nike Air Vapormax 2021 FK</strong>
+                                        <p class="card-text">Women's Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$200</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="card shadow h-100">
+                                <div class="ratio ratio-1x1">
+                                    <img src="../assets/img/shoes/shoe3.webp" class="card-img-top" loading="lazy" alt="...">
+                                </div>
+                                <div class="card-body d-flex flex-column flex-md-row">
+                                    <div class="flex-grow-1">
+                                        <strong>Nike Air Force 1 Fontanka</strong>
+                                        <p class="card-text">Women's Shoes</p>
+                                    </div>
+                                    <div class="px-md-2">$110</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <button type="button" class="slider-nav" aria-label="Go to previous"></button>
+                    <button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
+                </div>
+                <button onclick="showAndHightlightCode() " class="btn btn-link my-2 my-lg-4">Show code</button>
+            </div>
+        </section>
+
+        <div class="container pt-3">
+            <h2>Product gallery</h2>
+            <p>Show thumbs and navigate to large image and clicking large image will open dialog with slider. Using 3 sliders - one for thumbs, one for the product image and one inside the modal.</p>
+            <p>Uses Bootstrap modal, helpers and utilities, but the concept would be the same in other frameworks</p>
+            <p>This is to show the possibilities using sliders in different ways, same content and different context and layouts. JS is inline just to show the principle but should of course be optimized</p>
+            <div class="row">
+
+                <div class="col-12 col-lg-6" id="productGallery">
+                    <script>
+                        function imageClick(imageNumber) {
+                            setTimeout(() => {
+                                //Find the slider element
+                                const sliderElement = document.getElementById('pgalleryModal');
+                                //Slide to he right image
+                                swiffySlider.slideTo(sliderElement, imageNumber);
+                                //Listen to slide end and set focus to the container to enable keyboard navigation
+                                swiffySlider.onSlideEnd(sliderElement, () => sliderElement.querySelector(".slider-container").focus());
+                            }, 300)
+                        }
+
+                        function thumbHover(imageNumber) {
+                            //Find the slider element
+                            const sliderElement = document.getElementById('pgallery');
+                            //Slide to he right image
+                            swiffySlider.slideTo(sliderElement, imageNumber)
+                        }
+                    </script>
+                    <div class="swiffy-slider slider-item-ratio slider-item-ratio-1x1 slider-nav-round slider-nav-nodelay" id="pgallery">
+                        <ul class="slider-container">
+                            <li><img src="../assets/img/shoes/shoe1.webp" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(0)"></li>
+                            <li><img src="../assets/img/shoes/shoe2.webp" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(1)"></li>
+                            <li><img src="../assets/img/shoes/shoe3.webp" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(2)"></li>
+                            <li><img src="../assets/img/shoes/shoe4.webp" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(3)"></li>
+                            <li><img src="../assets/img/shoes/shoe5.webp" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(4)"></li>
+                            <li><img src="../assets/img/shoes/shoe6.webp" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#productGalleryModal" onclick="imageClick(5)"></li>
+                        </ul>
+
+                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+                    </div>
+
+                    <div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-show4 slider-item-snapstart slider-item-ratio slider-item-ratio-1x1 slider-nav-visible slider-nav-page slider-nav-outside-expand pt-3 d-none d-lg-block">
+                        <ul class="slider-container" id="pgallerythumbs" style="cursor:pointer">
+                            <li><img src="../assets/img/shoes/shoe1.webp" loading="lazy" alt="..." onmouseover="thumbHover(0)"></li>
+                            <li><img src="../assets/img/shoes/shoe2.webp" loading="lazy" alt="..." onmouseover="thumbHover(1)"></li>
+                            <li><img src="../assets/img/shoes/shoe3.webp" loading="lazy" alt="..." onmouseover="thumbHover(2)"></li>
+                            <li><img src="../assets/img/shoes/shoe4.webp" loading="lazy" alt="..." onmouseover="thumbHover(3)"></li>
+                            <li><img src="../assets/img/shoes/shoe5.webp" loading="lazy" alt="..." onmouseover="thumbHover(4)"></li>
+                            <li><img src="../assets/img/shoes/shoe6.webp" loading="lazy" alt="..." onmouseover="thumbHover(5)"></li>
+                        </ul>
+
+                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+                    </div>
+
+                    <div class="modal  fade" id="productGalleryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="swiffy-slider h-100 slider-nav-dark" id="pgalleryModal">
+                                        <ul class="slider-container" tabindex="-1">
+                                            <li class="d-flex align-items-center justify-content-center"><img src="../assets/img/shoes/shoe1.webp" loading="lazy" class="mw-100 mh-100" alt="..." data-bs-dismiss="modal"></li>
+                                            <li class="d-flex align-items-center justify-content-center"><img src="../assets/img/shoes/shoe2.webp" loading="lazy" class="mw-100 mh-100" alt="..." data-bs-dismiss="modal"></li>
+                                            <li class="d-flex align-items-center justify-content-center"><img src="../assets/img/shoes/shoe3.webp" loading="lazy" class="mw-100 mh-100" alt="..." data-bs-dismiss="modal"></li>
+                                            <li class="d-flex align-items-center justify-content-center"><img src="../assets/img/shoes/shoe4.webp" loading="lazy" class="mw-100 mh-100" alt="..." data-bs-dismiss="modal"></li>
+                                            <li class="d-flex align-items-center justify-content-center"><img src="../assets/img/shoes/shoe5.webp" loading="lazy" class="mw-100 mh-100" alt="..." data-bs-dismiss="modal"></li>
+                                            <li class="d-flex align-items-center justify-content-center"><img src="../assets/img/shoes/shoe6.webp" loading="lazy" class="mw-100 mh-100" alt="..." data-bs-dismiss="modal"></li>
+                                        </ul>
+
+                                        <button type="button" class="slider-nav" aria-label="Go previous"></button>
+                                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
+                                        <ul class="slider-indicators slider-indicators-dark slider-indicators-highlight slider-indicators-round">
+                                            <li class="active"></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h3>Nike ZoomX Invincible Run Flyknit</h3>
+                    <p>
+                        <div><span class="text-warning fs-5">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+                        <div>Men's Road Running Shoes</div>
+                        <div><small>CT2228-700</small></div>
+                    </p>
+                    <div class="h3">$180</div>
+                    <div class="mb-1">
+                        <span class="badge bg-success py-1 px-3"><strong>New in</strong></span>
+                    </div>
+                    <p>
+                        Get after those long runs with lightweight, responsive foam that delivers a soft feel with every step. A Flyknit upper gives your foot breathability where you need it most and secure fit you can depend on.
+                        <ul>
+                            <li>Shown: Volt/Barely Volt/Black</li>
+                            <li>Style: CT2228-700</li>
+                        </ul>
+                    </p>
+
+                    <div>
+                        <strong>Select size</strong>
+                        <div class="d-flex gap-2 mt-2 mt-lg-4">
+
+                            <input type="radio" class="btn-check" name="variant" id="v38" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-0" for="v38">38</label>
+
+                            <input type="radio" class="btn-check" name="variant" id="v39" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-0" for="v39">39</label>
+
+                            <input type="radio" class="btn-check" name="variant" id="v40" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-0" for="v40">40</label>
+
+                            <input type="radio" class="btn-check" name="variant" id="v41" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-0" for="v41">41</label>
+
+                            <input type="radio" class="btn-check" name="variant" id="v42" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-0" for="v42">42</label>
+
+                            <input type="radio" class="btn-check" name="variant" id="v43" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-0" for="v43">43</label>
+
+                            <input type="radio" class="btn-check" name="variant" id="v44" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-0" for="v44">44</label>
+                        </div>
+                    </div>
+
+
+
+                    <button class="btn btn-dark btn-lg mt-2 mt-lg-4 rounded-pill d-block w-50">Add to cart</button>
+
+                </div>
+            </div>
+            <button onclick="showAndHightlightCode(document.getElementById('productGallery'))" class="btn btn-link my-2 my-lg-4">Show code</button>
+        </div>
+
+        <div id="movieSection">
+            <div>
+                <div class="container pt-3 text-light position-relative">
+                    <nav class="navbar navbar-expand-md navbar-light p-0">
+                        <a class="navbar-brand " href="#">
+                            <img src="../assets/img/swiffysliderlogo/SwiffySliderLogoWhiteOnRed.svg " width="200" height="60" alt="...">
+                        </a>
+                    </nav>
+                    <p></p>
+                    <h2 class="my-5">Going to the movies....</h2>
+                    <p>Full width section with background image with a gradient overlay. 3 slider instances in full width with 6 items per page.</p>
+                </div>
+                <div class="container-fluid position-relative">
+                    <h2 class="text-light mt-3 mt-xl-5 mb-2">Trending</h2>
+                    <div class="swiffy-slider slider-item-show6 slider-item-reveal slider-item-ratio slider-item-ratio-2x1">
+                        <div class="slider-container">
+                            <div>
+                                <img src="../assets/img/movies/movie1.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie2.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie3.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie4.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie5.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie6.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie7.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie8.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie9.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie1.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie2.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie3.webp" alt="...">
+                            </div>
+                        </div>
+
+                        <button type="button" class="slider-nav"></button>
+                        <button type="button" class="slider-nav slider-nav-next"></button>
+
+                    </div>
+
+                    <h2 class="text-light mt-3 mt-xl-5 mb-2">Documentary</h2>
+                    <div class="swiffy-slider slider-item-show6 slider-item-reveal slider-item-snapstart slider-item-ratio slider-item-ratio-2x1">
+                        <div class="slider-container">
+                            <div>
+                                <img src="../assets/img/movies/movie4.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie5.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie6.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie1.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie2.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie3.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie9.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie1.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie7.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie8.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie2.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie3.webp" alt="...">
+                            </div>
+                        </div>
+
+                        <button type="button" class="slider-nav"></button>
+                        <button type="button" class="slider-nav slider-nav-next"></button>
+                    </div>
+
+                    <h2 class="text-light mt-3 mt-xl-5 mb-2">Just released</h2>
+                    <div class="swiffy-slider slider-item-show6 slider-item-ratio slider-item-ratio-2x1">
+                        <div class="slider-container">
+                            <div>
+                                <img src="../assets/img/movies/movie2.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie1.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie3.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie9.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie7.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie8.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie6.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie1.webp" alt="...">
+                            </div>
+
+                            <div>
+                                <img src="../assets/img/movies/movie4.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie2.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie3.webp" alt="...">
+                            </div>
+                            <div>
+                                <img src="../assets/img/movies/movie5.webp" alt="...">
+                            </div>
+                        </div>
+
+                        <button type="button" class="slider-nav"></button>
+                        <button type="button" class="slider-nav slider-nav-next"></button>
+
+                    </div>
+                </div>
+                <button onclick="showAndHightlightCode() " class="btn btn-link my-2 my-lg-4">Show code</button>
+            </div>
+        </div>
+
+        <div class="container my-5">
+            <h2 class="my-5 text-center h1">Full screen image carousel</h2>
+            <p class="text-center">An image slider put inside a modal (In this case a full screen Bootstrap modal).</p>
+            <p class="text-center">Javascript is used to set focus on the first slide when the modal is opened and the slides have tabindex="-1 " to support keyboard navigation</p>
+            <p class="lead text-center">Click the image to see the carousel in full width and navigate with keyboard arrows</p>
+            <p class="text-muted text-center">(Press ESC to close fullscreen view - or tap the image)</p>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                    <div class="ratio ratio-16x9">
+                        <img src="../assets/img/photos/img2.webp" class="img-fluid" loading="lazy" alt="..." data-bs-toggle="modal" data-bs-target="#fullScreenImageDialog" style="cursor:pointer;" onclick="setTimeout(()=>document.getElementById('sliders').children[0].focus(), 500);console.log('loaded')">
+                    </div>
+                </div>
+            </div>
+            <p></p>
+
+            <div class="modal fade" id="fullScreenImageDialog">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+
+                        <div class="swiffy-slider h-100">
+                            <ul class="slider-container h-100 overflow-hidden" id="sliders">
+                                <li class="h-100" tabindex="-1"><img src="../assets/img/photos/img2.webp" class="h-100 w-100" style="object-fit: cover;" loading="lazy" data-bs-dismiss="modal" alt="..."></li>
+                                <li class="h-100" tabindex="-1"><img src="../assets/img/photos/img4.webp" class="h-100 w-100" style="object-fit: cover;" loading="lazy" data-bs-dismiss="modal" alt="..."></li>
+                                <li class="h-100" tabindex="-1"><img src="../assets/img/photos/img6.webp" class="h-100 w-100" style="object-fit: cover;" loading="lazy" data-bs-dismiss="modal" alt="..."></li>
+                            </ul>
+
+                            <button type="button" class="slider-nav" aria-label="Go left"></button>
+                            <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                            <div class="slider-indicators">
+                                <button class="active" aria-label="Go to slide"></button>
+                                <button aria-label="Go to slide"></button>
+                                <button aria-label="Go to slide"></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+        </div>
+
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <span>Examples and documentation for Swiffy Slider - by Dynamicweb - <a href="https://dynamicweb.com" class="text-dark">https://dynamicweb.com</a></span>
+        </div>
+    </footer>
+</body>
+
+</html>

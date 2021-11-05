@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en" class=" overflow-auto h-100 mh-100">
+
+<head>
+    <title>Easy configuration of mobile and touch friendly slider</title>
+    <meta name="description" value="WYSIWYG configuration of Swiffy Slider for fast and effective development">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nicolai Høeg Pedersen, Dynamicweb Software">
+
+    <link rel="stylesheet" href="../assets/css/swiffy-slider.min.css">
+    <script src="../assets/js/swiffy-slider.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/img/swiffysliderlogo/SwiffyIcon.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/github.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            hljs.highlightAll();
+        });
+    </script>
+    <script>
+        function updatePreviewStyle() {
+            const sliderPreview = document.getElementById("preview");
+            sliderPreview.className = "";
+            sliderPreview.classList.add(window.event.target.value);
+        }
+
+        function updateSettings() {
+            const form = document.getElementById("configurationSettings");
+            const data = new FormData(form);
+
+            const sliderPreview = document.getElementById("preview");
+            const sliderInstance = sliderPreview.querySelector(".swiffy-slider");
+            sliderInstance.className = "";
+            sliderInstance.removeAttribute("data-slider-nav-autoplay-interval");
+
+            sliderInstance.classList.add("swiffy-slider");
+            for (var pair of data.entries()) {
+                const key = pair[0];
+                const value = pair[1];
+                if (value.startsWith("slider-")) {
+                    sliderInstance.classList.add(value);
+                }
+                if (key.startsWith("data-") && parseInt(value) > 0) {
+                    sliderInstance.setAttribute(key, value);
+                }
+            }
+
+            //Remove excess indention from markup
+            const lines = sliderPreview.innerHTML.trim().split("\n");
+            const lastLine = lines[lines.length - 1];
+            const numberOfSpacers = lastLine.indexOf("<");
+            const spaceString = lastLine.substring(0, numberOfSpacers);
+            let markup = "";
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.startsWith(spaceString)) {
+                    markup += line.substring(numberOfSpacers) + "\n";
+                } else {
+                    markup += line + "\n";
+                }
+            }
+
+            const highlightedCode = hljs.highlight(markup, {
+                language: 'html'
+            }).value;
+            document.getElementById("codeSample").innerHTML = highlightedCode;
+        }
+    </script>
+    <style>
+        code {
+            border: 1px solid #ececec;
+            border-radius: .25rem;
+        }
+        
+        .preview-images .slider-container>*:nth-child(1) {
+            background-image: url("../assets/img/photos/img1.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(2) {
+            background-image: url("../assets/img/photos/img2.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(3) {
+            background-image: url("../assets/img/photos/img3.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(4) {
+            background-image: url("../assets/img/photos/img4.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(5) {
+            background-image: url("../assets/img/photos/img5.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(6) {
+            background-image: url("../assets/img/photos/img6.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(7) {
+            background-image: url("../assets/img/photos/img7.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(8) {
+            background-image: url("../assets/img/photos/img8.webp");
+        }
+        
+        .preview-images .slider-container>*:nth-child(9) {
+            background-image: url("../assets/img/photos/img9.webp");
+        }
+        
+        .preview-colors .slider-container>*:nth-child(1) {
+            background-color: #277da1 !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(2) {
+            background-color: #577590 !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(3) {
+            background-color: #4d908e !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(4) {
+            background-color: #43aa8b !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(5) {
+            background-color: #90be6d !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(6) {
+            background-color: #f9c74f !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(7) {
+            background-color: #f9844a !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(8) {
+            background-color: #f3722c !important;
+        }
+        
+        .preview-colors .slider-container>*:nth-child(9) {
+            background-color: #f94144 !important;
+        }
+        
+        .swiffy-slider:not(.slider-item-ratio) .slider-container>* {
+            min-height: 30rem;
+        }
+        
+        .swiffy-slider .slider-container>* {
+            background-size: cover;
+            background-color: #e1e1e1;
+            background-position: 50% 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .slider-item-show2:not(.slider-item-ratio) .slider-container>* {
+            min-height: 25rem;
+        }
+        
+        .slider-item-show3:not(.slider-item-ratio) .slider-container>* {
+            min-height: 20rem;
+        }
+        
+        .slider-item-show4:not(.slider-item-ratio) .slider-container>* {
+            min-height: 15rem;
+        }
+        
+        .slider-item-show5:not(.slider-item-ratio) .slider-container>* {
+            min-height: 13.5rem;
+        }
+        
+        .slider-item-show6:not(.slider-item-ratio) .slider-container>* {
+            min-height: 12rem;
+        }
+        
+        html,
+        body {
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            scroll-snap-type: y proximity;
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            border-radius: 0;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        
+        .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .btn-primary {
+            color: #fff;
+            background-color: #DF1E1E;
+            border-color: #DF1E1E;
+        }
+        
+        .btn-outline-primary {
+            color: #DF1E1E;
+            border-color: #DF1E1E;
+        }
+        
+        .btn-outline-white {
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .btn-link {
+            color: #DF1E1E;
+        }
+        
+        .nav-link.active {
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            position: absolute;
+            border-bottom: 2px solid #fff;
+            display: block;
+            left: .5rem;
+            width: calc(100% - 1rem);
+            height: 2px;
+            content: "";
+        }
+        
+        @media(max-width: 992px) {
+            .position-sticky {
+                position: inherit !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column flex-lg-row h-100 mh-100">
+    <section class="flex-lg-grow-1 overflow-auto h-100 mh-100">
+        <header style="background-color: #DF1E1E;z-index: 1;" class="text-white position-sticky top-0">
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md p-1 text-white navbar-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="../">
+                        <img src="../assets/img/swiffysliderlogo/SwiffySliderLogoRedOnWhite.svg" width="150">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" aria-current="page" href="../">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="../docs">Docs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="../examples">Examples</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white active" href="#">Configuration</a>
+                            </li>
+                        </ul>
+                        <div class="col-md-3 text-md-end">
+                            <a href="https://github.com/dynamicweb/swiffy-slider/" class=" me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+                                </svg></a>
+                            <a href="https://github.com/dynamicweb/swiffy-slider/releases/latest" target="_blank" class="btn text-white btn-outline-white">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section style="background-color: #DF1E1E;">
+                <div class="container text-white py-3 pt-lg-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="display-5">Swiffy Slider Configuration</h1>
+                            <h2 class="d-none d-md-block">Easy configuration of Swiffy Slider</h2>
+                            <p class="lead d-none d-md-inline">
+                                Use the configuration panel to create the required markup with css option classes and show a preview of the slider.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section style="background-color: #fff;">
+                <div class="container py-3 py-lg-5">
+                    <div class="row">
+                        <div class="col">
+                            <div class="pb-2 pb-md-4">
+                                <h5 class="d-inline">Preview</h5>
+                                <label>&nbsp;Style:&nbsp;</label>
+                                <div class="d-inline">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="preview-style" id="preview-colors" value="preview-colors" onchange="updatePreviewStyle()" checked>
+                                        <label class="form-check-label" for="preview-colors">Colors</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="preview-style" id="preview-images" value="preview-images" onchange="updatePreviewStyle()">
+                                        <label class="form-check-label" for="preview-images">Images</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="preview" class="preview-colors">
+                                <div class="swiffy-slider">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+
+                                    <ul class="slider-indicators">
+                                        <li class="active"></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section style="background-color: #f1f1f1;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div id="code" class="pt-2 pt-md-4">
+                                <h5>Markup</h5>
+                                <pre>
+                                <code id="codeSample" class="language-html" style="white-space: pre-wrap;">
+&#x3C;div class=&#x22;swiffy-slider&#x22;&#x3E;
+    &#x3C;ul class=&#x22;slider-container&#x22;&#x3E;
+        &#x3C;li&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;/li&#x3E;
+    &#x3C;/ul&#x3E;
+
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav&#x22;&#x3E;&#x3C;/button&#x3E;
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav slider-nav-next&#x22;&#x3E;&#x3C;/button&#x3E;
+
+    &#x3C;div class=&#x22;slider-indicators&#x22;&#x3E;
+        &#x3C;button class=&#x22;active&#x22;&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;
+                            </code>
+                            </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container text-center">
+                <span class="text-muted">Examples and documentation for Swiffy Slider - by Dynamicweb - <a href="https://dynamicweb.com">https://dynamicweb.com</a></span>
+            </div>
+        </footer>
+    </section>
+
+
+    <section class="flex-lg-grow-0 bg-white overflow-auto h-100 mh-100 p-2 p-md-4" style="width: 30rem;">
+        <h5>Configuration options</h5>
+
+        <form id="configurationSettings" onsubmit="return false;">
+            <div class="mb-3">
+                <strong class="text-uppercase">Layout</strong>
+                <select class="form-select" name="slider-item-show" aria-label="Slides per page">
+                    <option value="">1 slide per page</option>
+                    <option value="slider-item-show2">2 slides per page (.slider-item-show2)</option>
+                    <option value="slider-item-show3">3 slides per page (.slider-item-show3)</option>
+                    <option value="slider-item-show4">4 slides per page (.slider-item-show4)</option>
+                    <option value="slider-item-show5">5 slides per page (.slider-item-show5)</option>
+                    <option value="slider-item-show6">6 slides per page (.slider-item-show6)</option>
+                </select>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="slider-item-reveal" id="slider-item-reveal" name="slider-item-reveal">
+                    <label class="form-check-label" for="slider-item-reveal">Reveal before and after <code>.slider-item-reveal</code></label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="slider-item-ratio" id="slider-item-ratio" name="slider-item-ratio">
+                    <label class="form-check-label" for="slider-item-ratio">Use ratio on slides <code>.slider-item-ratio</code></label>
+                </div>
+                <select class="form-select" name="slider-item-ratio" aria-label="Ratio">
+                    <option value="">Default ratio (2:1 / 50%)</option>
+                    <option value="slider-item-ratio-32x9">32:9 ratio / ~28% (.slider-item-ratio-21x9)</option>
+                    <option value="slider-item-ratio-21x9">21:9 ratio / ~43% (.slider-item-ratio-21x9)</option>
+                    <option value="slider-item-ratio-2x1">2:1 ratio / 50% (.slider-item-ratio-2x1)</option>
+                    <option value="slider-item-ratio-16x9">16:9 ratio / ~56% (.slider-item-ratio-16x9)</option>
+                    <option value="slider-item-ratio-4x3">4:3 ratio / 75% (.slider-item-ratio-4x3)</option>
+                    <option value="slider-item-ratio-1x1">1:1 ratio / 100% (.slider-item-ratio-1x1)</option>
+                    <option value="slider-item-ratio-3x4">3:4 ratio / 125% (.slider-item-ratio-1x1)</option>
+                    
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <strong class="text-uppercase">Slides</strong>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="slider-item-nogap" id="slider-item-nogap" name="slider-item-nogap">
+                    <label class="form-check-label" for="slider-item-nogap">No gap <code>.slider-item-nogap</code></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="slider-item-shadow" id="slider-item-shadow" name="slider-item-shadow">
+                    <label class="form-check-label" for="slider-item-shadow">Shadow <code>.slider-item-shadow</code></label>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-item-snapping" id="slider-item-snapping" value="" checked>
+                        <label class="form-check-label" for="slider-item-snapping">
+                            Snap center
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-item-snapping" id="slider-item-snapstart" value="slider-item-snapstart">
+                        <label class="form-check-label" for="slider-item-snapstart">
+                            Snap to start <code>.slider-item-snapstart</code>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-item-snapping" id="slider-item-nosnap" value="slider-item-nosnap">
+                        <label class="form-check-label" for="slider-item-nosnap">
+                            No snap <code>.slider-item-nosnap</code>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-item-nosnap-touch" id="slider-item-nosnap-touch" name="slider-item-nosnap-touch">
+                        <label class="form-check-label" for="slider-item-nosnap-touch">No snap on touch <code>.slider-item-nosnap-touch</code></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <strong class="text-uppercase">Navigation</strong><br>
+                <small>Navigation arrows is shown when hovering the slider. Enable <label for="slider-nav-visible" class="text-decoration-underline text-primary" style="cursor: pointer;">'always visible'</label> to see your config right away.</small>
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-style" id="slider-nav-regular" value="" checked>
+                        <label class="form-check-label" for="slider-nav-regular">
+                            Chevron
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-style" id="slider-nav-chevron" value="slider-nav-chevron">
+                        <label class="form-check-label" for="slider-nav-chevron">
+                            Chevron compact <code>.slider-nav-chevron</code>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-style" id="slider-nav-arrow" value="slider-nav-arrow">
+                        <label class="form-check-label" for="slider-nav-arrow">
+                            Arrow <code>.slider-nav-arrow</code>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-style" id="slider-nav-caret" value="slider-nav-caret">
+                        <label class="form-check-label" for="slider-nav-caret">
+                            Caret <code>.slider-nav-caret</code>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-style" id="slider-nav-caretfill" value="slider-nav-caretfill">
+                        <label class="form-check-label" for="slider-nav-caretfill">
+                            Caret filled<code>.slider-nav-caretfill</code>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-style" id="slider-nav-round" value="slider-nav-round">
+                        <label class="form-check-label" for="slider-nav-round">
+                            Round with arrow <code>.slider-nav-round</code>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-style" id="slider-nav-square" value="slider-nav-square">
+                        <label class="form-check-label" for="slider-nav-square">
+                            Square with chevron <code>.slider-nav-square</code>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-dark" id="slider-nav-dark" name="slider-nav-dark">
+                        <label class="form-check-label" for="slider-nav-dark">Dark <code>.slider-nav-dark</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-sm" id="slider-nav-sm" name="slider-nav-sm">
+                        <label class="form-check-label" for="slider-nav-sm">Small <code>.slider-nav-sm</code></label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-arrows" id="slider-nav-arrows" value="" checked>
+                        <label class="form-check-label" for="slider-nav-arrows">
+                            Arrows on slides
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-arrows" id="slider-nav-outside" value="slider-nav-outside">
+                        <label class="form-check-label" for="slider-nav-outside">
+                            Arrows outside <code>.slider-nav-outside</code>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-arrows" id="slider-nav-outside-expand" value="slider-nav-outside-expand">
+                        <label class="form-check-label" for="slider-nav-outside-expand">
+                            Arrows outside expanded <code>.slider-nav-outside-expand</code>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-scrollbar" id="slider-nav-scrollbar" name="slider-nav-scrollbar">
+                        <label class="form-check-label" for="slider-nav-scrollbar">Show scrollbar <code>.slider-nav-scrollbar</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-visible" id="slider-nav-visible" name="slider-nav-visible">
+                        <label class="form-check-label" for="slider-nav-visible">Always visible <code>.slider-nav-visible</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-touch" id="slider-nav-touch" name="slider-nav-touch">
+                        <label class="form-check-label" for="slider-nav-touch">Visible on touch <code>.slider-nav-touch</code></label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-nodelay" id="slider-nav-nodelay" name="slider-nav-nodelay">
+                        <label class="form-check-label" for="slider-nav-nodelay">No delay <code>.slider-nav-nodelay</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-page" id="slider-nav-page" name="slider-nav-page">
+                        <label class="form-check-label" for="slider-nav-page">Slide entire page <code>.slider-nav-page</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-noloop" id="slider-nav-noloop" name="slider-nav-noloop">
+                        <label class="form-check-label" for="slider-nav-noloop">No loop on end <code>.slider-nav-noloop</code></label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-autoplay" id="slider-nav-autoplay" name="slider-nav-autoplay">
+                        <label class="form-check-label" for="slider-nav-autoplay">Auto play slides <code>.slider-nav-autoplay</code></label>
+                    </div>
+                    <div class="input-group input-group-sm w-75">
+                        <span class="input-group-text">Timeout</span>
+                        <input type="number" min="750" step="250" class="form-control form-control-sm" aria-label="Timeout" placeholder="2500" name="data-slider-nav-autoplay-interval">
+                        <span class="input-group-text">ms</span>
+                    </div>
+                    <code>data-slider-nav-autoplay-interval</code> attribute
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-autopause" id="slider-nav-autopause" name="slider-nav-autopause">
+                        <label class="form-check-label" for="slider-nav-autopause">Pause on hover and touch <code>.slider-nav-autopause</code></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <strong class="text-uppercase">Indicators</strong>
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-indicators-style" id="slider-indicators-regular" value="" checked>
+                        <label class="form-check-label" for="slider-indicators-regular">Dash indicators</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-indicators-style" id="slider-indicators-round" value="slider-indicators-round">
+                        <label class="form-check-label" for="slider-indicators-round">Round indicators <code>.slider-indicators-round</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-indicators-style" id="slider-indicators-square" value="slider-indicators-square">
+                        <label class="form-check-label" for="slider-indicators-square">Square indicators <code>.slider-indicators-square</code></label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-indicators-dark" id="slider-indicators-dark" name="slider-indicators-dark">
+                        <label class="form-check-label" for="slider-indicators-dark">Dark <code>.slider-indicators-dark</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-indicators-outside" id="slider-indicators-outside" name="slider-indicators-outside">
+                        <label class="form-check-label" for="slider-indicators-outside">Outside <code>.slider-indicators-outside</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-indicators-highlight" id="slider-indicators-highlight" name="slider-indicators-highlight">
+                        <label class="form-check-label" for="slider-indicators-highlight">Highlight <code>.slider-indicators-highlight</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-indicators-sm" id="slider-indicators-sm" name="slider-indicators-sm">
+                        <label class="form-check-label" for="slider-indicators-sm">Visible on small devices <code>.slider-indicators-sm</code></label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <strong class="text-uppercase">Debugging</strong>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="slider-item-helper" id="slider-item-helper" name="slider-item-helper">
+                    <label class="form-check-label" for="slider-item-helper">Helper <code>.slider-item-helper</code></label>
+                </div>
+            </div>
+        </form>
+        <script>
+            window.addEventListener("load", () => {
+                updateSettings();
+                const form = document.getElementById("configurationSettings");
+                for (const inputElement of form.elements) {
+                    inputElement.addEventListener("change", () => {
+                        updateSettings();
+                    });
+                }
+            });
+        </script>
+    </section>
+</body>
+
+</html>

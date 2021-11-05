@@ -1,0 +1,49 @@
+{
+    "name": "swiffy-slider",
+    "description": "Swiffy slider is a touch enabled super lightweight html slider and carousel using browser scroll, css grid and scroll snap align and less than 1.5 kb javascript. Comes in css mode only version",
+    "version": "1.0.0",
+    "config": {
+        "version_short": "1.0"
+    },
+    "main": "dist/swiffy-slider.ES.min.js",
+    "browser": "dist/swiffy-slider.min.js",
+    "style": "dist/swiffy-slider.min.css",
+    "directories": {
+        "site": "site",
+        "example": "examples"
+    },
+    "files": [
+        "dist/{css,js}/*.{css,js,map}"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dynamicweb/swiffy-slider.git"
+    },
+    "keywords": [
+        "carousel",
+        "slider",
+        "vanilla",
+        "css",
+        "mobile",
+        "mobile-first",
+        "responsive",
+        "touch",
+        "html",
+        "product slider",
+        "lightbox",
+        "web",
+        "framework"
+    ],
+    "author": "Nicolai Høeg Pedersen @ Dynamicweb <np@dynamicweb.dk> (https://www.dynamicweb.com)",
+    "contributors": [
+        "Dynamicweb A/S"
+    ],
+    "bugs": {
+        "url": "https://github.com/dynamicweb/swiffy-slider/issues"
+    },
+    "homepage": "https://www.swiffyslider.com",
+    "license": "MIT",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
+}

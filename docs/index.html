@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Swiffy Slider - Responsive and Mobile Touch Carousel</title>
+    <meta name="description" content="CSS and javascript responsive slider and carousel - lightweight and fast">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nicolai Høeg Pedersen, Dynamicweb Software">
+
+    <link rel="stylesheet" href="assets/css/swiffy-slider.min.css">
+    <script src="assets/js/swiffy-slider.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/swiffysliderlogo/SwiffyIcon.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            hljs.highlightAll();
+        });
+    </script>
+    <style>
+        html,
+        body {
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            scroll-snap-type: y proximity;
+            scroll-behavior: smooth;
+        }
+        
+        code {
+            border: 1px solid #ececec;
+            border-radius: .25rem;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            border-radius: 0;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        
+        .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .btn-primary {
+            color: #fff;
+            background-color: #DF1E1E;
+            border-color: #DF1E1E;
+        }
+        
+        .btn-outline-primary {
+            color: #DF1E1E;
+            border-color: #DF1E1E;
+        }
+        
+        .btn-outline-white {
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .btn-link {
+            color: #DF1E1E;
+        }
+        
+        .nav-link.active {
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            position: absolute;
+            border-bottom: 2px solid #fff;
+            display: block;
+            left: .5rem;
+            width: calc(100% - 1rem);
+            height: 2px;
+            content: "";
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column">
+
+    <header class="sticky-top text-white" style="background-color: #DF1E1E;">
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark p-1 text-white">
+            <div class="container">
+                <a class="navbar-brand" href="./">
+                    <img src="assets/img/swiffysliderlogo/SwiffySliderLogoRedOnWhite.svg" width="150" height="45" alt="Swiffy Slider - Responsive and Mobile Touch Carousel">
+                </a>
+                <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-white"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" aria-current="page" href="./">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="./docs/">Docs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="./examples">Examples</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="./configuration">Configuration</a>
+                        </li>
+                    </ul>
+                    <div class="col-md-3 text-md-end">
+                        <a href="https://github.com/dynamicweb/swiffy-slider/" class="me-2" title="Github repository">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg></a>
+                        <a href="https://github.com/dynamicweb/swiffy-slider/releases/latest" target="_blank" class="btn text-white btn-outline-white">Download</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section style="background-color: #DF1E1E;">
+            <div class="container text-white py-3 py-lg-5">
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-xl-6">
+                        <h1 class="display-5">Swiffy Slider</h1>
+                        <h2>Super fast and lightweight slider and carousel</h2>
+                        <p class="lead">
+                            A whole new approach to sliders and carousels utilizing 2021 browser features.
+                        </p>
+                        <p class="lead">
+                            2 kb CSS. 1.5 KB JS.
+                        </p>
+                        <p>
+                            <a href="docs" class="btn btn-light">Get started</a>
+                            <a href="configuration" class="btn btn-outline-white text-white link-light">Configurator</a>
+                        </p>
+                        <p>
+                            Currently: <strong>v1.0.0</strong><span class="px-1">·</span><a href="./docs" class="text-white">Docs</a><span class="px-1">·</span><a href="./examples" class="text-white">Examples</a>
+                        </p>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col-12 col-lg-5 py-xl-5">
+                        <div class="swiffy-slider h-100 slider-item-reveal slider-indicators-outside slider-indicators-round slider-nav-outside-expand slider-nav-visible">
+                            <ul class="slider-container text-dark py-4" tabindex="-1" style="outline: none;" id="swiffyBenefits">
+                                <li>
+                                    <div class="card border-0 h-100 shadow">
+                                        <img src="assets/img/swiffysliderlogo/SwiffySliderLogoWhiteOnRed.svg" class="card-img-top mt-2" style="height: 4rem;" alt="Feature rich">
+                                        <div class="card-body p-2 p-lg-3">
+                                            <h3 class="card-title">Feature rich</h3>
+                                            <p class="card-text">Supports all common use cases</p>
+                                            <p class="card-text">Super mobile friendly and awesome touch support</p>
+                                            <p class="card-text">Slide any content in any markup structure</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="card border-0 h-100 shadow">
+                                        <img src="assets/img/brandlogos/css-3.svg" class="card-img-top mt-2" style="height: 4rem;" alt="Modern CSS">
+                                        <div class="card-body p-2 p-lg-3">
+                                            <h3 class="card-title">Modern CSS</h3>
+                                            <p class="card-text">Uses CSS grid to control slides and gaps</p>
+                                            <p class="card-text">Scroll-snap for handling sliding and aligning</p>
+                                            <p class="card-text">Overridable CSS variables to control layout</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="card border-0 h-100 shadow">
+                                        <img src="assets/img/brandlogos/html-1.svg" class="card-img-top mt-2" style="height: 4rem;" alt="Setup using markup">
+                                        <div class="card-body p-2 p-lg-3">
+                                            <h3 class="card-title">Setup using markup</h3>
+                                            <p class="card-text">Very simple markup structure</p>
+                                            <p class="card-text">Use any html element - ul, div, button etc</p>
+                                            <p class="card-text">Apply own classes and attributes in the markup, no js</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="card border-0 h-100 shadow">
+                                        <img src="assets/img/brandlogos/javascript-1.svg" class="card-img-top mt-2" style="height: 4rem;" alt="Lightweight and fast javascript">
+                                        <div class="card-body p-2 p-lg-3">
+                                            <h3 class="card-title">Lightweight and fast Javascript</h3>
+                                            <p class="card-text">Small footprint - &lt; 2KB!</p>
+                                            <p class="card-text">Automatic or manual initialization</p>
+                                            <p class="card-text">Simple and easy to use API</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="card border-0 h-100 shadow">
+                                        <img src="assets/img/swiffysliderlogo/SwiffySliderLogoWhiteOnRed.svg" class="card-img-top mt-2" style="height: 4rem;" alt="Lightweight and fast javascript">
+                                        <div class="card-body p-2 p-lg-3">
+                                            <h3 class="card-title">Visual configurator</h3>
+                                            <p class="card-text">Easy UI for configuring the slider</p>
+                                            <p class="card-text">See and try the changes right away</p>
+                                            <p class="card-text">No need to remember all the settings</p>
+                                            <p class="card-text"><a href="configuration">Try the Configurator</a></p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button type="button" class="slider-nav" aria-label="Go to previous"></button>
+                            <button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
+                            <ul class="slider-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="background-color: #f1f1f1;">
+            <div class="container py-3 py-lg-5">
+                <div class="swiffy-slider slider-item-show4 slider-nav-outside slider-nav-sm slider-nav-dark slider-nav-caret slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-32x9 slider-item-ratio-contain bg-white shadow-lg py-2 py-lg-3"
+                    data-slider-nav-autoplay-interval="3000">
+                    <div class="slider-container">
+                        <div><img src="assets/img/brandlogos/css-3.svg" alt="CSS"></div>
+                        <div><img src="assets/img/brandlogos/html-1.svg" loading="lazy" alt="html"></div>
+                        <div><img src="assets/img/brandlogos/javascript-1.svg" loading="lazy" alt="javascript"></div>
+                        <div><img src="assets/img/brandlogos/github-icon.svg" loading="lazy" alt="Github"></div>
+                        <div>
+                            <a href="https://www.dynamicweb.com" target="_blank" rel="noopener" title="Visit Dynamicweb CMS & Ecommerce" class="d-flex align-items-center">
+                                <img src="assets/img/brandlogos/DWLogoColor_sm.svg" loading="lazy" alt="Dynamicweb CMS & Ecommerce"></a>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center justify-content-center"><img src="assets/img/brandlogos/bootstrap-5.svg" loading="lazy" alt="Bootstrap" style="max-height: 3rem;"></div>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center justify-content-center"><img src="assets/img/brandlogos/github-2.svg" loading="lazy" alt="Github" style="max-height: 3rem;"></div>
+                        </div>
+                        <div><img src="assets/img/brandlogos/nodejs-1.svg" loading="lazy" alt="Node js"></div>
+                        <div><img src="assets/img/brandlogos/webpack-icon.svg" loading="lazy" alt="Webpack"></div>
+                        <div><img src="assets/img/brandlogos/star-wars-4.svg" loading="lazy" alt="Star Wars"></div>
+                        <div><img src="assets/img/brandlogos/prettier-2.svg" loading="lazy" alt="Prettier"></div>
+                        <div><img src="assets/img/brandlogos/eslint-1.svg" loading="lazy" alt="ES Lint"></div>
+                    </div>
+
+                    <button type="button" class="slider-nav" aria-label="Go to previous"></button>
+                    <button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
+
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div class="container py-3 py-lg-4">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="display-6">Quick start</h2>
+                        <h3>CSS and Javascript</h3>
+                        <p>Copy-paste the stylesheet <code>&lt;link&gt;</code> and javascript <code>&lt;script&gt;</code> into your <code>&lt;head&gt;</code> section.</p>
+                        <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
+&#x3C;link href=&#x22;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/css/swiffy-slider.min.css&#x22; rel=&#x22;stylesheet&#x22; crossorigin=&#x22;anonymous&#x22;&#x3E;
+</code></pre>
+
+                        <h3>HTML</h3>
+                        <p>Copy-paste the HTML below into the <code>&lt;body&gt;</code> of your markup.</p>
+                        <pre><code class="language-html">&#x3C;div class=&#x22;swiffy-slider&#x22;&#x3E;
+    &#x3C;ul class=&#x22;slider-container&#x22;&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/49b9l_29ceA/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/nKAglN6HBH8/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/E9ZwWcMGzj8/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+    &#x3C;/ul&#x3E;
+
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav&#x22;&#x3E;&#x3C;/button&#x3E;
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav slider-nav-next&#x22;&#x3E;&#x3C;/button&#x3E;
+
+    &#x3C;div class=&#x22;slider-indicators&#x22;&#x3E;
+        &#x3C;button class=&#x22;active&#x22;&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;
+    </code></pre>
+                        <h3>Result</h3>
+                        <p>That is all you need to get a slider up and running! See the <a href="examples.html">examples</a> section to get ideas on how to design sliders and carousels.</p>
+                        <p>There are many configuration options - use the <a href="#">configurator</a> to help get you started and see the <a href="#">docs</a> for all the options.</p>
+                        <div class="col-12 col-xl-8">
+                            <div class="swiffy-slider slider-item-ratio slider-item-ratio-16x9">
+                                <ul class="slider-container">
+                                    <li><img src="assets/img/photos/img1.webp" style="max-width: 100%;height: auto;" alt="Car"></li>
+                                    <li><img src="assets/img/photos/img2.webp" style="max-width: 100%;height: auto;" alt="Woman"></li>
+                                    <li><img src="assets/img/photos/img3.webp" style="max-width: 100%;height: auto;" alt="Car"></li>
+                                </ul>
+
+                                <button type="button" class="slider-nav"></button>
+                                <button type="button" class="slider-nav slider-nav-next"></button>
+
+                                <ul class="slider-indicators">
+                                    <li class="active"></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section style="background-color: #f1f1f1;">
+            <div class="container py-3 py-lg-4">
+                <div class="row">
+                    <div class="col-12 col-xl-8">
+                        <h2 class="display-6">About Swiffy Slider</h2>
+                        <p>
+                            There are many really good sliders and carousels around. Most of them was born many years ago. Because of what was possible back then, they utilize a lot of javascript, event listeners and a swarm of things to handle sliding behavior.
+                        </p>
+                        <p>
+                            Swiffy Slider is a new beginning - using what browsers supports now. All the sliding, dragging, snapping etc. are now native browser behavior and not javascript. Swiffy Slider can even run in a simple mode with <strong>no JS</strong>!
+                        </p>
+                        <p>
+                            This gives an unrivaled performance, user expericense, touch experience and simplicity.
+                        </p>
+                        <p>
+                            At the same time, it has support for any input device in the world - touch, mouse, keyboards, touch pads, track pads, pencils, assitive devices, controllers etc.
+                        </p>
+                        <p>
+                            W3 validation, 100% WCAG compatible, Super high Google Lighthouse scores, compatible with any frontend framework and development stack.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <span>Examples and documentation for Swiffy Slider - by Dynamicweb - <a href="https://dynamicweb.com" class="text-dark" title="Visit Dynamicweb CMS and Ecommerce">https://dynamicweb.com</a></span>
+        </div>
+    </footer>
+</body>
+
+</html>

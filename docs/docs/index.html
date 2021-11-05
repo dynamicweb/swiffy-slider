@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en" class=" overflow-auto h-100 mh-100">
+
+<head>
+    <title>Documentation, options, CSS, Javascript, API</title>
+    <meta name="description" value="Documentation of CSS, options and javascript - lightweight and fast">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nicolai Høeg Pedersen, Dynamicweb Software">
+
+    <link rel="stylesheet" href="../assets/css/swiffy-slider.min.css">
+    <script src="../assets/js/swiffy-slider.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/img/swiffysliderlogo/SwiffyIcon.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/vs2015.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            hljs.highlightAll();
+        });
+    </script>
+
+    <style>
+        html,
+        body {
+            font-family: 'Barlow Semi Condensed', sans-serif;
+        }
+        
+        code {
+            border: 1px solid #ececec;
+            border-radius: .25rem;
+        }
+        
+        .btn-outline-white {
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .sw-nav .btn {
+            padding: .25rem .5rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.65);
+            background-color: transparent;
+            border: 0;
+            text-align: left;
+        }
+        
+        .sw-nav .btn:hover,
+        .sw-nav .btn.active {
+            color: rgba(0, 0, 0, 0.85);
+        }
+        
+        .sw-nav .btn:hover {
+            background-color: rgba(223, 30, 30, 0.25);
+        }
+        
+        .nav-link.active {
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            position: absolute;
+            border-bottom: 2px solid #fff;
+            display: block;
+            left: .5rem;
+            width: calc(100% - 1rem);
+            height: 2px;
+            content: "";
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column flex-lg-row h-100 mh-100">
+    <section class="flex-lg-grow-1 overflow-auto h-100 mh-100">
+        <header style="background-color: #DF1E1E;z-index: 1;" class="text-white position-sticky top-0">
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md p-1 text-white navbar-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="../">
+                        <img src="../assets/img/swiffysliderlogo/SwiffySliderLogoRedOnWhite.svg" width="150">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" aria-current="page" href="../">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white active" href="#">Docs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="../examples">Examples</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="../configuration">Configuration</a>
+                            </li>
+                        </ul>
+                        <div class="col-md-3 text-md-end">
+                            <a href="https://github.com/dynamicweb/swiffy-slider/" class=" me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+                                    </svg></a>
+                            <a href="https://github.com/dynamicweb/swiffy-slider/releases/latest" target="_blank" class="btn text-white btn-outline-white">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section style="background-color: #DF1E1E;">
+                <div class="container text-white py-3 pt-lg-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="display-5">Swiffy Slider documentation</h1>
+                            <h2 class="d-none d-md-block">Get started with Swiffy Slider</h2>
+                            <p class="lead">
+                                Quick start and try out Swiffy Slider using jsDelivr and basic markup. Complete documentation of css classes and javascript API.
+                            </p>
+                            <p class="lead">
+                                Use the configuration page to get UI assitance to setup a slider and see the results instantly.
+                            </p>
+                            <a href="../configuration" class="btn btn-outline-white text-white link-light">Configurator</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container py-3 py-lg-4">
+                    <div class="row">
+                        <div class="col-2">
+
+                            <nav class="d-flex flex-column sw-nav position-sticky" style="top:5rem;">
+                                <a class="btn active" href=".">Quickstart</a>
+                                <a class="btn" href="./slider-sizes">Slider sizes</a>
+                                <a class="btn" href="#">Slide options</a>
+                                <a class="btn" href="#">Navigation</a>
+                                <a class="btn" href="#">Indicators</a>
+                            </nav>
+                        </div>
+                        <div class="col-10">
+                            <section>
+                                <h2>Quick start</h2>
+                                <p class="lead">Installation options, configuration options and scripting of the Swiffy Slider</p>
+                                <h3>CSS and Javascript</h3>
+                                <p>Copy-paste the stylesheet <code>&lt;link&gt;</code> and javascript <code>&lt;script&gt;</code> into your <code>&lt;head&gt;</code> section.</p>
+                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
+&#x3C;link href=&#x22;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/css/swiffy-slider.min.css&#x22; rel=&#x22;stylesheet&#x22; crossorigin=&#x22;anonymous&#x22;&#x3E;
+</code></pre>
+
+                                <h3>HTML</h3>
+                                <p>Copy-paste the HTML below into the <code>&lt;body&gt;</code> of your markup.</p>
+                                <pre><code class="language-html">&#x3C;div class=&#x22;swiffy-slider&#x22;&#x3E;
+    &#x3C;ul class=&#x22;slider-container&#x22;&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/49b9l_29ceA/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/nKAglN6HBH8/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/E9ZwWcMGzj8/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+    &#x3C;/ul&#x3E;
+
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav&#x22;&#x3E;&#x3C;/button&#x3E;
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav slider-nav-next&#x22;&#x3E;&#x3C;/button&#x3E;
+
+    &#x3C;div class=&#x22;slider-indicators&#x22;&#x3E;
+        &#x3C;button class=&#x22;active&#x22;&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;
+        </code></pre>
+
+                                <h3>Safari smooth scrolling polyfill</h3>
+                                <p>
+                                    Sliding the carousel on touch devices <strong>using fingers are not affected</strong> by this issue.
+                                </p>
+                                <p>When sliding using buttons, indicators and javascript, the new slides are shown instantly with no animation or smoothing when using Safari. In Safari based browsers, smooth scrolling is not supported because it is still
+                                    lacking browser support. <a href="https://caniuse.com/css-scroll-behavior">See Can I use</a>
+                                </p>
+                                <p>If you want to support smoooth scrolling on Safari based browsers, add this polyfill to your head section</p>
+                                <p>Copy-paste the javascript <code>&lt;script&gt;</code> into your <code>&lt;head&gt;</code> section.</p>
+                                <pre><code class="language-html">&#x3C;script src=&#x22;https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;</code></pre>
+                            </section>
+
+                            <section>
+                                <h2 id="additional-installation-options">Additional installation options</h2>
+                                <a href="https://github.com/dynamicweb/swiffy-slider/archive/v1.0.0.zip">Download the latest release</a>
+                                <p>Clone the repo: </p>
+                                <pre><code>git clone https://github.com/dynamicweb/swiffy-slider.git</code></pre>
+
+                                <p>Install with <a href="https://www.npmjs.com/">npm</a></p>
+                                <pre><code>npm install swiffy-slider</code></pre>
+
+                                <p>Install with <a href="https://yarnpkg.com/">yarn</a></p>
+                                <pre><code>yarn add swiffy-slider</code></pre>
+
+
+                            </section>
+
+                            <section>
+                                <h2>CSS classes and options</h2>
+                                <p>Change behavior and styles on slides, navigation and indicators by adding option css classes to the <code>.swiffy-slider</code> wrapper.</p>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 15rem;">CSS class</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>swiffy-slider</code></td>
+                                            <td>The overall wrapper of the slider instance. Should be a block element. Can contain 3 different things as direct children; slider-container, slider-indicators and slider-nav</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3>Slider sections</h3>
+                                <p>For possible child elements to the <code>swiffy-slider</code> wrapper. These sections adds slides, navigation and indicators</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 15rem;">CSS class</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>slider-container</code></td>
+                                            <td>
+                                                <ul>
+                                                    <li>Creates the scrollable container that holds the slides</li>
+                                                    <li>Can be any element and is a CSS grid</li>
+                                                    <li>Using a ul>li structure for the container and slides provides good semantics</li>
+                                                    <li>The direct descendants of this element are the slides them selves and can hold any markup</li>
+                                                    <li>The width of the slides are controlled by the slider options. Default is 100% width</li>
+                                                    <li>Can be styled using <code>slider-item-*</code> options</li>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav</code><br>
+                                                <code>slider-nav-next</code></td>
+                                            <td>
+                                                <ul>
+                                                    <li>Creates a navigation button</li>
+                                                    <li>Should be button element and there should be exactly 2</li>
+                                                    <li>Default is a left button</li>
+                                                    <li>Add <code>slider-nav-next</code> to make the next button</li>
+                                                    <li>Can be styled using <code>slider-nav-*</code> options</li>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-indicators</code></td>
+                                            <td>
+                                                <ul>
+                                                    <li>Creates a container for indicator buttons</li>
+                                                    <li>The direct descendants of this element are the indicators. Add <code>active</code> for the active indicator for first load</li>
+                                                    <li>Descendants should be button elements and there should be one button per slide or per page when showing more than one slide</li>
+                                                    <li>Can be styled using <code>slider-indicators-*</code> options</li>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3>Slider options</h3>
+                                <p>For the <code>swiffy-slider</code> wrapper. The <code>slider-item-*</code> option classes affects the slides (The <code>slider-container</code> children)</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 15rem;">CSS class</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>slider-item-show2</code><br>
+                                                <code>slider-item-show3</code><br>
+                                                <code>slider-item-show4</code><br>
+                                                <code>slider-item-show5</code><br>
+                                                <code>slider-item-show6</code></td>
+                                            <td>Shows 2, 3, 4, 5 or 6 slides at a time in the slider wrapper. Each slide is either 1/2, 1/3, 1/4, 1/5 or 1/6 of the slider wrapper width.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-reveal</code></td>
+                                            <td>Reveals some of previous and next slide. Each slide is either 1/1, 1/2, 1/3, 1/4 or 1/6 of the slider wrapper width minus a little to reveal next and previous slides</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-ratio</code></td>
+                                            <td>Enables ratio sizing of the slide elements. Default ratio is 2:1 or 50% meaning the slides have half the heigh of their width. This option sets <code>object-fit:cover;</code> on first element inside the slide
+                                                element - to stretch images to fill out the slide box and keep aspect ratio.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-ratio-32x9</code><br>
+                                                <code>slider-item-ratio-21x9</code><br>
+                                                <code>slider-item-ratio-2x1</code><br>
+                                                <code>slider-item-ratio-16x9</code><br>
+                                                <code>slider-item-ratio-4x3</code><br>
+                                                <code>slider-item-ratio-1x1</code><br>
+                                                <code>slider-item-ratio-3x4</code><br>
+                                            </td>
+                                            <td>Controls the slide ratio when ratio is enabled. Default ratio is 2:1 or 50% meaning the slides have half the heigh of their widt.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-ratio-contain</code></td>
+                                            <td>Sets the content of a ratio enabled slide to have <code>object-fit:contain;</code> instead of default <code>object-fit:cover;</code>. This ensures that if the content of the slide is an image or embedded video,
+                                                it is scaled down so all is visible within the slide box.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-nogap</code></td>
+                                            <td>Removes the horisontal gap between slides</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-snapstart</code></td>
+                                            <td>Snaps slides to start of the slider wrapper instead of center when using <code>.slider-item-reveal</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-nosnap</code></td>
+                                            <td>Removes auto snapping for slides so they slide freely. Primarily have an affect on touch devices as navigating with arrows and indicators is per slide or per page</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-nosnap-touch</code></td>
+                                            <td>Same effect as slider-item-nosnap but only on devices that has a primary input which is not a mouse, i.e. mobile <code>media (hover: none)</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-shadow</code></td>
+                                            <td>Adds a dark shadow to both sides of the slider wrapper</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-item-helper</code></td>
+                                            <td>For debugging: Adds a test layout to slide items; minimum height, background color, centers content and background. Meant for testing and should be removed in real code</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3>Navigation options</h3>
+                                <p>For the <code>swiffy-slider</code> wrapper. The <code>slider-nav-*</code> option classes affects the <code>slider-nav</code> elements</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 15rem;">CSS class</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>slider-nav-page</code></td>
+                                            <td>Slides entire page when showing more than one slide item on the slider wrapper. Default behavior moves just one slide to the left or right</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-noloop</code></td>
+                                            <td>Disables slider loop - so when on last slide navigate next does not take the user to the first slide</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-nodelay</code></td>
+                                            <td>Disables smooth scrolling when sliding using navigation buttons, indicators and autoplay. Makes the new slide or page appear instantly with no scroll animation. Does not affect touch navigation</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-autoplay</code></td>
+                                            <td>Automatically slide to next slide or next page in intervals. Default is 2500 ms = 2.5s</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>data-slider-nav-autoplay-interval</code> attribute</td>
+                                            <td>Changes the default autoplay interval - value is in ms. <code>data-slider-nav-autoplay-interval="3000"</code>. Default value is 2500, minimum value is 750 ms</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-autopause</code></td>
+                                            <td>Stops and restarts the autoplay when mouse is hovering the slider wrapper or when it is touched on touch devices. Will restart on mouseout, but not when touch ends</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code>slider-nav-round</code><br>
+                                                <code>slider-nav-square</code><br>
+                                                <code>slider-nav-arrow</code><br>
+                                                <code>slider-nav-chevron</code><br>
+                                                <code>slider-nav-caret</code><br>
+                                                <code>slider-nav-caretfill</code>
+                                            </td>
+                                            <td>Changes the default navigation chevrons to an alternative navigation style using different arrows</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-touch</code></td>
+                                            <td>Shows navigation buttons on touch devices. By default navigation buttons are hidden on touch devices using the <code>media (hover: none)</code> query. By adding this option, the navigation buttons are always
+                                                visible on touch devices</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-visible</code></td>
+                                            <td>Makes the nav buttons visible always. By default navigation buttons are hidden until the slider wrapper is hovered</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-outside</code></td>
+                                            <td>Moves the navigation buttons outside the slider wrapper and shrinks the width of the slider wrapper accordingly (by 3 or 5 rem on each side depending on navigation style)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-outside-expand</code></td>
+                                            <td>Moves the navigation buttons outside the slider wrapper by applying negative margins (-3 or -5 rem) so the slides and wrapper keeps their size. The navigation buttons overlays surrounding content.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-scrollbar</code></td>
+                                            <td>Makes the scrollbar for the <code>.slider-container</code> visible. Acts as indicator and navigation if running in css only mode. On touch devices the scrollbar is not shown when not sliding because that is
+                                                how the browser behaves</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-nav-dark</code></td>
+                                            <td>Changes the navigation buttons to a dark version. Black arrows or black circle with white arrows</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3>Indicator options</h3>
+                                <p>For the <code>swiffy-slider</code> wrapper. The <code>slider-indicators-*</code> option classes affects the <code>slider-indicators</code> child elements</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 15rem;">CSS class</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>slider-indicators-round</code></td>
+                                            <td>Changes the default indicators to a circle</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-indicators-square</code></td>
+                                            <td>Changes the default indicators to a square</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-indicators-outside</code></td>
+                                            <td>Moves the indicator buttons under the slider wrapper and increases the height of the slider wrapper but not the slides them selves</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-indicators-dark</code></td>
+                                            <td>Changes the indicator buttons to a dark version</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-indicators-highlight</code></td>
+                                            <td>Hightlights the active indicator even more by increasing its size</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>slider-indicators-sm</code></td>
+                                            <td>Shows indicator buttons on small devices under 992px in width. By default indicator buttons are hidden on small devices. By adding this option, the indicators buttons are always visible. Since the number of
+                                                indicators and number of slides does not match on small devices when showing more than one item per page, do not use this option in that case</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                            <section>
+                                <h2>Javascript API</h2>
+                                <p>The Swiffy Slider script can be accessed using <code>window.swiffySlider</code> or simply <code>swiffySlider</code></p>
+
+                                <p>All options and behavior is handled by the css classes, so using the scripts directly is only for more advanced scenarios. </p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 25rem;">Method</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>swiffySlider.version;</code></td>
+                                            <td>Needs no explanation :-)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.init(rootElement = document.body);</code></td>
+                                            <td>Initializes all instances of <code>.swiffy-slider</code> elements and binds events to handle navigation, indicators and autoplay. By default document.body is searched for instances, but can be limited further
+                                                to i.e. content area (and skip header, navigation, footer etc) to further improve init performance.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.initSlider(sliderElement);</code></td>
+                                            <td>Initializes one instance of swiffy slider wrapper. The passed element has to be a <code>.swiffy-slider</code> element</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.slide(sliderElement, next = true);</code></td>
+                                            <td>Slides to the next slide or next page depending on the nav settings. The passed slider element has to be a <code>.swiffy-slider</code> element. By default this method slides next, but call it with <code>false</code>                                                to slide to previous</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.slideToByIndicator();</code></td>
+                                            <td>This method is called when an indicator button is clicked. Should not be called directly. Instead call <code>slideTo</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.slideTo(sliderElement, slideIndex);</code></td>
+                                            <td>Slides to the specified slide (index starts with 0 for first slide). The passed slider element has to be a <code>.swiffy-slider</code> element.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.onSlideEnd(sliderElement, delegate, timeout = 125);</code></td>
+                                            <td>Provide a callback/delegate function to get called when sliding ends. The default timeout is 125ms and should not be too low as it could cause the delegate to be called more than once on each scroll. The passed
+                                                slider element has to be a <code>.swiffy-slider</code> element.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.autoPlay(sliderElement, timeout, autopause);</code></td>
+                                            <td>Manually starts autoplay for a container using the specified timeout. Autopause can be enabled. Usually auto play is handled using css option classes. This method can be used to start autoplay when the slider
+                                                scrolls into view or similar. The passed slider element has to be a <code>.swiffy-slider</code> element.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>swiffySlider.handleIndicators(sliderElement);</code></td>
+                                            <td>Manually updates the indicators active state to reflect the current position of the slider. The passed slider element has to be a <code>.swiffy-slider</code> element.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <p><strong>Listening for sliding ends for a container</strong></p>
+                                <pre><code class="language-html">&lt;script&gt;
+const sliderElement = document.getElementById(&#39;myslider&#39;);
+swiffySlider.onSlideEnd(sliderElement, function() {
+    console.log(&#39;Scrolling stopped&#39;);
+});
+&lt;/script&gt;
+</code></pre>
+                                <p><strong>Listening for sliding ends for a container and find visible slides</strong></p>
+                                <pre><code class="language-html">&lt;script&gt;
+window.addEventListener(&#39;load&#39;, () =&gt; {
+    const sliderElement = document.getElementById(&#39;myslider&#39;);
+    swiffySlider.onSlideEnd(sliderElement, function() {
+        const visibleSlideElements = getVisibleSlides(sliderElement);
+        const visible = [];
+        for (const slide of visibleSlideElements) {
+            visible.push(slide.innerText);
+        }
+        console.log(visible);
+        console.log(visibleSlideElements);
+    });
+});
+
+function getVisibleSlides(sliderElement) {
+    const container = sliderElement.querySelector('.slider-container');
+    //returns an array of slide elements that are fully or partially visible
+    const visibleSlides = [];
+    //We are using a grid layout and the slides left and right properties include the width of the gap, so when comparing with container width add a gap for each side of the slide gap.
+    const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
+    for (const slide of container.children) {
+        var slideScrollLeftPosition = slide.getBoundingClientRect().left - container.getBoundingClientRect().left;
+        var slideScrollRightPosition = slideScrollLeftPosition + slide.offsetWidth - gapWidth;
+        if (slideScrollLeftPosition &gt;= 0 &amp;&amp; slideScrollRightPosition &lt;= container.offsetWidth) {
+            visibleSlides.push(slide);
+        }
+    }
+    return visibleSlides;
+}
+&lt;/script&gt;
+</code></pre>
+
+
+                                <h3 id="javascript-loading-and-binding">Javascript loading and binding</h3>
+                                <p>Avoid autobinding by adding <code>data-noinit</code> attribute on the script tag and then attach the slider manually</p>
+                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js&quot; data-noinit defer&gt;
+&lt;script&gt;
+    window.addEventListener(&#39;load&#39;, () =&gt; {
+        //Use only one of the loading options below!
+        //loads all sliders
+        swiffySlider.init();
+        //loads specific slider
+        swiffySlider.initSlider(document.getElementById(&#39;myslider&#39;));
+    });
+&lt;/script&gt;
+&lt;div class=&quot;swiffy-slider&quot; id=&quot;myslider&quot;&gt;
+  &lt;div class=&quot;slider-container&quot;&gt;
+    &lt;div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  ...
+&lt;/div&gt;
+</code></pre>
+
+                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js&#x22; data-noinit defer&#x3E;
+    &#x3C;script&#x3E;
+        window.addEventListener(&#x27;load&#x27;, () =&#x3E; {
+            //loads all sliders in main and skip header and footer search for increased init performance.
+            swiffySlider.init(document.getElementById(&#x27;content&#x27;));
+        });
+    &#x3C;/script&#x3E;
+    &#x3C;header&#x3E;...&#x3C;/header&#x3E;
+    &#x3C;main id=&#x22;content&#x22;&#x3E;
+      &#x3C;div class=&#x22;swiffy-slider&#x22; id=&#x22;myslider&#x22;&#x3E;
+        &#x3C;div class=&#x22;slider-container&#x22;&#x3E;
+          &#x3C;div&#x3E;&#x3C;/div&#x3E;
+        &#x3C;/div&#x3E;
+        ...
+      &#x3C;/div&#x3E;
+    &#x3C;/main&#x3E;
+    &#x3C;footer&#x3E;...&#x3C;/footer&#x3E;</code></pre>
+
+                                <p>Load as module using ES version of the script</p>
+                                <pre><code class="language-html">&lt;script type=&quot;module&quot;&gt;
+    import {swiffyslider} from &#39;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js&#39;; 
+    window.swiffySlider = swiffyslider; 
+    window.swiffySlider.init(); 
+&lt;/script&gt;
+</code></pre>
+                                <p>Load as ES module on demand, here using load - could be when slider scrolls into view or navigation arrow is clicked the first time. Load module and initialize sliders. </p>
+                                <pre><code class="language-html">&lt;script&gt;
+window.addEventListener(&quot;load&quot;, () =&gt; {
+    import (&#39;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js&#39;).then((swiffySliderModule) =&gt; {
+        swiffySliderModule.swiffyslider.init();
+    });
+});
+&lt;/script&gt;
+</code></pre>
+                                <p>Load as ES module on demand. Load module and assign to window for later script manipulation of slides</p>
+                                <pre><code class="language-html">&lt;script&gt;
+window.addEventListener(&quot;load&quot;, () =&gt; {
+    import (&#39;https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js&#39;).then((swiffySliderModule) =&gt; {
+        window.swiffySlider = swiffySliderModule.swiffyslider;
+        window.swiffySlider.init();
+    });
+});
+&lt;/script&gt;
+</code></pre>
+                            </section>
+
+                            <section>
+                                <h2>CSS variables</h2>
+                                <p>The Swiffy Slider CSS is making use of a number of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a> that can be overriden to control behavior and styling</p>
+
+                                <p>Slide sizes, ratios, navigation etc. can be controlled by overruling the variable on the <code>.swiffy-slider</code> instance or in custom css.</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 17rem;">Variable</th>
+                                            <th style="min-width: 20em;">Example</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>--swiffy-slider-item-width</code></td>
+                                            <td><code>--swiffy-slider-item-width:75%;</code></td>
+                                            <td>Calculated based on the number of slides shown, the gap, reveal etc. Should not be overriden. <span class="badge bg-warning text-dark">INFO</span> If needed, it has to be overriden on the <code class="text-decoration-underline">.slider-container</code>                                                element.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-item-gap</code></td>
+                                            <td><code>--swiffy-slider-item-gap:25px;</code></td>
+                                            <td>Changes the gap between slides when enabled. Default <code>--swiffy-slider-item-gap</code> is 1rem, but can be any valid CSS mesurement. The <code>--swiffy-slider-item-gap</code> is part of the calculation of
+                                                <code>--swiffy-slider-item-width</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-item-reveal</code></td>
+                                            <td><code>--swiffy-slider-item-reveal:20%;</code></td>
+                                            <td>Changes the width of the reveal of next and previous slides when enabled. Default <code>--swiffy-slider-item-reveal</code> is 8rem if previous and next is revealed and 4rem if only next is revealed (if <code>.slider-item-snapstart</code>                                                is in use). The <code>--swiffy-slider-item-reveal</code> is part of the calculation of <code>--swiffy-slider-item-width</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-item-ratio</code></td>
+                                            <td><code>--swiffy-slider-item-ratio:100/33.3</code></td>
+                                            <td>Sets the ratio to a custom value. Use with <code>.slider-item-ratio</code> and omit use of any <code>.slider-item-ratio-*</code> classes</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-item-count</code></td>
+                                            <td><code>--swiffy-slider-item-count:8;</code></td>
+                                            <td>Sets the number of slides to show - same as using <code>.slider-item-show{n}</code> but can i.e. be set to a number higher than 6 if needed.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-nav-light</code></td>
+                                            <td><code>--swiffy-slider-nav-light:lightcyan;</code></td>
+                                            <td>Sets the light color for navigation arrows. Default is <code>#fff</code>. Use to control the color of light navigation. Square and Round navigation use both colors - one for backgrond, the other for arrow color.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-nav-dark</code></td>
+                                            <td><code>--swiffy-slider-nav-dark:darkolivegreen;</code></td>
+                                            <td>Sets the dark color for navigation arrows. Default is <code>#333</code>. Use to control the color of dark navigation. Square and Round navigation use both colors - one for backgrond, the other for arrow color.
+                                                Can be any color variable.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-nav-zoom</code></td>
+                                            <td><code>--swiffy-slider-nav-zoom:125%;</code></td>
+                                            <td>Use to overrule the navigation arrow sizes. Default is 100% for normal sizes and 75% for small sized navigation. Set to i.e. 125% to make navigation arrows larger.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-track-opacity</code></td>
+                                            <td><code>--swiffy-slider-track-opacity:0.25;</code></td>
+                                            <td>Sets the scrollbar track opacity when scrollbar is displayed</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>--swiffy-slider-track-height</code></td>
+                                            <td><code>--swiffy-slider-track-height:1rem;</code></td>
+                                            <td>Sets the scrollbar track height. Default is .5rem if scrollbar (<code>.slider-nav-scrollbar</code>) is enabled.</td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                                <h3>Example</h3>
+                                <pre><code class="language-html">&#x3C;div class=&#x22;swiffy-slider slider-item-ratio slider-nav-round slider-nav-visible&#x22; 
+    style=&#x22;
+    --swiffy-slider-item-ratio:100/33.3;
+    --swiffy-slider-nav-light:lightcyan;
+    --swiffy-slider-nav-dark:darkolivegreen;
+    --swiffy-slider-nav-zoom:85%;
+    --swiffy-slider-item-reveal:25%;&#x22;&#x3E;
+    &#x3C;ul class=&#x22;slider-container&#x22;&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/49b9l_29ceA/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/nKAglN6HBH8/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+        &#x3C;li&#x3E;&#x3C;img src=&#x22;https://source.unsplash.com/E9ZwWcMGzj8/1600x900&#x22; style=&#x22;max-width: 100%;height: auto;&#x22;&#x3E;&#x3C;/li&#x3E;
+    &#x3C;/ul&#x3E;
+
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav&#x22;&#x3E;&#x3C;/button&#x3E;
+    &#x3C;button type=&#x22;button&#x22; class=&#x22;slider-nav slider-nav-next&#x22;&#x3E;&#x3C;/button&#x3E;
+
+    &#x3C;div class=&#x22;slider-indicators&#x22;&#x3E;
+        &#x3C;button class=&#x22;active&#x22;&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+        &#x3C;button&#x3E;&#x3C;/button&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;
+                                        </code></pre>
+
+                                <div class="swiffy-slider slider-item-reveal slider-item-ratio slider-nav-round slider-nav-visible" style="--swiffy-slider-item-ratio:100/33.3;--swiffy-slider-nav-light:lightcyan;--swiffy-slider-nav-dark:darkolivegreen;--swiffy-slider-nav-zoom:85%;--swiffy-slider-item-reveal:25%;">
+                                    <ul class="slider-container">
+                                        <li><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
+                                        <li><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
+                                        <li><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
+                                        <li><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
+                                        <li><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
+                                        <li><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+
+                                    <div class="slider-indicators">
+                                        <button class="active"></button>
+                                        <button></button>
+                                        <button></button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container text-center">
+                <span class="text-muted">Examples and documentation for Swiffy Slider - by Dynamicweb - <a href="https://dynamicweb.com">https://dynamicweb.com</a></span>
+            </div>
+        </footer>
+    </section>
+</body>
+
+</html>

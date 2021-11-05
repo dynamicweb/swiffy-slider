@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en" class=" overflow-auto h-100 mh-100">
+
+<head>
+    <title>Documentation, options, CSS, Javascript, API</title>
+    <meta name="description" value="Documentation of CSS, options and javascript - lightweight and fast">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nicolai Høeg Pedersen, Dynamicweb Software">
+
+    <link rel="stylesheet" href="../../assets/css/swiffy-slider.min.css">
+    <script src="../../assets/js/swiffy-slider.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../../assets/img/swiffysliderlogo/SwiffyIcon.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/vs2015.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            hljs.highlightAll();
+        });
+    </script>
+
+    <style>
+        html,
+        body {
+            font-family: 'Barlow Semi Condensed', sans-serif;
+        }
+        
+        main h3,
+        main h2 {
+            margin-top: 2rem;
+        }
+        
+        .btn-outline-white {
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .sw-nav .btn {
+            padding: .25rem .5rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.65);
+            background-color: transparent;
+            border: 0;
+            text-align: left;
+        }
+        
+        .sw-nav .btn:hover,
+        .sw-nav .btn.active {
+            color: rgba(0, 0, 0, 0.85);
+        }
+        
+        .sw-nav .btn:hover {
+            background-color: rgba(223, 30, 30, 0.25);
+        }
+        
+        .nav-link.active {
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            position: absolute;
+            border-bottom: 2px solid #fff;
+            display: block;
+            left: .5rem;
+            width: calc(100% - 1rem);
+            height: 2px;
+            content: "";
+        }
+        
+        .slider-container>*:nth-child(1) {
+            background-color: #277da1!important;
+        }
+        
+        .slider-container>*:nth-child(2) {
+            background-color: #577590!important;
+        }
+        
+        .slider-container>*:nth-child(3) {
+            background-color: #4d908e!important;
+        }
+        
+        .slider-container>*:nth-child(4) {
+            background-color: #43aa8b!important;
+        }
+        
+        .slider-container>*:nth-child(5) {
+            background-color: #90be6d!important;
+        }
+        
+        .slider-container>*:nth-child(6) {
+            background-color: #f9c74f!important;
+        }
+        
+        .slider-container>*:nth-child(7) {
+            background-color: #f9844a!important;
+        }
+        
+        .slider-container>*:nth-child(8) {
+            background-color: #f3722c!important;
+        }
+        
+        .slider-container>*:nth-child(9) {
+            background-color: #f94144!important;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column flex-lg-row h-100 mh-100">
+    <section class="flex-lg-grow-1 overflow-auto h-100 mh-100">
+        <header style="background-color: #DF1E1E;z-index: 1;" class="text-white position-sticky top-0">
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md p-1 text-white navbar-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="../">
+                        <img src="../../assets/img/swiffysliderlogo/SwiffySliderLogoRedOnWhite.svg" width="150">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" aria-current="page" href="../../">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white active" href="../">Docs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="../../examples">Examples</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="../../configuration">Configuration</a>
+                            </li>
+                        </ul>
+                        <div class="col-md-3 text-md-end">
+                            <a href="https://github.com/dynamicweb/swiffy-slider/" class=" me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+                                    </svg></a>
+                            <a href="https://github.com/dynamicweb/swiffy-slider/releases/latest" target="_blank" class="btn text-white btn-outline-white">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section style="background-color: #DF1E1E;">
+                <div class="container text-white py-3 pt-lg-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="display-5">Navigation</h1>
+                            <p class="lead">
+                                Options affecting the styling of navigation arrows and how navigation behaves.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container py-3 py-lg-4">
+                    <div class="row">
+                        <div class="col-2">
+
+                            <nav class="d-flex flex-column sw-nav position-sticky" style="top:5rem;">
+                                <a class="btn" href="..">Quickstart</a>
+                                <a class="btn" href="../slider-sizes/">Slider sizes</a>
+                                <a class="btn" href="../slider-options">Slide options</a>
+                                <a class="btn active" href="../slider-navigation">Navigation</a>
+                                <a class="btn" href="../slider-indicators">Indicators</a>
+                            </nav>
+                        </div>
+                        <div class="col-10">
+                            <section>
+                                <h2>Slider sizes</h2>
+
+                                <p>
+                                    Navigation comes in 7 different arrow styles and 2 different colors - light and dark.
+                                </p>
+                                <p>
+                                    Navigation arrows can be placed on top of the slides or placed on the side of the slider - either by shrinking the sliders or using negative margins.
+                                </p>
+                                <p>
+                                    By default navigation arrows do not display unless a slider is hovered - but can be set to always be visible. On touch devices, arrows are hidden by default always and navigation happens using touch. This can also be overruled and navigation arrows displayed
+                                    on small devices.
+                                </p>
+                                <p>
+                                    The navigation can play automatically and pause on mouseover or touch.
+                                </p>
+                                <p>
+                                    Navigation arrows are handled by the Swiffy Slider script. If the script is omitted, a combination of scrollbars on desktop and touch on mobile can be used to navigate the slides.
+                                </p>
+
+                                <ul>
+                                    <li><a href="#navarrows">Navigation arrows</a></li>
+                                    <li><a href="#navbehavior">Navigation behavior</a></li>
+                                </ul>
+
+                                <h2 id="navarrows">Navigation arrows</h2>
+
+                                <h3>Default navigation</h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Round navigation <code>.slider-nav-round</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Round navigation <code>.slider-nav-square</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-square">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Arrow navigation <code>.slider-nav-arrow</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-arrow">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Chevron navigation <code>.slider-nav-chevron</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-chevron">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Caret navigation <code>.slider-nav-caret</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-caret">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Caret fill navigation <code>.slider-nav-caretfill</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-caretfill">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Default navigation, dark <code>.slider-nav-dark</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-dark">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Round navigation, dark <code>.slider-nav-round .slider-nav-dark</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-dark">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Default navigation, dark, outside <code>.slider-nav-dark .slider-nav-outside</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-dark slider-nav-outside">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Default navigation, round, outside <code>.slider-nav-round .slider-nav-outside</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-outside">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Default navigation, dark, outside expanded <code>.slider-nav-dark .slider-nav-outside-expand</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-dark slider-nav-outside-expand">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Default navigation, round, outside expanded <code>.slider-nav-round .slider-nav-outside-expand</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-outside-expand">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>No navigation buttons but with scrollbar <code>.slider-nav-scrollbar</code></h3>
+                                <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-scrollbar">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                <!--*end*-->
+
+                                <h2 id="navbehavior">Navigation behavior</h2>
+
+                                <h3>Nodelay navigation <code>.slider-nav-nodelay</code></h3>
+                                <div class="swiffy-slider slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-nodelay">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Navigate entire page <code>.slider-nav-page</code></h3>
+                                <div class="swiffy-slider slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-page">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Navigation always visible (desktop>992px) <code>.slider-nav-visible</code></h3>
+                                <div class="swiffy-slider slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-visible">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Navigation always visible and also shows on mobile <code>.slider-nav-visible .slider-nav-touch</code></h3>
+                                <div class="swiffy-slider slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-visible slider-nav-touch">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Navigation with noloop <code>.slider-nav-noloop</code></h3>
+                                <div class="swiffy-slider slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-noloop">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <h3>Navigation with autoplay and autopause <code>.slider-nav-autoplay .slider-nav-autopause</code></h3>
+                                <div class="swiffy-slider  slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-autoplay slider-nav-autopause">
+                                    <ul class="slider-container">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                    <button type="button" class="slider-nav"></button>
+                                    <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container text-center">
+                <span class="text-muted">Examples and documentation for Swiffy Slider - by Dynamicweb - <a href="https://dynamicweb.com">https://dynamicweb.com</a></span>
+            </div>
+        </footer>
+    </section>
+</body>
+
+</html>
