@@ -126,8 +126,8 @@ Read the [Getting started page](https://www.siffyslider.com/docs/) for examples,
 - Indicators - Navigate to slide by clicking indicator
 - Auto play - Automatically slide with specified interval
 - Auto pause - Stop playing when mouse is hovering carousel or touch is used
-- Scripting - Automatic or manual initialization of slider instances using `swiffySlider.init` or `swiffySlider.initSlider`
-- Scripting - Execute scripts when an item is done sliding using `swiffySlider.onSlideEnd`
+- Scripting - Automatic or manual initialization of slider instances using `swiffyslider.init` or `swiffyslider.initSlider`
+- Scripting - Execute scripts when an item is done sliding using `swiffyslider.onSlideEnd`
 - Scripting - Start and stop automatic sliding using script
 
 ## What's included
@@ -418,7 +418,7 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-indicators-*</code>
 </table>
 
 ### Javascript
-The Swiffy Slider script can be accessed using `window.swiffySlider` or simply `swiffySlider`
+The Swiffy Slider script can be accessed using `window.swiffyslider` or simply `swiffyslider`
 
 All options and behavior is handled by the css classes, so using the scripts directly is only for more advanced scenarios. 
 <table class="table">
@@ -430,41 +430,41 @@ All options and behavior is handled by the css classes, so using the scripts dir
   </thead>
   <tbody>
     <tr>
-      <td><code>swiffySlider.version;</code></td>
+      <td><code>swiffyslider.version;</code></td>
       <td>Needs no explanation :-)</td>
     </tr>
     <tr>
-      <td><code>swiffySlider.init(rootElement = document.body);</code></td>
+      <td><code>swiffyslider.init(rootElement = document.body);</code></td>
       <td>Initializes all instances of <code>.swiffy-slider</code> elements and binds events to handle navigation, indicators and autoplay. By default document.body is searched for instances, but can be limited further to i.e. content area (and skip header, navigation, footer etc) to further improve init performance.</td>
     </tr>
     <tr>
-      <td><code>swiffySlider.initSlider(sliderElement);</code></td>
+      <td><code>swiffyslider.initSlider(sliderElement);</code></td>
       <td>Initializes one instance of swiffy slider wrapper. The passed element has to be a <code>.swiffy-slider</code> element</td>
     </tr>
     <tr>
-      <td><code>swiffySlider.slide(sliderElement, next = true);</code></td>
+      <td><code>swiffyslider.slide(sliderElement, next = true);</code></td>
       <td>Slides to the next slide or next page depending on the nav settings. The passed slider element has to be a <code>.swiffy-slider</code> element. By default this method slides next, but call it with <code>false</code> to slide to previous</td>
     </tr>
     <tr>
-      <td><code>swiffySlider.slideToByIndicator();</code></td>
+      <td><code>swiffyslider.slideToByIndicator();</code></td>
       <td>This method is called when an indicator button is clicked. Should not be called directly. Instead call <code>slideTo</code></td>
     </tr>
     <tr>
-      <td><code>swiffySlider.slideTo(sliderElement, slideIndex);</code></td>
+      <td><code>swiffyslider.slideTo(sliderElement, slideIndex);</code></td>
       <td>Slides to the specified slide (index starts with 0 for first slide). The passed slider element has to be a <code>.swiffy-slider</code> element.</td>
     </tr>
     <tr>
-      <td><code>swiffySlider.onSlideEnd(sliderElement, delegate, timeout = 125);</code></td>
+      <td><code>swiffyslider.onSlideEnd(sliderElement, delegate, timeout = 125);</code></td>
       <td>Provide a callback/delegate function to get called when sliding ends. The default timeout is 125ms and should not be too low as it could cause the delegate to be called more than once on each scroll.
       The passed slider element has to be a <code>.swiffy-slider</code> element.
       </td>
     </tr>
     <tr>
-      <td><code>swiffySlider.autoPlay(sliderElement, timeout, autopause);</code></td>
+      <td><code>swiffyslider.autoPlay(sliderElement, timeout, autopause);</code></td>
       <td>Manually starts autoplay for a container using the specified timeout. Autopause can be enabled. Usually auto play is handled using css option classes. This method can be used to start autoplay when the slider scrolls into view or similar. The passed slider element has to be a <code>.swiffy-slider</code> element.</td>
     </tr>
     <tr>
-      <td><code>swiffySlider.handleIndicators(sliderElement);</code></td>
+      <td><code>swiffyslider.handleIndicators(sliderElement);</code></td>
       <td>Manually updates the indicators active state to reflect the current position of the slider. The passed slider element has to be a <code>.swiffy-slider</code> element.</td>
     </tr>
  </tbody>
@@ -474,7 +474,7 @@ All options and behavior is handled by the css classes, so using the scripts dir
 ```html
 <script>
 const sliderElement = document.getElementById('myslider');
-swiffySlider.onSlideEnd(sliderElement, function() {
+swiffyslider.onSlideEnd(sliderElement, function() {
     console.log('Scrolling stopped');
 });
 </script>
@@ -485,7 +485,7 @@ swiffySlider.onSlideEnd(sliderElement, function() {
 <script>
 window.addEventListener(&#39;load&#39;, () =&gt; {
     const sliderElement = document.getElementById(&#39;myslider&#39;);
-    swiffySlider.onSlideEnd(sliderElement, function() {
+    swiffyslider.onSlideEnd(sliderElement, function() {
         const visibleSlideElements = getVisibleSlides(sliderElement);
         const visible = [];
         for (const slide of visibleSlideElements) {
@@ -522,9 +522,9 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
     window.addEventListener('load', () => {
         //Use only one of the loading options below!
         //loads all sliders
-        swiffySlider.init();
+        swiffyslider.init();
         //loads specific slider
-        swiffySlider.initSlider(document.getElementById('myslider'));
+        swiffyslider.initSlider(document.getElementById('myslider'));
     });
 </script>
 <div class="swiffy-slider" id="myslider">
@@ -540,7 +540,7 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
 <script>
     window.addEventListener('load', () => {
         //loads all sliders in main and skip header and footer search for increased init performance.
-        swiffySlider.init(document.getElementById('content'));
+        swiffyslider.init(document.getElementById('content'));
     });
 </script>
 <header>...</header>
@@ -559,8 +559,8 @@ Load as module using ES version of the script
 ```html
 <script type="module">
     import {swiffyslider} from 'https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js'; 
-    window.swiffySlider = swiffyslider; 
-    window.swiffySlider.init(); 
+    window.swiffyslider = swiffyslider; 
+    window.swiffyslider.init(); 
 </script>
 ```
 
@@ -568,8 +568,8 @@ Load as ES module on demand, here using load - could be when slider scrolls into
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js').then((swiffySliderModule) => {
-        swiffySliderModule.swiffyslider.init();
+    import ('https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js').then((swiffysliderModule) => {
+        swiffysliderModule.swiffyslider.init();
     });
 });
 </script>
@@ -579,9 +579,9 @@ Load as ES module on demand. Load module and assign to window for later script m
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js').then((swiffySliderModule) => {
-        window.swiffySlider = swiffySliderModule.swiffyslider;
-        window.swiffySlider.init();
+    import ('https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js').then((swiffysliderModule) => {
+        window.swiffyslider = swiffysliderModule.swiffyslider;
+        window.swiffyslider.init();
     });
 });
 </script>

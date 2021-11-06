@@ -4,7 +4,7 @@ const swiffyslider = function() {
         version: '1.0.0',
         init(rootElement = document.body) {
             for (const sliderElement of rootElement.querySelectorAll('.swiffy-slider')) {
-                this.initSlider(sliderElement)
+                this.initSlider(sliderElement);
             }
         },
 
@@ -51,7 +51,7 @@ const swiffyslider = function() {
 
         slideToByIndicator() {
             const indicator = window.event.target;
-            const indicatorIndex = Array.from(indicator.parentElement.children).indexOf(indicator)
+            const indicatorIndex = Array.from(indicator.parentElement.children).indexOf(indicator);
             const indicatorCount = indicator.parentElement.children.length;
             const sliderElement = indicator.closest(".swiffy-slider");
             const slideCount = sliderElement.querySelector('.slider-container').children.length;
@@ -87,7 +87,7 @@ const swiffyslider = function() {
                     sliderElement.addEventListener(event, function() {
                         window.clearTimeout(autoplayTimer);
                     }, { once: true, passive: true });
-                })
+                });
                 sliderElement.addEventListener("mouseout", function() {
                     autoplayer();
                 }, { once: true });
@@ -103,16 +103,17 @@ const swiffyslider = function() {
                 const scrollIndicators = scrollIndicatorContainers.children;
                 const activeIndicator = Math.round((scrollIndicators.length - 1) * percentSlide);
                 for (const element of scrollIndicators)
-                    element.removeAttribute("class")
+                    element.removeAttribute("class");
                 scrollIndicators[activeIndicator].classList.add("active");
             }
         }
-    }
+    };
 }();
 
-window.swiffySlider = swiffyslider;
+window.swiffyslider = swiffyslider;
 if (!document.currentScript.hasAttribute('data-noinit')) {
     window.addEventListener('load', () => {
-        swiffySlider.init();
+        'use strict';
+        swiffyslider.init();
     });
 }
