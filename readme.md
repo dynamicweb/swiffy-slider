@@ -42,7 +42,7 @@ This project utilizes what is available in modern browsers resulting in a super 
 - Setup is done in pure markup and css classes, no scripting required
 - No js loading of slides, configuration or initialization
 - Vanilla javascript, less than 1.3kb ~110 lines
-- Very low overall footprint ~3.5kb in total (css+js gzip'ed)
+- Very low overall footprint ~4.5kb in total (css+js gzip'ed)
 
 <h2> Table of contents</h2>
 
@@ -76,8 +76,8 @@ This project utilizes what is available in modern browsers resulting in a super 
 
 #### 1. Add CSS and JS to website head section
 ```html
-<script src="https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js" defer>
-<link href="https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/css/swiffy-slider.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js" defer>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.0.0/dist/css/swiffy-slider.min.css" rel="stylesheet">
 ```
 
 #### 2. Add markup
@@ -102,7 +102,7 @@ This project utilizes what is available in modern browsers resulting in a super 
 Swiffy Slider script automatically binds to all `.swiffy-slider` instances
 
 ## Additional installation options
-- [Download the latest release](https://github.com/dynamicweb/swiffy-slider/archive/v1.0.0.zip)
+- [Download the latest release](https://github.com/dynamicweb/swiffy-slider/releases/latest)
 - Clone the repo: `git clone https://github.com/dynamicweb/swiffy-slider.git`
 - Install with [npm](https://www.npmjs.com/): `npm install swiffy-slider`
 - Install with [yarn](https://yarnpkg.com/): `yarn add swiffy-slider`
@@ -141,8 +141,8 @@ swiffy-slider/
 │   │   ├── swiffy-slider.min.css
 │   │   ├── swiffy-slider.min.css.map
 │   ├── js/
-│   │   ├── swiffy-slider.ES.min.js
-│   │   ├── swiffy-slider.ES.min.js.map
+│   │   ├── swiffy-slider.ESM.min.js
+│   │   ├── swiffy-slider.ESM.min.js.map
 │   │   ├── swiffy-slider.min.js
 │   │   ├── swiffy-slider.min.js.map
 ```
@@ -517,7 +517,7 @@ function getVisibleSlides(sliderElement) {
 ### Javascript loading and binding
 Avoid autobinding by adding `data-noinit` attribute on the script tag and then attach the slider manually
 ```html
-<script src="https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js" data-noinit defer>
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js" data-noinit defer>
 <script>
     window.addEventListener('load', () => {
         //Use only one of the loading options below!
@@ -536,7 +536,7 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js" data-noinit defer>
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.0.0/dist/js/swiffy-slider.min.js" data-noinit defer>
 <script>
     window.addEventListener('load', () => {
         //loads all sliders in main and skip header and footer search for increased init performance.
@@ -558,7 +558,7 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
 Load as module using ES version of the script
 ```html
 <script type="module">
-    import {swiffyslider} from 'https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js'; 
+    import {swiffyslider} from 'https://cdn.jsdelivr.net/npm/swiffy-slider@1.0.0/dist/js/swiffy-slider.ESM.min.js'; 
     window.swiffyslider = swiffyslider; 
     window.swiffyslider.init(); 
 </script>
@@ -568,7 +568,7 @@ Load as ES module on demand, here using load - could be when slider scrolls into
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js').then((swiffysliderModule) => {
+    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.0.0/dist/js/swiffy-slider.ESM.min.js').then((swiffysliderModule) => {
         swiffysliderModule.swiffyslider.init();
     });
 });
@@ -579,7 +579,7 @@ Load as ES module on demand. Load module and assign to window for later script m
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/gh/dynamicweb/swiffy-slider@1.0.0/dist/js/swiffy-slider.ES.min.js').then((swiffysliderModule) => {
+    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.0.0/dist/js/swiffy-slider.ESM.min.js').then((swiffysliderModule) => {
         window.swiffyslider = swiffysliderModule.swiffyslider;
         window.swiffyslider.init();
     });

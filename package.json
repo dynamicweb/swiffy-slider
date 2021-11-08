@@ -5,7 +5,7 @@
     "config": {
         "version_short": "1.0"
     },
-    "main": "dist/swiffy-slider.ES.min.js",
+    "main": "dist/swiffy-slider.ESM.min.js",
     "browser": "dist/swiffy-slider.min.js",
     "style": "dist/swiffy-slider.min.css",
     "directories": {
