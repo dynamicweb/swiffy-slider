@@ -7,7 +7,7 @@
 <h3 align="center">Swiffy Slider</h3>
 
 <p align="center">
-  Super fast carousel and slider with touch for optimized websites running in modern browsers.
+  Super fast lightweight carousel and slider with touch for optimized websites running in modern browsers.
   <br>
   <a href="https://www.swiffyslider.com/docs/"><strong>Explore Swiffy Slider docs »</strong></a>
   <br>
@@ -34,15 +34,15 @@ Modern browser offers really good options these days to create much better user 
 
 This project utilizes what is available in modern browsers resulting in a super lightweight and fast slider, greatly reducing the javascript footprint and increase performance to meet todays standards.
 
+- Navigate with Touch, Keyboard, trackpad, pen and Mouse - because it is just browser scrolling
 - Uses native browser scroll behavior, scroll-snap and CSS grid to provide the best mobile and touch experience
 - Can run in CSS only mode - no js for even better performance
 - SEO friendly - all content is in pure markup
 - WCAG friendly - all content is in pure markup and can be annotated accordingly, supports tabbing, keyboard navigation, aria attributing and all what is needed.
-- Navigate with Touch, Keyboard, trackpad, pen and Mouse - because it is just browser scrolling
 - Setup is done in pure markup and css classes, no scripting required
 - No js loading of slides, configuration or initialization
 - Vanilla javascript, less than 1.3kb ~110 lines
-- Very low overall footprint ~4.5kb in total (css+js gzip'ed)
+- Very low overall footprint ~3.5kb in total (css+js gzip'ed)
 
 <h2> Table of contents</h2>
 
@@ -54,8 +54,9 @@ This project utilizes what is available in modern browsers resulting in a super 
 - [What's included](#whats-included)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Documentation](#documentation)
+  - [Introduction](#introduction)
   - [Markup structure](#markup-structure)
-  - [Options](#options)
+  - [Slider options (CSS Classes)](#slider-options-css-classes)
     - [Slider wrapper](#slider-wrapper)
     - [Slider sections](#slider-sections)
     - [Slider options](#slider-options)
@@ -158,6 +159,13 @@ If your problem or idea is not addressed yet, [please open a new issue](https://
 
 Swiffy slider documentation website is part of this repo and can be found in the docs folder. Visit the doc on our [github documentation page](http://www.swiffyslider.com)
 
+### Introduction
+Swiffy slider is a wrapper defined in html with slides, navigation and indicators as its children.
+
+All options and behavior is controlled with css classes that is added to the wrapper. No js configuration.
+
+The wrapper is the `.swiffy-slider` element - options to control layout and behavior of slides, navigation and indicators are added to this element.
+
 ### Markup structure
 The slider markup is a `.swiffy-slider` wrapper that has 3 sections.
 - One `.slider-container` that contains the slides
@@ -183,7 +191,24 @@ This example uses ul>li for slides. Can also be i.e. div or other elements.
 This example uses button for navigation. Could also be divs, but cannot be ul>li as that would be nested.
 This example uses div>button for indicators but could be other elements, i.e. ul>li structure instead.
 Wether to use buttons or div for the navigating elements, depends on how WCAG needs to be handled.
-### Options
+
+### Slider options (CSS Classes)
+
+Options are the css classes that can be added to the `.swiffy-slider` element to control how the slider will look and behave. No config in JS or similar.
+
+The example below use the `.slider-item-show2` option to show 2 slides and `.slider-item-reveal` to reveal part of the next and previous slide. By adding additional classes behavior and layout is controlled. 
+
+[Head over to the configurator to try all options](https://swiffyslider.com/configuration/)
+
+```html
+<div class="swiffy-slider slider-item-show2 slider-item-reveal">
+    <ul class="slider-container">
+        <li>Slide 1</li>
+        <li>Slide 2</li>
+        <li>Slide 3</li>
+    </ul>
+</div>
+```
 
 #### Slider wrapper
 Change behavior and styles on slides, navigation and indicators by adding option css classes to the `.swiffy-slider` wrapper.
