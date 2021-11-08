@@ -14,6 +14,7 @@
     --swiffy-slider-track-opacity: 0.1;
     --swiffy-slider-track-height: 0;
     --swiffy-slider-nav-outside-size: 3.5rem;
+    --swiffy-slider-indicator-outside-size: 1.5rem;
 }
 
 .swiffy-slider,
@@ -82,33 +83,27 @@
     min-height: 20rem;
 }
 
-.slider-item-shadow .slider-container::before,
 .slider-item-shadow .slider-container::after {
     content: "";
     position: absolute;
-    width: 4rem;
     display: block;
+    left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
-    z-index: 1;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, .25), 40%, transparent), linear-gradient(270deg, rgba(0, 0, 0, .25), 40%, transparent);
+    background-size: 4rem 100%, 4rem 100%;
+    background-position-x: left, right;
+    background-repeat: no-repeat;
 }
 
-.swiffy-slider.slider-indicators-outside.slider-item-shadow .slider-container::before,
 .swiffy-slider.slider-indicators-outside.slider-item-shadow .slider-container::after {
-    bottom: 1.5rem;
-}
-
-.slider-item-shadow .slider-container::before {
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, .25), 40%, transparent);
-}
-
-.slider-item-shadow .slider-container::after {
-    background-image: linear-gradient(270deg, rgba(0, 0, 0, .25), 40%, transparent);
-    right: 0;
+    bottom: var(--swiffy-slider-indicator-outside-size);
 }
 
 .slider-nav-outside.slider-item-shadow .slider-container::after {
     right: var(--swiffy-slider-nav-outside-size);
+    left: var(--swiffy-slider-nav-outside-size);
 }
 
 .slider-item-ratio .slider-container>*>* {
@@ -175,7 +170,6 @@
     right: 2rem;
     bottom: 0;
     left: 2rem;
-    z-index: 1;
     display: flex;
     justify-content: center;
     padding: 0;
@@ -192,11 +186,11 @@
 }
 
 .swiffy-slider.slider-indicators-outside .slider-nav {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--swiffy-slider-indicator-outside-size);
 }
 
 .swiffy-slider.slider-indicators-outside {
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--swiffy-slider-indicator-outside-size);
 }
 
 .swiffy-slider.slider-indicators-outside.slider-indicators,
@@ -243,7 +237,6 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    z-index: 2;
     border: 0;
     background-color: transparent;
     cursor: pointer;
