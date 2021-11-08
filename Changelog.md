@@ -1,3 +1,7 @@
+## [v1.0.2] - 08-11-2021
+
+- Fix z-index issue with nav and indicators (#1)
+
 ## [v1.0.1] - 08-11-2021
 
 Welcome to the first release of Swiffy Slider.
