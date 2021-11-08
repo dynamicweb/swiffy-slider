@@ -1,4 +1,4 @@
-## [v1.0.0] - 08-11-2021
+## [v1.0.1] - 08-11-2021
 
 Welcome to the first release of Swiffy Slider.
 
