@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://swiffyslider.com/">
+  <a href="https://www.swiffyslider.com/">
     <img src="docs/assets/img/swiffysliderlogo/SwiffySliderLogoWhiteOnRed.svg" alt="Swiffy Slider Logo" width="300" height="100">
   </a>
 </p>
@@ -9,12 +9,12 @@
 <p align="center">
   Super fast carousel and slider with touch for optimized websites running in modern browsers.
   <br>
-  <a href="https://swiffyslider.com/docs/"><strong>Explore Swiffy Slider docs »</strong></a>
+  <a href="https://www.swiffyslider.com/docs/"><strong>Explore Swiffy Slider docs »</strong></a>
   <br>
   <br>
-  <a href="https://swiffyslider.com/examples/">See examples</a>
+  <a href="https://www.swiffyslider.com/examples/">See examples</a>
   ·
-  <a href="https://swiffyslider.com/configuration/">Visual carousel and slider configuration</a>
+  <a href="https://www.swiffyslider.com/configuration/">Visual carousel and slider configuration</a>
 </p>
 
 [![](https://data.jsdelivr.com/v1/package/npm/swiffy-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/swiffy-slider)
