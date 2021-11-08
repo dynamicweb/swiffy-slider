@@ -1,7 +1,7 @@
 const swiffyslider = function() {
     'use strict';
     return {
-        version: '1.0.1',
+        version: '1.0.2',
         init(rootElement = document.body) {
             for (const sliderElement of rootElement.querySelectorAll('.swiffy-slider')) {
                 this.initSlider(sliderElement);
