@@ -1,3 +1,20 @@
+## [v1.1.0] - 16-11-2021
+
+## Bugfixes
+
+- Configurator did not start autuplay when enabled
+- Navigation in docs fixed
+
+## Added
+
+- Slide animation
+- Javascript can now set visible-slide class using intersection observer
+- Different animation styles in css
+
+## Removed
+
+- BREAKING slider-item-shadow has been removed since it uses ::after which disables touch sliding on mobile devices
+
 ## [v1.0.2] - 08-11-2021
 
 - Fix z-index issue with nav and indicators (#1)
