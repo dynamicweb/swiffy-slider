@@ -213,11 +213,14 @@
         <div class="container pt-3">
             <h2>Image carousel</h2>
             <p>Simple image carousel with even sized images</p>
-            <div class="swiffy-slider slider-item-ratio slider-item-ratio-16x9">
-                <ul class="slider-container">
-                    <li><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
-                    <li><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
-                    <li><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
+            <div class="swiffy-slider slider-item-ratio slider-item-ratio-16x9 slider-nav-animation slider-nav-animation-fadein slider-nav-animation-scale" id="swiffy-animation">
+                <ul class="slider-container" id="container1">
+                    <li id="slide1"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
+                    <li id="slide2"><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
+                    <li id="slide3"><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
+                    <li id="slide4"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
+                    <li id="slide5"><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
+                    <li id="slide6"><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
                 </ul>
 
                 <button type="button" class="slider-nav" aria-label="Go to previous"></button>
@@ -273,7 +276,7 @@
             <div class="container pt-3">
                 <h2>Stories</h2>
                 <p>Combining grid, images and text content to create visual appealing content</p>
-                <div class="swiffy-slider slider-nav-round">
+                <div class="swiffy-slider slider-nav-round slider-nav-animation slider-nav-animation-fadein">
                     <ul class="slider-container">
                         <li>
                             <div class="card rounded-0 h-100">
@@ -340,7 +343,7 @@
         <div class="container pt-3">
             <h2>Articles</h2>
             <p>Card based design with shadows using photos, description and button</p>
-            <div class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark">
+            <div class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein">
                 <ul class="slider-container py-4">
                     <li>
                         <div class="card shadow h-100">
@@ -437,7 +440,7 @@
                 <h2>Visual statements</h2>
                 <p>Slides with no gap and different background colors to make statements stand out. Shows indicators outside on mobile only</p>
 
-                <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark">
+                <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-slideup">
                     <div class="slider-container">
                         <div class="p-3 p-xl-5 text-light" style="background-color: #354f52;">
                             <h3 class="text-uppercase h5">Benefits from using our products</h3>
@@ -504,31 +507,43 @@
                 <h2>News ticker</h2>
                 <p>Autoplaying thin carousel with just text in different colors and sizes. Indicators moved using inline style on the <code>slider-indicators</code> element</p>
 
-                <div class="swiffy-slider slider-item-show3 slider-nav-dark slider-nav-visible slider-nav-outside slider-item-snapstart my-3 slider-nav-sm my-xl-5 slider-indicators-square slider-indicators-outside slider-indicators-dark">
+                <div class="swiffy-slider slider-item-show3 slider-nav-dark slider-nav-visible slider-nav-outside slider-item-snapstart my-3 slider-nav-sm my-xl-5 slider-indicators-square slider-indicators-outside slider-indicators-dark slider-nav-animation-slideup slider-nav-animation">
                     <div class="slider-container">
                         <div>
-                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 11:12</h3>
-                            <strong>Never seen before:</strong> Billion people taking clickbait on SoMe every hour. <small class="text-muted text-uppercase">People</small>
+                            <div>
+                                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 11:12</h3>
+                                <strong>Never seen before:</strong> Billion people taking clickbait on SoMe every hour. <small class="text-muted text-uppercase">People</small>
+                            </div>
                         </div>
                         <div>
-                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 10:02</h3>
-                            <span class="badge bg-warning text-dark"><strong>BREAKING</strong></span> Great and superfast websites can be made with simple technology. <small class="text-muted text-uppercase">Religion</small>
+                            <div>
+                                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 10:02</h3>
+                                <span class="badge bg-warning text-dark"><strong>BREAKING</strong></span> Great and superfast websites can be made with simple technology. <small class="text-muted text-uppercase">Religion</small>
+                            </div>
                         </div>
                         <div>
-                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:48</h3>
-                            Google, Facebook and Apple announces they will respect privacy. <small class="text-muted text-uppercase">Corp BS</small>
+                            <div>
+                                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:48</h3>
+                                Google, Facebook and Apple announces they will respect privacy. <small class="text-muted text-uppercase">Corp BS</small>
+                            </div>
                         </div>
                         <div>
-                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:32</h3>
-                            <span class="badge bg-success"><strong>Style</strong></span> Get fantastic lunch recipes for developers working at home. <small class="text-muted text-uppercase">Awesome</small>
+                            <div>
+                                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:32</h3>
+                                <span class="badge bg-success"><strong>Style</strong></span> Get fantastic lunch recipes for developers working at home. <small class="text-muted text-uppercase">Awesome</small>
+                            </div>
                         </div>
                         <div>
-                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:28</h3>
-                            <strong>Just released:</strong> an even more fat-ass framework that can render markup <small class="text-muted text-uppercase">Music</small>
+                            <div>
+                                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 09:28</h3>
+                                <strong>Just released:</strong> an even more fat-ass framework that can render markup <small class="text-muted text-uppercase">Music</small>
+                            </div>
                         </div>
                         <div>
-                            <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 08:08</h3>
-                            Swiffy Slider is very nice, neat and fast. <small class="text-muted text-uppercase">Simple</small>
+                            <div>
+                                <h3 class="mb-0 h6" style="color:#DF1E1E;">Today @ 08:08</h3>
+                                Swiffy Slider is very nice, neat and fast. <small class="text-muted text-uppercase">Simple</small>
+                            </div>
                         </div>
                     </div>
 

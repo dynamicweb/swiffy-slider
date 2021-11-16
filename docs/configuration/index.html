@@ -41,9 +41,12 @@
             const sliderPreview = document.getElementById("preview");
             const sliderInstance = sliderPreview.querySelector(".swiffy-slider");
             sliderInstance.className = "";
+            //sliderInstance.style = "";
             sliderInstance.removeAttribute("data-slider-nav-autoplay-interval");
+            sliderInstance.removeAttribute("style");
             sliderInstance.classList.add("swiffy-slider");
 
+            var reloadSlider = false;
             let cssVariables = "";
             for (var pair of data.entries()) {
                 const key = pair[0];
@@ -54,15 +57,16 @@
                 if (key.startsWith("data-") && parseInt(value) > 0) {
                     sliderInstance.setAttribute(key, value);
                 }
-                if (key.startsWith("--")) {
+                if (key.startsWith("--") && value.length > 0) {
                     cssVariables += `${key}:${value};`;
-                    //sliderInstance.setAttribute(key, value);
+                }
+                if (value === 'slider-nav-autoplay' || value === 'slider-nav-animation') {
+                    reloadSlider = true;
                 }
             }
 
-            if (cssVariables.length > 0) {
+            if (cssVariables.length > 0)
                 sliderInstance.style = cssVariables;
-            }
 
             //Remove excess indention from markup
             const lines = sliderPreview.innerHTML.trim().split("\n");
@@ -83,6 +87,13 @@
                 language: 'html'
             }).value;
             document.getElementById("codeSample").innerHTML = highlightedCode;
+
+            if (reloadSlider) {
+                sliderPreview.innerHTML = '';
+                sliderPreview.appendChild(sliderInstance.cloneNode(true));
+                swiffyslider.init();
+            }
+
         }
     </script>
     <style>
@@ -91,75 +102,75 @@
             border-radius: .25rem;
         }
         
-        .preview-images .slider-container>*:nth-child(1) {
+        .preview-images #slide1 {
             background-image: url("../assets/img/photos/img1.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(2) {
+        .preview-images #slide2 {
             background-image: url("../assets/img/photos/img2.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(3) {
+        .preview-images #slide3 {
             background-image: url("../assets/img/photos/img3.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(4) {
+        .preview-images #slide4 {
             background-image: url("../assets/img/photos/img4.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(5) {
+        .preview-images #slide5 {
             background-image: url("../assets/img/photos/img5.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(6) {
+        .preview-images #slide6 {
             background-image: url("../assets/img/photos/img6.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(7) {
+        .preview-images #slide7 {
             background-image: url("../assets/img/photos/img7.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(8) {
+        .preview-images #slide8 {
             background-image: url("../assets/img/photos/img8.webp");
         }
         
-        .preview-images .slider-container>*:nth-child(9) {
+        .preview-images #slide9 {
             background-image: url("../assets/img/photos/img9.webp");
         }
         
-        .preview-colors .slider-container>*:nth-child(1) {
+        .preview-colors #slide1 {
             background-color: #277da1 !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(2) {
+        .preview-colors #slide2 {
             background-color: #577590 !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(3) {
+        .preview-colors #slide3 {
             background-color: #4d908e !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(4) {
+        .preview-colors #slide4 {
             background-color: #43aa8b !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(5) {
+        .preview-colors #slide5 {
             background-color: #90be6d !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(6) {
+        .preview-colors #slide6 {
             background-color: #f9c74f !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(7) {
+        .preview-colors #slide7 {
             background-color: #f9844a !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(8) {
+        .preview-colors #slide8 {
             background-color: #f3722c !important;
         }
         
-        .preview-colors .slider-container>*:nth-child(9) {
+        .preview-colors #slide9 {
             background-color: #f94144 !important;
         }
         
@@ -167,13 +178,15 @@
             min-height: 30rem;
         }
         
-        .swiffy-slider .slider-container>* {
+        .swiffy-slider .slider-container>*,
+        .swiffy-slider .slider-container>*>* {
             background-size: cover;
-            background-color: #e1e1e1;
             background-position: 50% 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
+            height: 100%;
         }
         
         .slider-item-show2:not(.slider-item-ratio) .slider-container>* {
@@ -335,15 +348,33 @@
                             <div id="preview" class="preview-colors">
                                 <div class="swiffy-slider">
                                     <ul class="slider-container">
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
+                                        <li>
+                                            <div id="slide1"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide2"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide3"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide4"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide5"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide6"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide7"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide8"></div>
+                                        </li>
+                                        <li>
+                                            <div id="slide9"></div>
+                                        </li>
                                     </ul>
 
                                     <button type="button" class="slider-nav"></button>
@@ -653,6 +684,62 @@
             </div>
 
             <div class="mb-3">
+                <strong class="text-uppercase">Animation</strong>
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="slider-nav-animation" id="slider-nav-animation" name="slider-nav-animation">
+                        <label class="form-check-label" for="slider-nav-animation">Enable animation <code>.slider-nav-animation</code></label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-style" id="slider-nav-animation-none" value="" checked>
+                        <label class="form-check-label" for="slider-nav-animation-none">No animation</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-style" id="slider-nav-animation-appear" value="slider-nav-animation-appear">
+                        <label class="form-check-label" for="slider-nav-animation-appear">Apear animation</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-style" id="slider-nav-animation-fadein" value="slider-nav-animation-fadein">
+                        <label class="form-check-label" for="slider-nav-animation-fadein">Fade in animation</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-style" id="slider-nav-animation-scale" value="slider-nav-animation-scale">
+                        <label class="form-check-label" for="slider-nav-animation-scale">Scale animation</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-style" id="slider-nav-animation-scaleup" value="slider-nav-animation-scaleup">
+                        <label class="form-check-label" for="slider-nav-animation-scaleup">Scale up animation</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-style" id="slider-nav-animation-slideup" value="slider-nav-animation-slideup">
+                        <label class="form-check-label" for="slider-nav-animation-slideup">Slide up animation</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-style" id="slider-nav-animation-turn" value="slider-nav-animation-turn">
+                        <label class="form-check-label" for="slider-nav-animation-turn">Turn animation</label>
+                    </div>
+                </div>
+
+                <div class="pt-2 pt-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-speed" id="slider-nav-animation-normal" value="" checked>
+                        <label class="form-check-label" for="slider-nav-animation-normal">Normal</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-speed" id="slider-nav-animation-fast" value="slider-nav-animation-fast">
+                        <label class="form-check-label" for="slider-nav-animation-fast">Fast</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="slider-nav-animation-speed" id="slider-nav-animation-slow" value="slider-nav-animation-slow">
+                        <label class="form-check-label" for="slider-nav-animation-slow">Slow</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
                 <strong class="text-uppercase">Debugging</strong>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="slider-item-helper" id="slider-item-helper" name="slider-item-helper">
@@ -666,12 +753,27 @@
                     <span class="input-group-text">Navigation light color</span>
                     <input type="text" class="form-control form-control-sm" value="" placeholder="#fff" aria-label="Navigation light color" name="--swiffy-slider-nav-light">
                 </div>
-                <code>--swiffy-slider-nav-light</code> attribute
+                <code>--swiffy-slider-nav-light</code> variable
                 <div class="input-group input-group-sm w-75">
                     <span class="input-group-text">Navigation dark color</span>
                     <input type="text" class="form-control form-control-sm" value="" placeholder="#000" aria-label="Navigation dark color" name="--swiffy-slider-nav-dark">
                 </div>
-                <code>--swiffy-slider-nav-dark</code> attribute
+                <code>--swiffy-slider-animation-duration</code> variable
+                <div class="input-group input-group-sm w-75">
+                    <span class="input-group-text">Animation duration</span>
+                    <input type="text" class="form-control form-control-sm" value="" placeholder="0.75s" aria-label="Animation duration" name="--swiffy-slider-animation-duration">
+                </div>
+                <code>--swiffy-slider-animation-delay</code> variable
+                <div class="input-group input-group-sm w-75">
+                    <span class="input-group-text">Animation delay</span>
+                    <input type="text" class="form-control form-control-sm" value="" placeholder="0.0s" aria-label="Animation delay" name="--swiffy-slider-animation-delay">
+                </div>
+                <code>--swiffy-slider-animation-timing</code> variable
+                <div class="input-group input-group-sm w-75">
+                    <span class="input-group-text">Animation timing</span>
+                    <input type="text" class="form-control form-control-sm" value="" placeholder="ease-in-out" aria-label="Navigation dark color" name="--swiffy-slider-animation-timing">
+                </div>
+                <code>--swiffy-slider-nav-dark</code> variable
             </div>
 
         </form>

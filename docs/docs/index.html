@@ -141,17 +141,18 @@
             <section>
                 <div class="container py-3 py-lg-4">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2">
 
                             <nav class="d-flex flex-column sw-nav position-sticky" style="top:5rem;">
                                 <a class="btn active" href=".">Quickstart</a>
                                 <a class="btn" href="./slider-sizes">Slider sizes</a>
-                                <a class="btn" href="#">Slide options</a>
-                                <a class="btn" href="#">Navigation</a>
-                                <a class="btn" href="#">Indicators</a>
+                                <a class="btn" href="./slider-options/">Slide options</a>
+                                <a class="btn" href="./slider-navigation/">Navigation</a>
+                                <a class="btn" href="./slider-indicators/">Indicators</a>
+                                <a class="btn" href="./slider-animation/">Slide animations</a>
                             </nav>
                         </div>
-                        <div class="col-10">
+                        <div class="col-lg-10">
                             <section>
                                 <h2>Quick start</h2>
                                 <p class="lead">Installation options, configuration options and scripting of the Swiffy Slider</p>
@@ -456,6 +457,64 @@
                                     </tbody>
                                 </table>
                             </section>
+
+                            <h3>Animation options</h3>
+                            <p>For the <code>swiffy-slider</code> wrapper. The <code>slider-nav-animation-*</code> option classes affects the animation of slides when they slide into view.</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="min-width: 15rem;">CSS class</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>slider-nav-animation</code></td>
+                                        <td>Enables animation on slides. An animation effect class is also required for animation to be enabled</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>slider-nav-animation-appear</code></td>
+                                        <td>Apear animation using opacity and scale - starting from 30% opacity and a 90% scale</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>slider-nav-animation-fadein</code></td>
+                                        <td>Fade in animation using opacity - starting from 50% opacity. Can be combined with <code>.slider-nav-animation-scale/scaleup</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>slider-nav-animation-scale</code></td>
+                                        <td>Scale up animation using scale - starts with 90% size. Can be combined with <code>.slider-nav-animation-fadein</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>slider-nav-animation-scaleup</code></td>
+                                        <td>Scale up animation using scale - starts with 25% size. Can be combined with <code>.slider-nav-animation-fadein</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>slider-nav-animation-turn</code></td>
+                                        <td>Turn animation using rotateY - starts with 70deg ratotation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>slider-nav-animation-slideup</code></td>
+                                        <td>Slide up animation using translateY - starts at 60% of the height</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4>Custom animations</h4>
+                            <p>
+                                It is possible to create custom animation using css tranform and opacity.
+                            </p>
+
+                            <pre><code class="language-html">
+.slider-nav-animation.slider-nav-animation-mycustomanimation .slider-container>*>* {
+    transform: translateY(80%) scale(.90) rotateY(90deg);
+    opacity: 0.1;
+}
+
+&#x3C;div class=&#x22;swiffy-slider slider-nav-animation slider-nav-animation-mycustomanimation&#x22;&#x3E;
+...
+&#x3C;div&#x3E;
+                        </code>
+                        </pre>
 
                             <section>
                                 <h2>Javascript API</h2>

@@ -62,6 +62,7 @@ This project utilizes what is available in modern browsers resulting in a super 
     - [Slider options](#slider-options)
     - [Navigation options](#navigation-options)
     - [Indicator options](#indicator-options)
+    - [Animation options](#animation-options)
   - [Javascript](#javascript)
   - [Javascript loading and binding](#javascript-loading-and-binding)
   - [CSS variables](#css-variables)
@@ -442,6 +443,47 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-indicators-*</code>
   </tbody>
 </table>
 
+#### Animation options
+For the <code>swiffy-slider</code> wrapper. The <code>slider-nav-animation-*</code> option classes affects the animation of slides when they slide into view.
+<table>
+  <thead>
+    <tr>
+      <th>CSS class<br>_______________________________</th>
+      <th>Description<br>_______________________________</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>slider-nav-animation</code></td>
+      <td>Enables animation on slides. An animation effect class is also required for animation to be enabled</td>
+    </tr>
+    <tr>
+      <td><code>slider-nav-animation-appear</code></td>
+      <td>Apear animation using opacity and scale - starting from 30% opacity and a 90% scale</td>
+    </tr>
+    <tr>
+      <td><code>slider-nav-animation-fadein</code></td>
+      <td>Fade in animation using opacity - starting from 50% opacity. Can be combined with <code>.slider-nav-animation-scale/scaleup</code></td>
+    </tr>
+    <tr>
+      <td><code>slider-nav-animation-scale</code></td>
+      <td>Scale up animation using scale - starts with 90% size. Can be combined with <code>.slider-nav-animation-fadein</code></td>
+    </tr>
+     <tr>
+      <td><code>slider-nav-animation-scaleup</code></td>
+      <td>Scale up animation using scale - starts with 25% size. Can be combined with <code>.slider-nav-animation-fadein</code></td>
+    </tr>
+    <tr>
+      <td><code>slider-nav-animation-turn</code></td>
+      <td>Turn animation using rotateY - starts with 70deg ratotation</td>
+    </tr>
+     <tr>
+      <td><code>slider-nav-animation-slideup</code></td>
+      <td>Slide up animation using translateY - starts at 60% of the height</td>
+    </tr>
+  </tbody>
+</table>
+
 ### Javascript
 The Swiffy Slider script can be accessed using `window.swiffyslider` or simply `swiffyslider`
 
@@ -677,6 +719,21 @@ Slide sizes, ratios, navigation etc. can be controlled by overruling the variabl
             <td><code>--swiffy-slider-track-height</code></td>
             <td><code>--swiffy-slider-track-height:1rem;</code></td>
             <td>Sets the scrollbar track height. Default is .5rem if scrollbar (<code>.slider-nav-scrollbar</code>) is enabled.</td>
+        </tr>
+        <tr>
+            <td><code>--swiffy-slider-animation-duration</code></td>
+            <td><code>--swiffy-slider-animation-duration:0.75s</code></td>
+            <td>Sets the animation duration. Default is 0.75s. Using <code>.swiffy-slider-animation-fast</code> sets the duration to .25s. Using <code>.swiffy-slider-animation-slow</code> sets the duration to 1.25s</td>
+        </tr>
+        <tr>
+            <td><code>--swiffy-slider-animation-delay</code></td>
+            <td><code>--swiffy-slider-animation-delay:0.5s;</code></td>
+            <td>Sets the delay before animation begins when a new slide scrolls into view. Default is 0s (no delay).</td>
+        </tr>
+        <tr>
+            <td><code>--swiffy-slider-animation-timing</code></td>
+            <td><code>--swiffy-slider-animation-timing:ease-in-out;</code></td>
+            <td>Sets the animation timing method, default is ease-in-out.</td>
         </tr>
     </tbody>
 </table>
