@@ -21,6 +21,21 @@ export const swiffyslider = function() {
                 const timeout = sliderElement.getAttribute("data-slider-nav-autoplay-interval") ? sliderElement.getAttribute("data-slider-nav-autoplay-interval") : 2500;
                 this.autoPlay(sliderElement, timeout, sliderElement.classList.contains("slider-nav-autopause"));
             }
+            if (sliderElement.classList.contains("slider-nav-animation"))
+                this.setVisibleSlides(sliderElement);
+        },
+
+        setVisibleSlides(sliderElement) {
+            const observer = new IntersectionObserver(slides => {
+                slides.forEach(slide => {
+                    slide.isIntersecting ? slide.target.parentElement.classList.add('slide-visible') : slide.target.parentElement.classList.remove('slide-visible');
+                });
+            }, {
+                root: sliderElement.querySelector(".slider-container"),
+                threshold: 0.3
+            });
+            for (const slide of sliderElement.querySelectorAll(".slider-container>*>*"))
+                observer.observe(slide);
         },
 
         slide(sliderElement, next = true) {
@@ -30,7 +45,7 @@ export const swiffyslider = function() {
             const nodelay = sliderElement.classList.contains("slider-nav-nodelay");
             const slides = container.children;
             const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
-            const scrollStep = slides[0].offsetWidth + gapWidth;
+            const scrollStep = slides[0].offsetWidth - gapWidth;
             let scrollLeftPosition = next ?
                 container.scrollLeft + scrollStep :
                 container.scrollLeft - scrollStep;
