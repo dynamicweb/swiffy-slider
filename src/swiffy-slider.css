@@ -87,29 +87,6 @@
     min-height: 20rem;
 }
 
-.slider-item-shadow .slider-container::after {
-    content: "";
-    position: absolute;
-    display: block;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, .25), 40%, transparent), linear-gradient(270deg, rgba(0, 0, 0, .25), 40%, transparent);
-    background-size: 4rem 100%, 4rem 100%;
-    background-position-x: left, right;
-    background-repeat: no-repeat;
-}
-
-.swiffy-slider.slider-indicators-outside.slider-item-shadow .slider-container::after {
-    bottom: var(--swiffy-slider-indicator-outside-size);
-}
-
-.slider-nav-outside.slider-item-shadow .slider-container::after {
-    right: var(--swiffy-slider-nav-outside-size);
-    left: var(--swiffy-slider-nav-outside-size);
-}
-
 .slider-item-ratio .slider-container>*>* {
     position: absolute;
     top: 0;
