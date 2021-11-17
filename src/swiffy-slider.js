@@ -45,7 +45,7 @@ const swiffyslider = function() {
             const nodelay = sliderElement.classList.contains("slider-nav-nodelay");
             const slides = container.children;
             const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
-            const scrollStep = slides[0].offsetWidth - gapWidth;
+            const scrollStep = slides[0].offsetWidth + gapWidth;
             let scrollLeftPosition = next ?
                 container.scrollLeft + scrollStep :
                 container.scrollLeft - scrollStep;
