@@ -703,8 +703,8 @@ Slide sizes, ratios, navigation etc. can be controlled by overruling the variabl
         </tr>
         <tr>
             <td><code>--swiffy-slider-nav-zoom</code></td>
-            <td><code>--swiffy-slider-nav-zoom:125%;</code></td>
-            <td>Use to overrule the navigation arrow sizes. Default is 100% for normal sizes and 75% for small sized navigation. Set to i.e. 125% to make navigation arrows larger.</td>
+            <td><code>--swiffy-slider-nav-zoom:1.25;</code></td>
+            <td>Use to overrule the navigation arrow sizes. Default is 1 for normal sizes and .75 for small sized navigation. Set to i.e. 1.25 to make navigation arrows larger.</td>
         </tr>
         <tr>
             <td><code>--swiffy-slider-track-opacity</code></td>
@@ -741,7 +741,7 @@ style="
 --swiffy-slider-item-ratio:100/33.3;
 --swiffy-slider-nav-light:lightcyan;
 --swiffy-slider-nav-dark:darkolivegreen;
---swiffy-slider-nav-zoom:85%;
+--swiffy-slider-nav-zoom:.85;
 --swiffy-slider-item-reveal:25%;">
 
     <ul class="slider-container">
