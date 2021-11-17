@@ -357,7 +357,7 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-nav-*</code> option
     </tr>
     <tr>
       <td><code>slider-nav-nodelay</code></td>
-      <td>Disables smooth scrolling when sliding using navigation buttons, indicators and autoplay. Makes the new slide or page appear instantly with no scroll animation. Does not affect touch navigation</td>
+      <td>Disables smooth scrolling when sliding using navigation buttons, indicators and autoplay. Makes the new slide or page appear instantly with no scroll smoothing. Does not affect touch navigation</td>
     </tr>
     <tr>
       <td><code>slider-nav-autoplay</code></td>
@@ -763,7 +763,7 @@ style="
 ### Safari smooth scrolling polyfill
 Sliding the carousel on touch devices **using fingers are not affected** by this issue.
 
-When sliding using buttons, indicators and javascript, the new slides are shown instantly with no animation or smoothing when using Safari.
+When sliding using buttons, indicators and javascript, the new slides are shown instantly with no smoothing when using Safari.
 
 In Safari based browsers, smooth scrolling is not supported because it is still lacking browser support. [See Can I use](https://caniuse.com/css-scroll-behavior)
 
@@ -779,7 +779,6 @@ These limitations are known and intentionally there to keep this library small, 
 - Smooth scrolling is not supported out of the box in Safari (iOS + Mac) but can be fixed using a polyfill. [See polyfill](#safari-smooth-scrolling-polyfill)
 - RTL is untested but as the entire slider is just markup, it should be supported very well
 - Works in 'modern' browsers from the last ~3 years only. No IE support or anything funny.
-- No animations are implemented except smooth scrolling
 
 Use other sliders and carousels if these limitations is important in your project.
 
