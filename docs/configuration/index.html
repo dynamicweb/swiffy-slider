@@ -30,13 +30,41 @@
     <script>
         function updatePreviewStyle() {
             const sliderPreview = document.getElementById("preview");
+
             sliderPreview.className = "";
-            sliderPreview.classList.add(window.event.target.value);
+            if (document.getElementById('preview-images').checked) {
+                sliderPreview.classList.add(document.getElementById('preview-images').value);
+            } else {
+                sliderPreview.classList.add(document.getElementById('preview-colors').value);
+            }
+        }
+
+        function loadSettings() {
+            const form = document.getElementById("configurationSettings");
+            params = new URLSearchParams(location.search);
+            for (const [key, value] of params) {
+                if (key === 'preview-style') {
+                    document.getElementById('preview-images').checked = true;
+                } else {
+                    const input = form.elements[key];
+                    switch (input.type) {
+                        case 'checkbox':
+                            input.checked = !!value;
+                            break;
+                        default:
+                            input.value = value;
+                            break;
+                    }
+                }
+            }
         }
 
         function updateSettings() {
             const form = document.getElementById("configurationSettings");
             const data = new FormData(form);
+
+            const query = new FormData()
+
 
             const sliderPreview = document.getElementById("preview");
             const sliderInstance = sliderPreview.querySelector(".swiffy-slider");
@@ -51,6 +79,8 @@
             for (var pair of data.entries()) {
                 const key = pair[0];
                 const value = pair[1];
+                if (value.length > 0)
+                    query.append(key, value);
                 if (value.startsWith("slider-")) {
                     sliderInstance.classList.add(value);
                 }
@@ -63,6 +93,16 @@
                 if (value === 'slider-nav-autoplay' || value === 'slider-nav-animation') {
                     reloadSlider = true;
                 }
+            }
+
+            if (document.getElementById("preview-images").checked) {
+                query.append("preview-style", "preview-images");
+            }
+            var querystring = new URLSearchParams(query).toString();
+            if (querystring.length > 0) {
+                document.getElementById("permalink").value = window.location.href.split('?')[0] + '?' + querystring;
+            } else {
+                document.getElementById("permalink").value = '';
             }
 
             if (cssVariables.length > 0)
@@ -93,6 +133,7 @@
                 sliderPreview.appendChild(sliderInstance.cloneNode(true));
                 swiffyslider.init();
             }
+
 
         }
     </script>
@@ -391,6 +432,18 @@
                                         <li></li>
                                         <li></li>
                                     </ul>
+                                </div>
+                            </div>
+
+                            <div class="my-3">
+                                <label for="permalink">Perma link</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light" readonly id="permalink">
+                                    <button class="btn btn-outline-secondary bg-light" type="button" onclick="navigator.clipboard.writeText(document.getElementById('permalink').value);alert('Link has been copied!');"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                                      </svg></button>
+
                                 </div>
                             </div>
                         </div>
@@ -775,13 +828,15 @@
         </form>
         <script>
             window.addEventListener("load", () => {
-                updateSettings();
                 const form = document.getElementById("configurationSettings");
                 for (const inputElement of form.elements) {
                     inputElement.addEventListener("change", () => {
                         updateSettings();
                     });
                 }
+                loadSettings();
+                updatePreviewStyle();
+                updateSettings();
             });
         </script>
     </section>
