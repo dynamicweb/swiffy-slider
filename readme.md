@@ -128,6 +128,9 @@ Read the [Getting started page](https://www.siffyslider.com/docs/) for examples,
 - Indicators - Navigate to slide by clicking indicator
 - Auto play - Automatically slide with specified interval
 - Auto pause - Stop playing when mouse is hovering carousel or touch is used
+- Animation - Add animations when slides slide into view
+- Animation - Choose between 6 different animations
+- Animation - Use normal, fast or slow animations
 - Scripting - Automatic or manual initialization of slider instances using `swiffyslider.init` or `swiffyslider.initSlider`
 - Scripting - Execute scripts when an item is done sliding using `swiffyslider.onSlideEnd`
 - Scripting - Start and stop automatic sliding using script
