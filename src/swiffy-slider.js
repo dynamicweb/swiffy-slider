@@ -1,19 +1,19 @@
 const swiffyslider = function() {
-    'use strict';
+    "use strict";
     return {
-        version: '1.1.0',
+        version: "1.1.0",
         init(rootElement = document.body) {
-            for (const sliderElement of rootElement.querySelectorAll('.swiffy-slider')) {
+            for (const sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {
                 this.initSlider(sliderElement);
             }
         },
 
         initSlider(sliderElement) {
-            for (const navElement of sliderElement.querySelectorAll('.slider-nav')) {
+            for (const navElement of sliderElement.querySelectorAll(".slider-nav")) {
                 const next = navElement.classList.contains("slider-nav-next");
                 navElement.addEventListener("click", () => this.slide(sliderElement, next));
             }
-            for (const indicatorElement of sliderElement.querySelectorAll('.slider-indicators')) {
+            for (const indicatorElement of sliderElement.querySelectorAll(".slider-indicators")) {
                 indicatorElement.addEventListener("click", () => this.slideToByIndicator());
                 this.onSlideEnd(sliderElement, () => this.handleIndicators(sliderElement), 60);
             }
@@ -28,7 +28,7 @@ const swiffyslider = function() {
         setVisibleSlides(sliderElement) {
             const observer = new IntersectionObserver(slides => {
                 slides.forEach(slide => {
-                    slide.isIntersecting ? slide.target.parentElement.classList.add('slide-visible') : slide.target.parentElement.classList.remove('slide-visible');
+                    slide.isIntersecting ? slide.target.parentElement.classList.add("slide-visible") : slide.target.parentElement.classList.remove("slide-visible");
                 });
             }, {
                 root: sliderElement.querySelector(".slider-container"),
@@ -39,7 +39,7 @@ const swiffyslider = function() {
         },
 
         slide(sliderElement, next = true) {
-            const container = sliderElement.querySelector('.slider-container');
+            const container = sliderElement.querySelector(".slider-container");
             const fullpage = sliderElement.classList.contains("slider-nav-page");
             const noloop = sliderElement.classList.contains("slider-nav-noloop");
             const nodelay = sliderElement.classList.contains("slider-nav-nodelay");
@@ -60,7 +60,7 @@ const swiffyslider = function() {
             }
             container.scroll({
                 left: scrollLeftPosition,
-                behavior: nodelay ? 'auto' : 'smooth'
+                behavior: nodelay ? "auto" : "smooth"
             });
         },
 
@@ -69,25 +69,25 @@ const swiffyslider = function() {
             const indicatorIndex = Array.from(indicator.parentElement.children).indexOf(indicator);
             const indicatorCount = indicator.parentElement.children.length;
             const sliderElement = indicator.closest(".swiffy-slider");
-            const slideCount = sliderElement.querySelector('.slider-container').children.length;
+            const slideCount = sliderElement.querySelector(".slider-container").children.length;
             const relativeSlideIndex = (slideCount / indicatorCount) * indicatorIndex;
             this.slideTo(sliderElement, relativeSlideIndex);
         },
 
         slideTo(sliderElement, slideIndex) {
-            const container = sliderElement.querySelector('.slider-container');
+            const container = sliderElement.querySelector(".slider-container");
             const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
             const scrollStep = container.children[0].offsetWidth + gapWidth;
             const nodelay = sliderElement.classList.contains("slider-nav-nodelay");
             container.scroll({
                 left: (scrollStep * slideIndex),
-                behavior: nodelay ? 'auto' : 'smooth'
+                behavior: nodelay ? "auto" : "smooth"
             });
         },
 
         onSlideEnd(sliderElement, delegate, timeout = 125) {
             let isScrolling;
-            sliderElement.querySelector('.slider-container').addEventListener('scroll', function() {
+            sliderElement.querySelector(".slider-container").addEventListener("scroll", function() {
                 window.clearTimeout(isScrolling);
                 isScrolling = setTimeout(delegate, timeout);
             }, { capture: false, passive: true });
@@ -98,7 +98,7 @@ const swiffyslider = function() {
             let autoplayTimer = setInterval(() => this.slide(sliderElement), timeout);
             const autoplayer = () => this.autoPlay(sliderElement, timeout, autopause);
             if (autopause) {
-                ['mouseover', 'touchstart'].forEach(function(event) {
+                ["mouseover", "touchstart"].forEach(function(event) {
                     sliderElement.addEventListener(event, function() {
                         window.clearTimeout(autoplayTimer);
                     }, { once: true, passive: true });
@@ -111,10 +111,10 @@ const swiffyslider = function() {
         },
 
         handleIndicators(sliderElement) {
-            const container = sliderElement.querySelector('.slider-container');
+            const container = sliderElement.querySelector(".slider-container");
             const slidingAreaWidth = container.scrollWidth - container.offsetWidth;
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
-            for (const scrollIndicatorContainers of sliderElement.querySelectorAll('.slider-indicators')) {
+            for (const scrollIndicatorContainers of sliderElement.querySelectorAll(".slider-indicators")) {
                 const scrollIndicators = scrollIndicatorContainers.children;
                 const activeIndicator = Math.round((scrollIndicators.length - 1) * percentSlide);
                 for (const element of scrollIndicators)
@@ -126,9 +126,9 @@ const swiffyslider = function() {
 }();
 
 window.swiffyslider = swiffyslider;
-if (!document.currentScript.hasAttribute('data-noinit')) {
-    window.addEventListener('load', () => {
-        'use strict';
+if (!document.currentScript.hasAttribute("data-noinit")) {
+    window.addEventListener("load", () => {
+        "use strict";
         swiffyslider.init();
     });
 }
