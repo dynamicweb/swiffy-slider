@@ -69,6 +69,7 @@ This project utilizes what is available in modern browsers resulting in a super 
   - [Safari smooth scrolling polyfill](#safari-smooth-scrolling-polyfill)
 - [Limitations](#limitations)
 - [Contributing](#contributing)
+- [Star gazers](#star-gazers)
 - [Versioning](#versioning)
 - [Creators](#creators)
 - [Copyright and license](#copyright-and-license)
@@ -804,6 +805,12 @@ Open tasks that you could help with:
 - React component
 
 Thank you for your understanding.
+
+## Star gazers
+
+Feel free to star this project and help spread the word.
+
+[![Stargazers repo roster for @dynamicweb/swiffy-slider](https://reporoster.com/stars/dynamicweb/swiffy-slider)](https://github.com/dynamicweb/swiffy-slider/stargazers)
 
 
 ## Versioning
