@@ -105,12 +105,12 @@ This project utilizes what is available in modern browsers resulting in a super 
 Swiffy Slider script automatically binds to all `.swiffy-slider` instances
 
 ## Additional installation options
-- [Download the latest release](https://github.com/dynamicweb/swiffy-slider/releases/download/v1.1.0/swiffy-slider-1.1.0-dist.zip)
+- [Download the latest release](https://github.com/dynamicweb/swiffy-slider/releases/latest)
 - Clone the repo: `git clone https://github.com/dynamicweb/swiffy-slider.git`
 - Install with [npm](https://www.npmjs.com/): `npm install swiffy-slider`
 - Install with [yarn](https://yarnpkg.com/): `yarn add swiffy-slider`
 
-Read the [Getting started page](https://www.siffyslider.com/docs/) for examples, configuration options and a visual configurator.
+Read the [Getting started page](https://www.swiffyslider.com/docs/) for examples, configuration options and a visual configurator.
 
 ## Features
 
