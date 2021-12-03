@@ -1,7 +1,7 @@
 const swiffyslider = function() {
     "use strict";
     return {
-        version: "1.1.0",
+        version: "1.2.0",
         init(rootElement = document.body) {
             for (const sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {
                 this.initSlider(sliderElement);
@@ -11,7 +11,7 @@ const swiffyslider = function() {
         initSlider(sliderElement) {
             for (const navElement of sliderElement.querySelectorAll(".slider-nav")) {
                 const next = navElement.classList.contains("slider-nav-next");
-                navElement.addEventListener("click", () => this.slide(sliderElement, next));
+                navElement.addEventListener("click", () => this.slide(sliderElement, next), { passive: true });
             }
             for (const indicatorElement of sliderElement.querySelectorAll(".slider-indicators")) {
                 indicatorElement.addEventListener("click", () => this.slideToByIndicator());
@@ -21,18 +21,20 @@ const swiffyslider = function() {
                 const timeout = sliderElement.getAttribute("data-slider-nav-autoplay-interval") ? sliderElement.getAttribute("data-slider-nav-autoplay-interval") : 2500;
                 this.autoPlay(sliderElement, timeout, sliderElement.classList.contains("slider-nav-autopause"));
             }
-            if (sliderElement.classList.contains("slider-nav-animation"))
-                this.setVisibleSlides(sliderElement);
+            if (sliderElement.classList.contains("slider-nav-animation")) {
+                const threshold = sliderElement.getAttribute("data-slider-nav-animation-threshold") ? sliderElement.getAttribute("data-slider-nav-animation-threshold") : 0.3;
+                this.setVisibleSlides(sliderElement, threshold);
+            }
         },
 
-        setVisibleSlides(sliderElement) {
+        setVisibleSlides(sliderElement, threshold = 0.3) {
             const observer = new IntersectionObserver(slides => {
                 slides.forEach(slide => {
                     slide.isIntersecting ? slide.target.parentElement.classList.add("slide-visible") : slide.target.parentElement.classList.remove("slide-visible");
                 });
             }, {
                 root: sliderElement.querySelector(".slider-container"),
-                threshold: 0.3
+                threshold: threshold
             });
             for (const slide of sliderElement.querySelectorAll(".slider-container>*>*"))
                 observer.observe(slide);
@@ -105,7 +107,7 @@ const swiffyslider = function() {
                 });
                 sliderElement.addEventListener("mouseout", function() {
                     autoplayer();
-                }, { once: true });
+                }, { once: true, passive: true });
             }
             return autoplayTimer;
         },

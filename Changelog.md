@@ -1,3 +1,21 @@
+## [v1.2.0] - 03-12-2021
+
+## Bugfixes
+
+- None
+
+## Changed
+- Changed the use of <code>zoom</code> in css to <code>transform: scale()</code>
+- Changed javascript to use <code>"</code> instead <code>'</code> consistently
+- Changed all event listeners to be passive to increase performance even further
+
+## Added
+
+- Support for mouse drag option using the new swiffy-slider-extensions object
+- Added swiffy-slider-extensions for adding features not needed for core releases. Can be accessed on <code>swiffyslider.extensions.*</code>
+- Configure animation threshold for the intersection observer that sets <code>.slide-visible</code> when sliding. New attribute <code>data-slider-nav-animation-threshold</code>
+- <code>swiffyslider.setVisibleSlides</code> can now be called with a threshold overwriting the default 0.3
+
 ## [v1.1.0] - 16-11-2021
 
 ## Bugfixes
