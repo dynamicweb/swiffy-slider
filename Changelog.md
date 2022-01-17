@@ -1,5 +1,10 @@
 ## [v1.3.0] - 18-01-2021
 
+## Changed
+- renamed ´slide-visible-first´ to ´.slider-item-first-visible´ that was added in 1.3.0 due to naming error.
+
+## [v1.3.0] - 18-01-2021
+
 ## Bugfixes
 
 - Package does not contain source files breaking imports using PM's [#9](https://github.com/dynamicweb/swiffy-slider/issues/9)
