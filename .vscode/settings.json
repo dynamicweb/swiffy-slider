@@ -41,14 +41,24 @@
                 "cmd": "echo 'File saved: ${file}'"
             },
             {
+                "match": "src\\\\.*js$",
+                "isAsync": true,
+                "cmd": "powershell -command \"& {&'Start-Sleep' -s 0.1}\"; \"& {&'copy' src/*.js dist/js/}\" "
+            },
+            {
+                "match": "src\\\\.*css$",
+                "isAsync": true,
+                "cmd": "powershell -command \"& {&'Start-Sleep' -s 0.1}\"; \"& {&'copy' src/*.css dist/css/}\" "
+            },
+            {
                 "match": ".css$",
                 "isAsync": true,
-                "cmd": "powershell -command \"& {&'Start-Sleep' -s 0.6}\"; \"& {&'copy' dist/css/*.* docs/assets/css/}\" "
+                "cmd": "powershell -command \"& {&'Start-Sleep' -s 0.6}\"; \"& {&'copy' dist/css/*.min.* docs/assets/css/}\" "
             },
             {
                 "match": ".js$",
                 "isAsync": true,
-                "cmd": "powershell -command \"& {&'Start-Sleep' -s 0.3}\"; \"& {&'copy' dist/js/*.* docs/assets/js/}\" "
+                "cmd": "powershell -command \"& {&'Start-Sleep' -s 0.3}\"; \"& {&'copy' dist/js/*.min.* docs/assets/js/}\" "
             },
         ]
     }    

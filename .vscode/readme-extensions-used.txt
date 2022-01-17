@@ -14,3 +14,6 @@ Other tools Used
 - C#
 - HTML CSS Support
 - Beautify
+
+Release npm package
+- run 'npm publish' from terminal

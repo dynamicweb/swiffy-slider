@@ -18,7 +18,7 @@
 </p>
 
 [![](https://data.jsdelivr.com/v1/package/npm/swiffy-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/swiffy-slider)
-![version](https://img.shields.io/badge/Version-1.2.0-green.svg)
+![version](https://img.shields.io/badge/Version-1.3.0-green.svg)
 [![npm version](https://img.shields.io/npm/v/swiffy-slider)](https://www.npmjs.com/package/swiffy-slider)
 [![CSS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.min.css?compression=gzip&label=CSS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.min.css)
 [![CSS Brotli size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.min.css?compression=brotli&label=CSS%20Brotli%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.min.css)
@@ -79,8 +79,8 @@ This project utilizes what is available in modern browsers resulting in a super 
 
 #### 1. Add CSS and JS to website head section
 ```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.2.0/dist/js/swiffy-slider.min.js" defer>
-<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.2.0/dist/css/swiffy-slider.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.3.0/dist/js/swiffy-slider.min.js" defer>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.3.0/dist/css/swiffy-slider.min.css" rel="stylesheet">
 ```
 
 #### 2. Add markup
@@ -144,13 +144,24 @@ Within the download you'll find the following directories and files. You'll see 
 swiffy-slider/
 ├── dist/
 │   ├── css/
-│   │   ├── swiffy-slider.min.css
+│   │   ├── swiffy-slider.css
+│   │   ├── swiffy-slider.min.css.map
 │   │   ├── swiffy-slider.min.css.map
 │   ├── js/
-│   │   ├── swiffy-slider.ESM.min.js
-│   │   ├── swiffy-slider.ESM.min.js.map
+│   │   ├── swiffy-slider-extensions.js
+│   │   ├── swiffy-slider-extensions.min.js
+│   │   ├── swiffy-slider-extensions.min.js.map
+│   │   ├── swiffy-slider.esm.js
+│   │   ├── swiffy-slider.esm.min.js
+│   │   ├── swiffy-slider.esm.min.js.map
+│   │   ├── swiffy-slider.js
 │   │   ├── swiffy-slider.min.js
 │   │   ├── swiffy-slider.min.js.map
+├── src/
+│   ├── swiffy-slider.extensions.js
+│   ├── swiffy-slider.css
+│   ├── swiffy-slider.esm.js
+│   ├── swiffy-slider.js
 ```
 
 The download contains compiled and minified CSS and JS (`swiffy-slider.min.*`). [source maps](https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps) (`swiffy-slider.*.map`) are available for use with certain browsers' developer tools. 
@@ -335,6 +346,14 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-item-*</code> optio
       <td>Same effect as slider-item-nosnap but only on devices that has a primary input which is not a mouse, i.e. mobile <code>media (hover: none)</code></td>
     </tr>
     <tr>
+      <td><code>slide-visible-first</code></td>
+      <td>Use with <code>.slider-nav-autohide</code> to hide the previous navigation arrow when the slider loads. Will automatically be removed or added when first slide is not or is visible</td>
+    </tr>
+    <tr>
+      <td><code>slide-visible-last</code></td>
+      <td>Use with <code>.slider-nav-autohide</code> to hide the next navigation arrow when the slider loads. Will automatically be removed or added when last slide is not or is visible</td>
+    </tr>
+    <tr>
       <td><code>slider-item-helper</code></td>
       <td>For debugging: Adds a test layout to slide items; minimum height, background color, centers content and background. Meant for testing and should be removed in real code</td>
     </tr>
@@ -402,6 +421,10 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-nav-*</code> option
     <tr>
       <td><code>slider-nav-dark</code></td>
       <td>Changes the navigation buttons to a dark version. Black arrows or black circle with white arrows</td>
+    </tr>
+     <tr>
+      <td><code>slider-nav-autohide</code></td>
+      <td>Will hide appropiate navigation arrow when the first or last slide is visible to indicate that sliding is at its start or end. On load the arrow will first disappear when the script is loaded. Also add `.slide-visible-first` class to the `.swiffy-slider` instance together with `.slider-nav-autohide` to hide the start arrow on load before js executes.</td>
     </tr>
     </tbody>
 </table>
@@ -588,7 +611,7 @@ function getVisibleSlides(sliderElement) {
 ### Javascript loading and binding
 Avoid autobinding by adding `data-noinit` attribute on the script tag and then attach the slider manually
 ```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.2.0/dist/js/swiffy-slider.min.js" data-noinit defer>
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.3.0/dist/js/swiffy-slider.min.js" data-noinit defer>
 <script>
     window.addEventListener('load', () => {
         //Use only one of the loading options below!
@@ -607,7 +630,7 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.2.0/dist/js/swiffy-slider.min.js" data-noinit defer>
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.3.0/dist/js/swiffy-slider.min.js" data-noinit defer>
 <script>
     window.addEventListener('load', () => {
         //loads all sliders in main and skip header and footer search for increased init performance.
@@ -629,7 +652,7 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
 Load as module using ES version of the script
 ```html
 <script type="module">
-    import {swiffyslider} from 'https://cdn.jsdelivr.net/npm/swiffy-slider@1.2.0/dist/js/swiffy-slider.ESM.min.js'; 
+    import {swiffyslider} from 'https://cdn.jsdelivr.net/npm/swiffy-slider@1.3.0/dist/js/swiffy-slider.esm.min.js'; 
     window.swiffyslider = swiffyslider; 
     window.swiffyslider.init(); 
 </script>
@@ -639,7 +662,7 @@ Load as ES module on demand, here using load - could be when slider scrolls into
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.2.0/dist/js/swiffy-slider.ESM.min.js').then((swiffysliderModule) => {
+    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.3.0/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
         swiffysliderModule.swiffyslider.init();
     });
 });
@@ -650,7 +673,7 @@ Load as ES module on demand. Load module and assign to window for later script m
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.2.0/dist/js/swiffy-slider.ESM.min.js').then((swiffysliderModule) => {
+    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.3.0/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
         window.swiffyslider = swiffysliderModule.swiffyslider;
         window.swiffyslider.init();
     });
@@ -835,4 +858,4 @@ See [the Releases section of our GitHub project](https://github.com/dynamicweb/s
 
 ## Copyright and license
 
-Code and documentation copyright 2021 the [Swiffy Slider Authors](https://github.com/dynamicweb/swiffy-slider/graphs/contributors) and [Dynamicweb A/S](https://dynamicweb.com) Code released under the [MIT License](https://opensource.org/licenses/MIT). Docs released under [Creative Commons](https://reativecommons.org/licenses/by/3.0/).
+Code and documentation copyright 2022 the [Swiffy Slider Authors](https://github.com/dynamicweb/swiffy-slider/graphs/contributors) and [Dynamicweb A/S](https://dynamicweb.com) Code released under the [MIT License](https://opensource.org/licenses/MIT). Docs released under [Creative Commons](https://reativecommons.org/licenses/by/3.0/).

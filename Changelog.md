@@ -1,3 +1,19 @@
+## [v1.3.0] - 18-01-2021
+
+## Bugfixes
+
+- Package does not contain source files breaking imports using PM's [#9](https://github.com/dynamicweb/swiffy-slider/issues/9)
+
+## Changed
+- Changed javascript to use <code>let</code> instead of <code>const</code> according to bp.
+- Changed package to ESM type only and included source in package files
+- Changed CSS to use rem based media queries
+- Optimized CSS related to navigation buttons when placed outside the slider
+
+## Added
+
+- Added support for <code>.slider-nav-autohide</code> to support hiding previous and next navigation arrows when first or last slide is visible [#8](https://github.com/dynamicweb/swiffy-slider/issues/8)
+
 ## [v1.2.0] - 03-12-2021
 
 ## Bugfixes
