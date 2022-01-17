@@ -346,11 +346,11 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-item-*</code> optio
       <td>Same effect as slider-item-nosnap but only on devices that has a primary input which is not a mouse, i.e. mobile <code>media (hover: none)</code></td>
     </tr>
     <tr>
-      <td><code>slide-visible-first</code></td>
+      <td><code>slider-item-first-visible</code></td>
       <td>Use with <code>.slider-nav-autohide</code> to hide the previous navigation arrow when the slider loads. Will automatically be removed or added when first slide is not or is visible</td>
     </tr>
     <tr>
-      <td><code>slide-visible-last</code></td>
+      <td><code>slider-item-last-visible</code></td>
       <td>Use with <code>.slider-nav-autohide</code> to hide the next navigation arrow when the slider loads. Will automatically be removed or added when last slide is not or is visible</td>
     </tr>
     <tr>
@@ -424,7 +424,7 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-nav-*</code> option
     </tr>
      <tr>
       <td><code>slider-nav-autohide</code></td>
-      <td>Will hide appropiate navigation arrow when the first or last slide is visible to indicate that sliding is at its start or end. On load the arrow will first disappear when the script is loaded. Also add `.slide-visible-first` class to the `.swiffy-slider` instance together with `.slider-nav-autohide` to hide the start arrow on load before js executes.</td>
+      <td>Will hide appropiate navigation arrow when the first or last slide is visible to indicate that sliding is at its start or end. On load the arrow will first disappear when the script is loaded. Also add `.slider-item-first-visible` class to the `.swiffy-slider` instance together with `.slider-nav-autohide` to hide the start arrow on load before js executes.</td>
     </tr>
     </tbody>
 </table>

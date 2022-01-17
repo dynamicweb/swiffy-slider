@@ -31,8 +31,8 @@ export const swiffyslider = function() {
                 slides.forEach(slide => {
                     slide.isIntersecting ? slide.target.classList.add("slide-visible") : slide.target.classList.remove("slide-visible");
                 });
-                sliderElement.querySelector(".slider-container>*:first-child").classList.contains("slide-visible") ? sliderElement.classList.add("slide-visible-first") : sliderElement.classList.remove("slide-visible-first");
-                sliderElement.querySelector(".slider-container>*:last-child").classList.contains("slide-visible") ? sliderElement.classList.add("slide-visible-last") : sliderElement.classList.remove("slide-visible-last");
+                sliderElement.querySelector(".slider-container>*:first-child").classList.contains("slide-visible") ? sliderElement.classList.add("slider-item-first-visible") : sliderElement.classList.remove("slider-item-first-visible");
+                sliderElement.querySelector(".slider-container>*:last-child").classList.contains("slide-visible") ? sliderElement.classList.add("slider-item-last-visible") : sliderElement.classList.remove("slider-item-last-visible");
             }, {
                 root: sliderElement.querySelector(".slider-container"),
                 threshold: threshold

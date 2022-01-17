@@ -271,11 +271,11 @@
     visibility: visible;
 }
 
-.swiffy-slider.slider-nav-autohide.slide-visible-first .slider-nav:not(.slider-nav-next) {
+.swiffy-slider.slider-nav-autohide.slider-item-first-visible .slider-nav:not(.slider-nav-next) {
     visibility: hidden;
 }
 
-.swiffy-slider.slider-nav-autohide.slide-visible-last .slider-nav.slider-nav-next {
+.swiffy-slider.slider-nav-autohide.slider-item-last-visible .slider-nav.slider-nav-next {
     visibility: hidden;
 }
 
