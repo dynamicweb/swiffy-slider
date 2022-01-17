@@ -28,7 +28,7 @@
 
         window.addEventListener("load", () => {
             if (document.body.querySelector(".swiffy-slider")) {
-                import ('/assets/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
+                import ('./assets/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
                     window.swiffyslider = swiffysliderModule.swiffyslider;
                     window.swiffyslider.init();
                 });
