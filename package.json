@@ -7,6 +7,7 @@
     },
     "type": "module",
     "exports": "./src/swiffy-slider.esm.js",
+    "browser": "./dist/js/swiffy-slider.min.js",
     "style": "./src/swiffy-slider.css",
     "files": [
         "dist/{css,js}/*.{css,js,map}",

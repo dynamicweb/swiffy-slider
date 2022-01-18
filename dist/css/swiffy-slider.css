@@ -505,6 +505,18 @@
     .slider-item-snapstart.slider-item-reveal {
         --swiffy-slider-item-reveal: 2rem;
     }
+    .slider-item-reveal-sm {
+        --swiffy-slider-item-reveal: 4rem;
+    }
+    .slider-item-snapstart.slider-item-reveal-sm {
+        --swiffy-slider-item-reveal: 2rem;
+    }
+    .slider-item-show2-sm {
+        --swiffy-slider-item-count: 2;
+    }
+    .slider-item-show3-sm {
+        --swiffy-slider-item-count: 3;
+    }
     .slider-item-show6 .slider-container {
         grid-auto-columns: calc(25% - (var(--swiffy-slider-item-gap)/4*3));
     }
