@@ -217,6 +217,7 @@
 .slider-nav {
     position: absolute;
     top: 0;
+    left: 0;
     bottom: 0;
     border: 0;
     background-color: transparent;
@@ -341,6 +342,7 @@
 
 .slider-nav.slider-nav-next {
     right: 0;
+    left: unset;
 }
 
 .slider-nav-visible .slider-nav {
