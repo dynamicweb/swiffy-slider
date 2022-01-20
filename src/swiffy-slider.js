@@ -119,7 +119,7 @@ const swiffyslider = function() {
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
             for (let scrollIndicatorContainers of sliderElement.querySelectorAll(".slider-indicators")) {
                 let scrollIndicators = scrollIndicatorContainers.children;
-                let activeIndicator = Math.round((scrollIndicators.length - 1) * percentSlide);
+                let activeIndicator = Math.abs(Math.round((scrollIndicators.length - 1) * percentSlide));
                 for (let element of scrollIndicators)
                     element.classList.remove("active");
                 scrollIndicators[activeIndicator].classList.add("active");
