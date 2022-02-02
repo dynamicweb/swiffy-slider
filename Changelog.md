@@ -1,9 +1,22 @@
-## [v1.3.0] - 18-01-2021
+# [v1.4.0] - 02-02-2022
+
+## Bugfixes
+
+- Bone
 
 ## Changed
+
+- CSS changed for nav arrows for better LTR support - specifically added <code>left</code> rules for <code>.slider-nav</code>
+- Changed loop of slides to also include go to end when on first slide [[#16](https://github.com/dynamicweb/swiffy-slider/issues/16)]
+- Update doc and configuration for noloop that it covers the new behavior above
+
+# [v1.3.1] - 18-01-2022
+
+## Changed
+
 - renamed ´slide-visible-first´ to ´.slider-item-first-visible´ that was added in 1.3.0 due to naming error.
 
-## [v1.3.0] - 18-01-2021
+# [v1.3.0] - 18-01-2022
 
 ## Bugfixes
 
@@ -19,13 +32,14 @@
 
 - Added support for <code>.slider-nav-autohide</code> to support hiding previous and next navigation arrows when first or last slide is visible [#8](https://github.com/dynamicweb/swiffy-slider/issues/8)
 
-## [v1.2.0] - 03-12-2021
+# [v1.2.0] - 03-12-2021
 
 ## Bugfixes
 
 - None
 
 ## Changed
+
 - Changed the use of <code>zoom</code> in css to <code>transform: scale()</code>
 - Changed javascript to use <code>"</code> instead <code>'</code> consistently
 - Changed all event listeners to be passive to increase performance even further
@@ -37,7 +51,7 @@
 - Configure animation threshold for the intersection observer that sets <code>.slide-visible</code> when sliding. New attribute <code>data-slider-nav-animation-threshold</code>
 - <code>swiffyslider.setVisibleSlides</code> can now be called with a threshold overwriting the default 0.3
 
-## [v1.1.0] - 16-11-2021
+# [v1.1.0] - 16-11-2021
 
 ## Bugfixes
 
@@ -54,11 +68,11 @@
 
 - BREAKING slider-item-shadow has been removed since it uses ::after which disables touch sliding on mobile devices
 
-## [v1.0.2] - 08-11-2021
+# [v1.0.2] - 08-11-2021
 
 - Fix z-index issue with nav and indicators (#1)
 
-## [v1.0.1] - 08-11-2021
+# [v1.0.1] - 08-11-2021
 
 Welcome to the first release of Swiffy Slider.
 

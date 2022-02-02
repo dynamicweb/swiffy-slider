@@ -1,6 +1,6 @@
 const swiffyslider = function() {
     return {
-        version: "1.3.1",
+        version: "1.4.0",
         init(rootElement = document.body) {
             for (let sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {
                 this.initSlider(sliderElement);
@@ -57,8 +57,10 @@ const swiffyslider = function() {
                     container.scrollLeft + container.offsetWidth :
                     container.scrollLeft - container.offsetWidth;
             }
-            if ((container.scrollLeft + container.offsetWidth) > (container.scrollWidth - ((gapWidth / 2) + 1)) && next) {
-                if (noloop) return;
+            if (container.scrollLeft < 1 && !next && !noloop) {
+                scrollLeftPosition = (container.scrollWidth - container.offsetWidth);
+            }
+            if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop) {
                 scrollLeftPosition = 0;
             }
             container.scroll({

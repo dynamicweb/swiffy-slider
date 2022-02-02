@@ -61,5 +61,6 @@
                 "cmd": "powershell -command \"& {&'Start-Sleep' -s 0.3}\"; \"& {&'copy' dist/js/*.min.* docs/assets/js/}\" "
             },
         ]
-    }    
+    },
+    "liveServer.settings.port": 5501
 }
