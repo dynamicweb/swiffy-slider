@@ -1,6 +1,6 @@
 export const swiffyslider = function() {
     return {
-        version: "1.3.1",
+        version: "1.4.0",
         init(rootElement = document.body) {
             for (let sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {
                 this.initSlider(sliderElement);
@@ -57,8 +57,10 @@ export const swiffyslider = function() {
                     container.scrollLeft + container.offsetWidth :
                     container.scrollLeft - container.offsetWidth;
             }
-            if ((container.scrollLeft + container.offsetWidth) > (container.scrollWidth - ((gapWidth / 2) + 1)) && next) {
-                if (noloop) return;
+            if (container.scrollLeft < 1 && !next && !noloop) {
+                scrollLeftPosition = (container.scrollWidth - container.offsetWidth);
+            }
+            if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop) {
                 scrollLeftPosition = 0;
             }
             container.scroll({
@@ -119,7 +121,7 @@ export const swiffyslider = function() {
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
             for (let scrollIndicatorContainers of sliderElement.querySelectorAll(".slider-indicators")) {
                 let scrollIndicators = scrollIndicatorContainers.children;
-                let activeIndicator = Math.round((scrollIndicators.length - 1) * percentSlide);
+                let activeIndicator = Math.abs(Math.round((scrollIndicators.length - 1) * percentSlide));
                 for (let element of scrollIndicators)
                     element.classList.remove("active");
                 scrollIndicators[activeIndicator].classList.add("active");
