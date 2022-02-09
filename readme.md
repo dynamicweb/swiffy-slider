@@ -12,7 +12,7 @@
   <a href="https://www.swiffyslider.com/docs/"><strong>Explore Swiffy Slider docs »</strong></a>
   <br>
   <br>
-  <a href="https://www.swiffyslider.com/examples/">See examples</a>
+    <a href="https://www.swiffyslider.com/examples/">See examples</a>
   ·
   <a href="https://www.swiffyslider.com/configuration/">Visual carousel and slider configuration</a>
 </p>
@@ -25,6 +25,12 @@
 [![JS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.min.js?compression=gzip&label=JS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.min.js)
 [![JS Brotli size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.min.js?compression=brotli&label=JS%20Brotli%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.min.js)
 
+
+Please star this project if you find it useful, thanks!<br>
+  <a href="https://github.com/dynamicweb/swiffy-slider/stargazers">
+                            <img src="https://img.shields.io/github/stars/dynamicweb/swiffy-slider?style=social">
+                        </a>
+  
 
 <h2> Swiffy Slider</h2>
 
