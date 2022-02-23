@@ -849,7 +849,7 @@ Feel free to star this project and help spread the word.
 
 ## Examples of Sites using Swiffy Slider
 
-Send an email til https://github.com/nicped if you would likeyour site on this list.
+Send an email to https://github.com/nicped if you would like your site on this list.
 
 - [Ärzte ohne Grenzen Österreich](https://msf.at)
 - [Swiffy slider documentation](https://swiffyslider.com) 
