@@ -76,7 +76,7 @@ This project utilizes what is available in modern browsers resulting in a super 
 - [Limitations](#limitations)
 - [Contributing](#contributing)
 - [Star gazers](#star-gazers)
-- [Examples of Sites using Swiffy Slider](#examples-of-sites-using-swiffy-slider)
+- [Examples of sites using Swiffy Slider](#examples-of-sites-using-swiffy-slider)
 - [Versioning](#versioning)
 - [Creators](#creators)
 - [Copyright and license](#copyright-and-license)
@@ -847,7 +847,7 @@ Feel free to star this project and help spread the word.
 [![Stargazers repo roster for @dynamicweb/swiffy-slider](https://reporoster.com/stars/dynamicweb/swiffy-slider)](https://github.com/dynamicweb/swiffy-slider/stargazers)
 
 
-## Examples of Sites using Swiffy Slider
+## Examples of sites using Swiffy Slider
 
 Send an email to https://github.com/nicped if you would like your site on this list.
 
