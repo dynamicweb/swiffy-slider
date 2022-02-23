@@ -1,8 +1,14 @@
+# [v1.4.0] - 23-02-2022
+
+## Bugfixes
+
+- Fixed and issue with touch sliding when mouse draggable is enabled [[#19](https://github.com/dynamicweb/swiffy-slider/issues/19)]
+  
 # [v1.4.0] - 02-02-2022
 
 ## Bugfixes
 
-- Bone
+- None
 
 ## Changed
 

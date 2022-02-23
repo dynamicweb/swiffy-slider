@@ -18,7 +18,7 @@
 </p>
 
 [![](https://data.jsdelivr.com/v1/package/npm/swiffy-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/swiffy-slider)
-![version](https://img.shields.io/badge/Version-1.4.0-green.svg)
+![version](https://img.shields.io/badge/Version-1.4.1-green.svg)
 [![npm version](https://img.shields.io/npm/v/swiffy-slider)](https://www.npmjs.com/package/swiffy-slider)
 [![CSS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.min.css?compression=gzip&label=CSS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.min.css)
 [![CSS Brotli size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.min.css?compression=brotli&label=CSS%20Brotli%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.min.css)
@@ -85,8 +85,8 @@ This project utilizes what is available in modern browsers resulting in a super 
 
 #### 1. Add CSS and JS to website head section
 ```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/js/swiffy-slider.min.js" defer>
-<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/css/swiffy-slider.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.min.js" defer>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/css/swiffy-slider.min.css" rel="stylesheet">
 ```
 
 #### 2. Add markup
@@ -617,7 +617,7 @@ function getVisibleSlides(sliderElement) {
 ### Javascript loading and binding
 Avoid autobinding by adding `data-noinit` attribute on the script tag and then attach the slider manually
 ```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/js/swiffy-slider.min.js" data-noinit defer>
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.min.js" data-noinit defer>
 <script>
     window.addEventListener('load', () => {
         //Use only one of the loading options below!
@@ -636,7 +636,7 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/js/swiffy-slider.min.js" data-noinit defer>
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.min.js" data-noinit defer>
 <script>
     window.addEventListener('load', () => {
         //loads all sliders in main and skip header and footer search for increased init performance.
@@ -658,7 +658,7 @@ Avoid autobinding by adding `data-noinit` attribute on the script tag and then a
 Load as module using ES version of the script
 ```html
 <script type="module">
-    import {swiffyslider} from 'https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/js/swiffy-slider.esm.min.js'; 
+    import {swiffyslider} from 'https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.esm.min.js'; 
     window.swiffyslider = swiffyslider; 
     window.swiffyslider.init(); 
 </script>
@@ -668,7 +668,7 @@ Load as ES module on demand, here using load - could be when slider scrolls into
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
+    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
         swiffysliderModule.swiffyslider.init();
     });
 });
@@ -679,7 +679,7 @@ Load as ES module on demand. Load module and assign to window for later script m
 ```html
 <script>
 window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
+    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
         window.swiffyslider = swiffysliderModule.swiffyslider;
         window.swiffyslider.init();
     });
