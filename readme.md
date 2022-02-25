@@ -853,7 +853,7 @@ Send an email to https://github.com/nicped if you would like your site on this l
 
 - [Ärzte ohne Grenzen Österreich](https://msf.at)
 - [Swiffy slider documentation](https://swiffyslider.com) 
-- [Dynamicweb Swift Ecommerce Starter](https://swiftdemo.dynamicweb-cms.com) 
+- [Dynamicweb Swift Ecommerce Starter](http://swiftdemo.dynamicweb-cms.com/) 
 
 ## Versioning
 
