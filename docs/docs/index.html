@@ -651,13 +651,13 @@ function getVisibleSlides(sliderElement) {
                                 </p>
 
                                 <pre><code class="language-javascript">
-                                import { swiffyslider } from 'swiffy-slider'
-                                window.swiffyslider = swiffyslider;
-                                
-                                window.addEventListener("load", () => {
-                                    window.swiffyslider.init();
-                                });
-                            </code></pre>
+import { swiffyslider } from 'swiffy-slider'
+window.swiffyslider = swiffyslider;
+
+window.addEventListener("load", () => {
+    window.swiffyslider.init();
+});
+</code></pre>
 
                                 <p>Avoid autobinding by adding <code>data-noinit</code> attribute on the script tag and then attach the slider manually</p>
                                 <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.min.js&quot; data-noinit defer&gt;
