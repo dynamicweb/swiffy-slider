@@ -616,6 +616,19 @@ function getVisibleSlides(sliderElement) {
 ```
 
 ### Javascript loading and binding
+
+Load Swiffy slider using webpack, ESBuild and other build tools. In your index.js (or whatever you call it).
+NOTE: Swiffy slider is an ES Module and you need a supported processing ECMAScript compiler - i.e. webpack 5+ etc.
+
+```javascript
+import { swiffyslider } from 'swiffy-slider'
+window.swiffyslider = swiffyslider;
+
+window.addEventListener("load", () => {
+    window.swiffyslider.init();
+});
+```
+
 Avoid autobinding by adding `data-noinit` attribute on the script tag and then attach the slider manually
 ```html
 <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.1/dist/js/swiffy-slider.min.js" data-noinit defer>
