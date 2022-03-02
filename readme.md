@@ -25,13 +25,6 @@
 [![JS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.min.js?compression=gzip&label=JS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.min.js)
 [![JS Brotli size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.min.js?compression=brotli&label=JS%20Brotli%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.min.js)
 
-
-Please star this project if you find it useful, thanks!<br>
-  <a href="https://github.com/dynamicweb/swiffy-slider/stargazers">
-                            <img src="https://img.shields.io/github/stars/dynamicweb/swiffy-slider?style=social">
-                        </a>
-  
-
 <h2> Swiffy Slider</h2>
 
 **Super fast carousel and slider with touch for optimized websites running in modern browsers.**
