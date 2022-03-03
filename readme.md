@@ -805,6 +805,7 @@ style="
 
 
 ### Safari smooth scrolling polyfill
+UPDATE: Safari 15.4 introduces smooth scrolling: [See release notes](https://developer.apple.com/documentation/safari-release-notes/safari-15_4-release-notes)
 Sliding the carousel on touch devices **using fingers are not affected** by this issue.
 
 When sliding using buttons, indicators and javascript, the new slides are shown instantly with no smoothing when using Safari.
@@ -820,7 +821,7 @@ If you want to support smoooth scrolling on Safari based browsers, add this poly
 These limitations are known and intentionally there to keep this library small, fast and smooth.
 - Scroll speed comes in 2 flavors - instant or 'smooth'. This is because that is what browsers support out of the box using CSS scroll-behavior. [See MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior)
 - Does not support slides of uneven widths. The width is controlled by the width of the wrapper and can have 1-6 slides per page depending on configuration. 
-- Smooth scrolling is not supported out of the box in Safari (iOS + Mac) but can be fixed using a polyfill. [See polyfill](#safari-smooth-scrolling-polyfill)
+- Smooth scrolling is not supported out of the box in Safari (Before v 15.4) (iOS + Mac) but can be fixed using a polyfill. [See polyfill](#safari-smooth-scrolling-polyfill)
 - RTL is untested but as the entire slider is just markup, it should be supported very well
 - Works in 'modern' browsers from the last ~3 years only. No IE support or anything funny.
 
