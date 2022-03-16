@@ -239,12 +239,33 @@
 
                 //Start playing with the specified interval
                 function startAutoPlayer() {
+                    var timeout = 2500; //ms
+                    var autopause = false;
                     //A .swiffy-slider instance with the id 'swiffy-animation'
                     var sliderElement = document.getElementById("swiffy-animation");
-                    var timeout = 2500; //ms
-                    var autopause = true;
+
                     autoPlayer = swiffyslider.autoPlay(sliderElement, timeout, autopause);
                     console.log("Player started");
+
+                    //Stop the player when mouse is hovered or touch is starting
+                    ["mouseover", "touchstart"].forEach(function(event) {
+                        sliderElement.addEventListener(event, function() {
+                            window.clearTimeout(autoPlayer);
+                        }, {
+                            once: true,
+                            passive: true
+                        });
+                    });
+
+                    //Re-start the player when mouse is leaving the slider or touch stops
+                    ["mouseout", "touchend"].forEach(function(event) {
+                        sliderElement.addEventListener(event, function() {
+                            startAutoPlayer();
+                        }, {
+                            once: true,
+                            passive: true
+                        });
+                    });
                 }
 
                 //Stop the autoplaying - by clearing the autoPlayer timer
