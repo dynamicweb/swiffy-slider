@@ -1,4 +1,14 @@
-# [v1.4.0] - 23-02-2022
+# [v1.5.0] - 23-02-2022
+
+## Added
+
+- Added support for <code>.slider-nav-animation-zoomout</code> to support zooming [#23](https://github.com/dynamicweb/swiffy-slider/issues/23). [See it action](https://swiffyslider.com/configuration/?slider-nav-autoplay=slider-nav-autoplay&data-slider-nav-autoplay-interval=6000&slider-nav-autopause=slider-nav-autopause&slider-nav-animation=slider-nav-animation&slider-nav-animation-style=slider-nav-animation-zoomout&--swiffy-slider-animation-duration=8s&--swiffy-slider-animation-timing=linear&preview-style=preview-images)] 
+  
+## Changed
+
+- Changed the autopause feature to also stop auto sliding when the touch is stoppen using touchend event
+
+# [v1.4.1] - 23-02-2022
 
 ## Bugfixes
 
