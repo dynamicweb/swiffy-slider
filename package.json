@@ -8,6 +8,7 @@
     "type": "module",
     "exports": "./src/swiffy-slider.esm.js",
     "style": "./src/swiffy-slider.css",
+    "browser": "./dist/js/swiffy-slider.min.js",
     "files": [
         "dist/{css,js}/*.{css,js,map}",
         "src/*.{css,js}"

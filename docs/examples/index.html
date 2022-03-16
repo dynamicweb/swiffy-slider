@@ -232,6 +232,38 @@
                     <button aria-label="Go to slide"></button>
                 </div>
             </div>
+            <button onclick="startAutoPlayer()" class="btn btn-success">Start auto play</button> <button onclick="pauseAutoPlayer()" class="btn btn-outline-success">Pause auto play</button>
+            <script>
+                //Variable for keeping the timer instance that runs the autoplayer
+                var autoPlayer;
+
+                //Start playing with the specified interval
+                function startAutoPlayer() {
+                    //A .swiffy-slider instance with the id 'swiffy-animation'
+                    var sliderElement = document.getElementById("swiffy-animation");
+                    var timeout = 2500; //ms
+                    var autopause = true;
+                    autoPlayer = swiffyslider.autoPlay(sliderElement, timeout, autopause);
+                    console.log("Player started");
+                }
+
+                //Stop the autoplaying - by clearing the autoPlayer timer
+                function pauseAutoPlayer() {
+                    window.clearTimeout(autoPlayer);
+                    console.log("Player stopped");
+                }
+
+                //Use the visibility API to stop the player when users switches to other tab or window and start it again when coming back to the window
+                document.addEventListener('visibilitychange', function() {
+                    if (document.visibilityState == "hidden") {
+                        console.log("Browser tab is hidden - stopping autoplayer");
+                        pauseAutoPlayer();
+                    } else {
+                        console.log("Browser tab is shown again - starting autoplayer");
+                        startAutoPlayer();
+                    }
+                });
+            </script>
             <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
         </div>
 

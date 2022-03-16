@@ -445,6 +445,12 @@
     .slider-nav-animation.slider-nav-animation-scaleup .slider-container>*>* {
         transform: scale(.25);
     }
+    .slider-nav-animation.slider-nav-animation-zoomout .slider-container>* {
+        overflow: hidden;
+    }
+    .slider-nav-animation.slider-nav-animation-zoomout .slider-container>*>* {
+        transform: scale(1.3);
+    }
     .slider-nav-animation.slider-nav-animation-turn .slider-container>*>* {
         transform: rotateY(70deg);
     }

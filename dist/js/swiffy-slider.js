@@ -108,9 +108,11 @@ const swiffyslider = function() {
                         window.clearTimeout(autoplayTimer);
                     }, { once: true, passive: true });
                 });
-                sliderElement.addEventListener("mouseout", function() {
-                    autoplayer();
-                }, { once: true, passive: true });
+                ["mouseout", "touchend"].forEach(function(event) {
+                    sliderElement.addEventListener(event, function() {
+                        autoplayer();
+                    }, { once: true, passive: true });
+                });
             }
             return autoplayTimer;
         },
