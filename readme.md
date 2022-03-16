@@ -18,7 +18,6 @@
 </p>
 
 [![](https://data.jsdelivr.com/v1/package/npm/swiffy-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/swiffy-slider)
-[![](https://data.jsdelivr.com/v1/package/npm/swiffy-slider/badge)](https://www.jsdelivr.com/package/npm/swiffy-slider)
 ![version](https://img.shields.io/badge/Version-1.4.1-green.svg)
 [![npm version](https://img.shields.io/npm/v/swiffy-slider)](https://www.npmjs.com/package/swiffy-slider)
 [![CSS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.min.css?compression=gzip&label=CSS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.min.css)
