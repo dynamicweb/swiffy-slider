@@ -6,7 +6,14 @@
         "version_short": "1.4"
     },
     "type": "module",
-    "exports": "./src/swiffy-slider.esm.js",
+    "exports": {
+        ".": {
+            "import": "./src/swiffy-slider.esm.js"
+        },
+        "./src/swiffy-slider.css": {
+            "import": "./src/swiffy-slider.css"
+        }
+    },
     "style": "./src/swiffy-slider.css",
     "browser": "./dist/js/swiffy-slider.min.js",
     "files": [
