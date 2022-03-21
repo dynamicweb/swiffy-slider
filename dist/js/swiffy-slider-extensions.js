@@ -1,6 +1,6 @@
 const swiffysliderextensions = function() {
     return {
-        version: "1.5.0",
+        version: "1.5.1",
         draggingtimer: null,
         init(rootElement = document.body) {
             for (const sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {

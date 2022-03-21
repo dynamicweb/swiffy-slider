@@ -1,3 +1,11 @@
+# [v1.5.1] - 21-03-2022
+
+## Bugfixes
+
+- Fixed an issue with round and square navigation arrows on mobile: [#27](https://github.com/dynamicweb/swiffy-slider/issues/27)
+- Fixed an issue with autoplayer example on examples page [#26](https://github.com/dynamicweb/swiffy-slider/issues/26)
+- Included the CSS in the exports in package.json [#24](https://github.com/dynamicweb/swiffy-slider/issues/24)
+
 # [v1.5.0] - 16-03-2022
 
 ## Added
