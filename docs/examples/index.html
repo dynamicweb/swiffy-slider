@@ -213,7 +213,7 @@
         <div class="container pt-3">
             <h2>Image carousel</h2>
             <p>Simple image carousel with even sized images</p>
-            <div class="swiffy-slider slider-item-ratio slider-item-ratio-16x9 slider-nav-animation slider-nav-animation-fadein slider-nav-animation-scale" id="swiffy-animation">
+            <div class="swiffy-slider slider-item-ratio slider-item-ratio-16x9 slider-nav-animation slider-nav-animation-fadein" id="swiffy-animation">
                 <ul class="slider-container" id="container1">
                     <li id="slide1"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
                     <li id="slide2"><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
@@ -230,48 +230,32 @@
                     <button aria-label="Go to slide" class="active"></button>
                     <button aria-label="Go to slide"></button>
                     <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
+                    <button aria-label="Go to slide"></button>
                 </div>
             </div>
             <button onclick="startAutoPlayer()" class="btn btn-success">Start auto play</button> <button onclick="pauseAutoPlayer()" class="btn btn-outline-success">Pause auto play</button>
             <script>
                 //Variable for keeping the timer instance that runs the autoplayer
-                var autoPlayer;
+                var autoPlayerTimer;
 
                 //Start playing with the specified interval
                 function startAutoPlayer() {
                     var timeout = 2500; //ms
-                    var autopause = false;
+                    var autopause = false; //has to be false
                     //A .swiffy-slider instance with the id 'swiffy-animation'
                     var sliderElement = document.getElementById("swiffy-animation");
 
-                    autoPlayer = swiffyslider.autoPlay(sliderElement, timeout, autopause);
+                    //const autoPlayer = () => swiffyslider.autoPlay(sliderElement, timeout, autopause);
+                    autoPlayerTimer = swiffyslider.autoPlay(sliderElement, timeout, autopause);
                     console.log("Player started");
-
-                    //Stop the player when mouse is hovered or touch is starting
-                    ["mouseover", "touchstart"].forEach(function(event) {
-                        sliderElement.addEventListener(event, function() {
-                            window.clearTimeout(autoPlayer);
-                        }, {
-                            once: true,
-                            passive: true
-                        });
-                    });
-
-                    //Re-start the player when mouse is leaving the slider or touch stops
-                    ["mouseout", "touchend"].forEach(function(event) {
-                        sliderElement.addEventListener(event, function() {
-                            startAutoPlayer();
-                        }, {
-                            once: true,
-                            passive: true
-                        });
-                    });
                 }
 
                 //Stop the autoplaying - by clearing the autoPlayer timer
                 function pauseAutoPlayer() {
-                    window.clearTimeout(autoPlayer);
-                    console.log("Player stopped");
+                    window.clearTimeout(autoPlayerTimer);
+                    console.log("Player paused");
                 }
 
                 //Use the visibility API to stop the player when users switches to other tab or window and start it again when coming back to the window
