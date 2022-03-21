@@ -507,7 +507,7 @@
         --swiffy-slider-track-height: 0rem;
         --swiffy-slider-item-reveal: 0rem;
         --swiffy-slider-item-count: 1;
-        --swiffy-slider-nav-zoom: .75;
+        --swiffy-slider-nav-zoom: .875;
     }
     .slider-item-reveal {
         --swiffy-slider-item-reveal: 4rem;
@@ -537,9 +537,15 @@
     }
     .slider-nav::before,
     .slider-nav::after {
-        width: 2rem!important;
-        height: 2rem!important;
-        padding: 0.3rem!important;
+        width: 2rem;
+        height: 2rem;
+        padding: 0.3rem;
+    }
+    .slider-nav-round .slider-nav::after,
+    .slider-nav-square .slider-nav::after {
+        width: 1.75rem;
+        height: 1.75rem;
+        margin: 0.125rem;
     }
     .slider-nav-outside-expand .slider-container,
     .slider-nav-outside .slider-container {
