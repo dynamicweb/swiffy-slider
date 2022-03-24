@@ -110,6 +110,22 @@ Swiffy Slider script automatically binds to all `.swiffy-slider` instances
 - Install with [npm](https://www.npmjs.com/): `npm install swiffy-slider`
 - Install with [yarn](https://yarnpkg.com/): `yarn add swiffy-slider`
 
+Loading (ESM)
+
+```javascript
+// import Swiffy Slider JS
+import { swiffyslider } from 'swiffy-slider'
+window.swiffyslider = swiffyslider;
+
+window.addEventListener("load", () => {
+    window.swiffyslider.init();
+});
+
+// import Swiffy Slider CSS
+import "swiffy-slider/css"
+
+```
+
 Read the [Getting started page](https://www.swiffyslider.com/docs/) for examples, configuration options and a visual configurator.
 
 ## Features
@@ -614,12 +630,21 @@ Load Swiffy slider using webpack, ESBuild and other build tools. In your index.j
 NOTE: Swiffy slider is an ES Module and you need a supported processing ECMAScript compiler - i.e. webpack 5+ etc.
 
 ```javascript
+// import Swiffy Slider JS
 import { swiffyslider } from 'swiffy-slider'
 window.swiffyslider = swiffyslider;
 
 window.addEventListener("load", () => {
     window.swiffyslider.init();
 });
+
+// import Swiffy Slider CSS
+import "swiffy-slider/css"
+
+```
+```css
+// import Swiffy Slider src CSS unminified
+import "swiffy-slider/src/swiffy-slider.css"
 ```
 
 Avoid autobinding by adding `data-noinit` attribute on the script tag and then attach the slider manually
