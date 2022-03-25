@@ -1,6 +1,6 @@
 export const swiffyslider = function() {
     return {
-        version: "1.5.1",
+        version: "1.5.2",
         init(rootElement = document.body) {
             for (let sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {
                 this.initSlider(sliderElement);
