@@ -208,7 +208,22 @@
                                 <p>Install with <a href="https://yarnpkg.com/">yarn</a></p>
                                 <pre><code>yarn add swiffy-slider</code></pre>
 
+                                <p>Load Swiffy slider using webpack, ESBuild and other build tools. <br>
+                                    <span class="badge bg-primary">NOTE:</span> Swiffy slider is an ES Module and you need a supported processing ECMAScript compiler - i.e. webpack 5+ etc.
+                                </p>
 
+                                <pre><code class="language-javascript">
+// import Swiffy Slider JS
+import { swiffyslider } from 'swiffy-slider'
+window.swiffyslider = swiffyslider;
+
+window.addEventListener("load", () => {
+    window.swiffyslider.init();
+});
+
+// import Swiffy Slider CSS
+import "swiffy-slider/css"
+</code></pre>
                             </section>
 
                             <section>
@@ -648,17 +663,26 @@ function getVisibleSlides(sliderElement) {
 
                                 <h3 id="javascript-loading-and-binding">Javascript loading and binding</h3>
 
-                                <p>oad Swiffy slider using webpack, ESBuild and other build tools. In your index.js (or whatever you call it). <br>
+                                <p>Load Swiffy slider using webpack, ESBuild and other build tools. In your index.js (or whatever you call it). <br>
                                     <span class="badge bg-primary">NOTE:</span> Swiffy slider is an ES Module and you need a supported processing ECMAScript compiler - i.e. webpack 5+ etc.
                                 </p>
 
                                 <pre><code class="language-javascript">
+// import Swiffy Slider JS
 import { swiffyslider } from 'swiffy-slider'
 window.swiffyslider = swiffyslider;
 
 window.addEventListener("load", () => {
     window.swiffyslider.init();
 });
+
+// import Swiffy Slider CSS
+import "swiffy-slider/css"
+</code></pre>
+
+                                <pre><code class="language-css">
+// import Swiffy Slider src CSS unminified
+import "swiffy-slider/src/swiffy-slider.css"
 </code></pre>
 
                                 <p>Avoid autobinding by adding <code>data-noinit</code> attribute on the script tag and then attach the slider manually</p>
