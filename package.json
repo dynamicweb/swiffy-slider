@@ -13,9 +13,7 @@
         "./css": {
             "import": "./dist/css/swiffy-slider.min.css"
         },
-        "./src/swiffy-slider.css": {
-            "import": "./src/swiffy-slider.css"
-        }
+        "./src/": "./src/"
     },
     "style": "dist/css/swiffy-slider.min.css",
     "browser": "dist/js/swiffy-slider.min.js",
