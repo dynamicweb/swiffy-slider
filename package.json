@@ -3,7 +3,7 @@
     "description": "Swiffy slider is a touch enabled super lightweight html slider and carousel using browser scroll, css grid and scroll snap align and less than 1.5 kb javascript. Comes in css mode only version",
     "version": "1.5.3",
     "config": {
-        "version_short": "1.4"
+        "version_short": "1.5"
     },
     "type": "module",
     "exports": {
@@ -13,9 +13,7 @@
         "./css": {
             "import": "./dist/css/swiffy-slider.min.css"
         },
-        "./src/swiffy-slider.css": {
-            "import": "./src/swiffy-slider.css"
-        }
+        "./src/": "./src/"
     },
     "style": "dist/css/swiffy-slider.min.css",
     "browser": "dist/js/swiffy-slider.min.js",
