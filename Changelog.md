@@ -1,3 +1,9 @@
+# [v1.5.3] - 08-043-2022
+
+## Bugfixes
+
+- Fixed the css exports in package.json for src files for use in scss imports [[#32](https://github.com/dynamicweb/swiffy-slider/issues/32)]
+  
 # [v1.5.2] - 25-03-2022
 
 ## Bugfixes
