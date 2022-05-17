@@ -1182,63 +1182,6 @@
         </div>
 
 
-        <div class="container my-5">
-            <div class="row">
-                <div class="col-3">
-                    <h2 class="my-5 text-center h1">Full screen image carousel</h2>
-                    <p class="text-center">An image slider put inside a modal (In this case a full screen Bootstrap modal).</p>
-                    <div class="bg-dark p-2">
-                        <div id="employees" class="swiffy-slider slider-nav-outside slider-item-nogap slider-nav-visible slider-nav-nodelay slider-nav-autoplay slider-nav-autopause slider-item-show1 slider-indicators-outside slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow slider-item-last-visible"
-                            data-slider-nav-autoplay-interval="5000">
-                            <ul class="slider-container">
-                                <li class="employee">
-                                    <img src="https://info.spiria.com/hubfs/Erika.png" alt="Erika 1" style="max-width: 100%;">
-                                    <div>
-                                        <div id="hs_cos_wrapper_module_165049619677012_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_inline_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="inline_text" data-hs-cos-field="employee_title"></div><br>Erika
-                                    </div>
-                                </li>
-                                <li class="employee">
-                                    <img src="https://info.spiria.com/hubfs/Erika.png" alt="Erika 2" style="max-width: 100%;">
-                                    <div>
-                                        <div id="hs_cos_wrapper_module_165049619677012_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_inline_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="inline_text" data-hs-cos-field="employee_title"></div><br>Erika
-                                    </div>
-                                </li>
-                                <li class="employee">
-                                    <img src="https://info.spiria.com/hubfs/Erika.png" alt="Erika 3" style="max-width: 100%;">
-                                    <div>
-                                        <div id="hs_cos_wrapper_module_165049619677012_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_inline_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="inline_text" data-hs-cos-field="employee_title"></div><br>Erika
-                                    </div>
-                                </li>
-                                <li class="employee">
-                                    <img src="https://info.spiria.com/hubfs/Erika.png" alt="Erika 4" style="max-width: 100%;">
-                                    <div>
-                                        <div id="hs_cos_wrapper_module_165049619677012_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_inline_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="inline_text" data-hs-cos-field="employee_title"></div><br>Erika
-                                    </div>
-                                </li>
-                                <li class="employee">
-                                    <img src="https://info.spiria.com/hubfs/Erika.png" alt="Erika 5" style="max-width: 100%;">
-                                    <div>
-                                        <div id="hs_cos_wrapper_module_165049619677012_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_inline_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="inline_text" data-hs-cos-field="employee_title"></div><br>Erika
-                                    </div>
-                                </li>
-
-                            </ul>
-                            <button type="button" class="slider-nav"></button>
-                            <button type="button" class="slider-nav slider-nav-next"></button>
-                            <div class="slider-indicators">
-                                <button class=""></button>
-                                <button></button>
-                                <button class=""></button>
-                                <button></button>
-                                <button class="active"></button>
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
-                </div>
-            </div>
-        </div>
-
         <div class="container pt-3">
             <div class="row justify-content-center">
                 <div class="col-6">
@@ -1246,14 +1189,14 @@
                     <p>Simple image carousel with uneven sized images. Using a bit of scripting to resize the carousel to the height of the image. The .slider-nav-animation class is needed because that will cause .slide-visible to be set on the active slide</p>
 
                     <div class="swiffy-slider slider-nav-chevron slider-nav-dark slider-nav-outside-expand slider-nav-visible slider-nav-animation" id="unevenimages">
-                        <ul class="slider-container" style="overflow: hidden;">
-                            <li id="slide1"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy" class="mh-100 mw-100"></li>
-                            <li id="slide3"><img src="../assets/img/brandlogos/bootstrap-5.svg" alt="..." loading="lazy" class="mh-100 mw-100"></li>
-                            <li id="slide2"><img src="../assets/img/movies/cinema.webp" alt="..." loading="lazy" class="mh-100 mw-100"></li>
-                            <li id="slide4"><img src="../assets/img/shoes/shoe1.webp" alt="..." loading="lazy" class="h-100 mw-100"></li>
-                            <li id="slide5"><img src="../assets/img/swiffysliderlogo/GithubSocial.png" alt="..." loading="lazy" class="mh-100 mw-100"></li>
-                            <li id="slide6"><img src="../assets/img/swiffysliderlogo/SwiffySliderLogo1.png" alt="..." loading="lazy" class="mh-100 mw-100"></li>
-                        </ul>
+                        <div class="slider-container" style="overflow: hidden;">
+                            <div id="slide1"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy" class="mh-100 mw-100"></div>
+                            <div id="slide3"><img src="../assets/img/brandlogos/bootstrap-5.svg" alt="..." loading="lazy" class="mh-100 mw-100"></div>
+                            <div id="slide2"><img src="../assets/img/movies/cinema.webp" alt="..." loading="lazy" class="mh-100 mw-100"></div>
+                            <div id="slide4"><img src="../assets/img/shoes/shoe1.webp" alt="..." loading="lazy" class="h-100 mw-100"></div>
+                            <div id="slide5"><img src="../assets/img/swiffysliderlogo/GithubSocial.png" alt="..." loading="lazy" class="mh-100 mw-100"></div>
+                            <div id="slide6"><img src="../assets/img/swiffysliderlogo/SwiffySliderLogo1.png" alt="..." loading="lazy" class="mh-100 mw-100"></div>
+                        </div>
 
                         <button type="button" class="slider-nav" aria-label="Go to previous"></button>
                         <button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
@@ -1274,7 +1217,7 @@
                                 document.getElementById('unevenimages').style.height = (document.querySelector('#unevenimages .slide-visible img').offsetHeight + 1) + 'px';
                             };
                             let sliderElement = document.getElementById('unevenimages');
-                            swiffyslider.onSlideEnd(sliderElement, resizeSlider, 50);
+                            swiffyslider.onSlideEnd(sliderElement, resizeSlider);
                         });
                     </script>
                     <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
