@@ -1209,25 +1209,27 @@
                             <button aria-label="Go to slide"></button>
                             <button aria-label="Go to slide"></button>
                         </div>
+                        <style>
+                            #unevenimages {
+                                transition: all 0.3s ease-in-out;
+                            }
+                        </style>
+                        <script>
+                            window.addEventListener('load', () => {
+                                const resizeSlider = () => {
+                                    document.getElementById('unevenimages').style.height = (document.querySelector('#unevenimages .slide-visible img').offsetHeight + 1) + 'px';
+                                };
+                                let sliderElement = document.getElementById('unevenimages');
+                                swiffyslider.onSlideEnd(sliderElement, resizeSlider);
+                                document.getElementById('unevenimages').style.height = (document.querySelector('#unevenimages .slide-visible img').offsetHeight + 1) + 'px';
+                            });
+                        </script>
                     </div>
 
-                    <style>
-                        #unevenimages {
-                            transition: all 0.3s ease-in-out;
-                        }
-                    </style>
-                    <script>
-                        window.addEventListener('load', () => {
-                            const resizeSlider = () => {
-                                document.getElementById('unevenimages').style.height = (document.querySelector('#unevenimages .slide-visible img').offsetHeight + 1) + 'px';
-                            };
-                            let sliderElement = document.getElementById('unevenimages');
-                            swiffyslider.onSlideEnd(sliderElement, resizeSlider);
-                            document.getElementById('unevenimages').style.height = (document.querySelector('#unevenimages .slide-visible img').offsetHeight + 1) + 'px';
-                        });
-                    </script>
-                    <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+
+
                 </div>
+                <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
             </div>
         </div>
 
