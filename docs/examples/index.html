@@ -1185,7 +1185,7 @@
                 <div class="col-8">
                     <h2 id="infinite">Image carousel with infinite sliding</h2>
                     <p>Simple image carousel with 'infinite sliding'. Using a bit of scripting, this example will look like it has infinite scrolling by going to the first slide when the last has been reached. The trick is to repeat the first slide as the
-                        last and then use js to go back to the first when the end is reached</p>
+                        last and then use JS to go back to the first when the end is reached. This only works when showing one slide at a time and if used with reveal will cause jumping</p>
 
                     <div class="swiffy-slider slider-item-ratio slider-item-ratio-21x9 slider-nav-visible slider-nav-animation" id="infiniteSliding">
                         <style>
@@ -1199,7 +1199,6 @@
                             <li id="slide3"><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
                             <li id="slide4"><img src="../assets/img/photos/img4.webp" alt="..." loading="lazy"></li>
                             <li id="slide5"><img src="../assets/img/photos/img5.webp" alt="..." loading="lazy"></li>
-                            <li id="slide6"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
                         </ul>
 
                         <button type="button" class="slider-nav" aria-label="Go to previous"></button>
@@ -1211,13 +1210,14 @@
                             <button aria-label="Go to slide"></button>
                             <button aria-label="Go to slide"></button>
                             <button aria-label="Go to slide"></button>
-                            <button aria-label="Go to slide"></button>
                         </div>
 
                         <script>
                             window.addEventListener('load', () => {
+                                let sliderElement = document.getElementById('infiniteSliding');
+                                const container = sliderElement.querySelector(".slider-container");
+
                                 const infiniteScrollToFirstWhenOnLast = () => {
-                                    const container = document.querySelector("#infiniteSliding .slider-container");
                                     if (container.lastElementChild == container.querySelector('.slide-visible')) {
                                         container.scroll({
                                             left: 0,
@@ -1225,8 +1225,11 @@
                                         });
                                     }
                                 };
-                                let sliderElement = document.getElementById('infiniteSliding');
-                                swiffyslider.onSlideEnd(sliderElement, infiniteScrollToFirstWhenOnLast);
+                                //Append the first slide as the last
+                                container.appendChild(container.firstElementChild.cloneNode(true));
+                                //Add an additional indicator button to keep counts correct
+                                sliderElement.querySelector(".slider-indicators").appendChild(sliderElement.querySelector(".slider-indicators").lastElementChild.cloneNode(true));
+                                swiffyslider.onSlideEnd(sliderElement, infiniteScrollToFirstWhenOnLast, 90);
                             });
                         </script>
                     </div>
