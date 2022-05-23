@@ -1180,22 +1180,21 @@
             </div>
         </div>
 
-
         <div class="container pt-3">
             <div class="row justify-content-center">
-                <div class="col-6">
-                    <h2>Image carousel width uneven sized images</h2>
-                    <p>Simple image carousel with uneven sized images. Using a bit of scripting to resize the carousel to the height of the image. The .slider-nav-animation class is needed because that will cause .slide-visible to be set on the active slide</p>
+                <div class="col-8">
+                    <h2 id="infinite">Image carousel with infinite sliding</h2>
+                    <p>Simple image carousel with 'infinite sliding'. Using a bit of scripting, this example will look like it has infinite scrolling by going to the first slide when the last has been reached</p>
 
-                    <div class="swiffy-slider slider-nav-chevron slider-nav-dark slider-nav-outside-expand slider-nav-visible slider-nav-animation" id="unevenimages">
-                        <div class="slider-container" style="overflow: hidden;">
-                            <div id="slide1" class="slide-visible"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy" class="mh-100 mw-100"></div>
-                            <div id="slide3"><img src="../assets/img/brandlogos/bootstrap-5.svg" alt="..." loading="lazy" class="mh-100 mw-100"></div>
-                            <div id="slide2"><img src="../assets/img/movies/cinema.webp" alt="..." loading="lazy" class="mh-100 mw-100"></div>
-                            <div id="slide4"><img src="../assets/img/shoes/shoe1.webp" alt="..." loading="lazy" class="h-100 mw-100"></div>
-                            <div id="slide5"><img src="../assets/img/swiffysliderlogo/GithubSocial.png" alt="..." loading="lazy" class="mh-100 mw-100"></div>
-                            <div id="slide6"><img src="../assets/img/swiffysliderlogo/SwiffySliderLogo1.png" alt="..." loading="lazy" class="mh-100 mw-100"></div>
-                        </div>
+                    <div class="swiffy-slider slider-item-ratio slider-item-ratio-21x9 slider-nav-visible slider-nav-animation" id="infiniteSliding">
+                        <ul class="slider-container" id="container1">
+                            <li id="slide1"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
+                            <li id="slide2"><img src="../assets/img/photos/img2.webp" alt="..." loading="lazy"></li>
+                            <li id="slide3"><img src="../assets/img/photos/img3.webp" alt="..." loading="lazy"></li>
+                            <li id="slide4"><img src="../assets/img/photos/img4.webp" alt="..." loading="lazy"></li>
+                            <li id="slide5"><img src="../assets/img/photos/img5.webp" alt="..." loading="lazy"></li>
+                            <li id="slide6"><img src="../assets/img/photos/img1.webp" alt="..." loading="lazy"></li>
+                        </ul>
 
                         <button type="button" class="slider-nav" aria-label="Go to previous"></button>
                         <button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
@@ -1208,19 +1207,20 @@
                             <button aria-label="Go to slide"></button>
                             <button aria-label="Go to slide"></button>
                         </div>
-                        <style>
-                            #unevenimages {
-                                transition: all 0.3s ease-in-out;
-                            }
-                        </style>
+
                         <script>
                             window.addEventListener('load', () => {
-                                const resizeSlider = () => {
-                                    document.getElementById('unevenimages').style.height = (document.querySelector('#unevenimages .slide-visible img').offsetHeight + 1) + 'px';
+                                const infiniteScrollToFirstWhenOnLast = () => {
+                                    const container = document.querySelector("#infiniteSliding .slider-container");
+                                    if (container.lastElementChild == document.querySelector('#infiniteSliding .slide-visible')) {
+                                        container.scroll({
+                                            left: 0,
+                                            behavior: "instant"
+                                        });
+                                    }
                                 };
-                                let sliderElement = document.getElementById('unevenimages');
-                                swiffyslider.onSlideEnd(sliderElement, resizeSlider);
-                                document.getElementById('unevenimages').style.height = (document.querySelector('#unevenimages .slide-visible img').offsetHeight + 1) + 'px';
+                                let sliderElement = document.getElementById('infiniteSliding');
+                                swiffyslider.onSlideEnd(sliderElement, infiniteScrollToFirstWhenOnLast);
                             });
                         </script>
                     </div>
