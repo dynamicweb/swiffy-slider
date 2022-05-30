@@ -9,11 +9,15 @@ const swiffysliderextensions = function() {
         },
 
         initSlider(sliderElement) {
+            console.log('swiffysliderextensions.initSlider');
             if (sliderElement.classList.contains("slider-nav-mousedrag"))
                 sliderElement.addEventListener("mousedown", (e) => this.handleMouseDrag(e, sliderElement), { passive: true });
         },
 
         handleMouseDrag(e, sliderElement) {
+            if (e.srcElement.classList.contains('slider-nav') || e.srcElement.parentElement.classList.contains('slider-indicators'))
+                return;
+
             const container = sliderElement.querySelector(".slider-container");
             if (container.classList.contains("dragging")) {
                 clearTimeout(this.draggingtimer);
@@ -27,6 +31,7 @@ const swiffysliderextensions = function() {
             let nextSlideLeftPos = 0;
 
             const moveDelegate = (e) => {
+                //console.log(nextSlideLeftPos);
                 const mouseMovedXpos = e.clientX - mouseDownStartingXPos;
                 container.scrollLeft = startingLeftPos - (mouseMovedXpos * 1.8);
                 if (mouseMovedXpos < 0) {
@@ -40,11 +45,13 @@ const swiffysliderextensions = function() {
             document.addEventListener('mouseup', () => {
                 container.removeEventListener('mousemove', moveDelegate);
                 container.style.cursor = null;
-                if (nextSlideLeftPos != 0)
+                if (nextSlideLeftPos != 0) {
+                    console.log(nextSlideLeftPos);
                     container.scroll({
                         left: nextSlideLeftPos,
                         behavior: "smooth"
                     });
+                }
                 this.draggingtimer = setTimeout(() => { container.classList.remove("dragging"); }, 550);
             }, { once: true, passive: true });
         }

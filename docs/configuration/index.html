@@ -9,8 +9,8 @@
     <meta name="author" content="Nicolai Høeg Pedersen, Dynamicweb Software">
 
     <link rel="stylesheet" href="../assets/css/swiffy-slider.min.css">
-    <script src="../assets/js/swiffy-slider.min.js" defer></script>
-    <script src="../assets/js/swiffy-slider-extensions.min.js" defer></script>
+    <script src="../assets/js/swiffy-slider.min.js" defer data-noinit></script>
+    <script src="../assets/js/swiffy-slider-extensions.min.js" defer data-noinit></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
@@ -130,6 +130,7 @@
             document.getElementById("codeSample").innerHTML = highlightedCode;
 
             if (reloadSlider) {
+                console.log("Resseting...")
                 sliderPreview.innerHTML = '';
                 sliderPreview.appendChild(sliderInstance.cloneNode(true));
                 swiffyslider.init();
