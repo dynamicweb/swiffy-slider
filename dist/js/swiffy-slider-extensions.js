@@ -9,7 +9,6 @@ const swiffysliderextensions = function() {
         },
 
         initSlider(sliderElement) {
-            console.log('swiffysliderextensions.initSlider');
             if (sliderElement.classList.contains("slider-nav-mousedrag"))
                 sliderElement.addEventListener("mousedown", (e) => this.handleMouseDrag(e, sliderElement), { passive: true });
         },
@@ -31,7 +30,6 @@ const swiffysliderextensions = function() {
             let nextSlideLeftPos = 0;
 
             const moveDelegate = (e) => {
-                //console.log(nextSlideLeftPos);
                 const mouseMovedXpos = e.clientX - mouseDownStartingXPos;
                 container.scrollLeft = startingLeftPos - (mouseMovedXpos * 1.8);
                 if (mouseMovedXpos < 0) {
