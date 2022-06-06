@@ -6,7 +6,7 @@
 
 <h3 align="center">Swiffy Slider</h3>
 
-![Twitter URL](https://img.shields.io/twitter/url?url=https%3A%2F%2Ftwitter.com%2Fintent%2Ftweet%3Ftext%3DSuper%2520fast%2520and%2520lightweight%2520slider%2520and%2520carousel%2520in%2520css%2520and%2520js%26url%3Dhttps%3A%2F%2Fwww.swiffyslider.com%2F%26via%3Dnicped%26hashtags%3Djavascript%2Ccarousel%2Cslider%2Ccss%2Cmicrofrontends%2Cnodependencies%2Cdevelopers)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Super%20fast%20and%20lightweight%20slider%20and%20carousel%20in%20css%20and%20js&url=https://www.swiffyslider.com/&via=nicped&hashtags=javascript,carousel,slider,css,microfrontends,nodependencies,developers)
 
 <p align="center">
   Super fast lightweight carousel and slider with touch for optimized websites running in modern browsers.
