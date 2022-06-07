@@ -130,11 +130,13 @@
             document.getElementById("codeSample").innerHTML = highlightedCode;
 
             if (reloadSlider) {
-                console.log("Resseting...")
+                console.log("Resetting...")
                 sliderPreview.innerHTML = '';
                 sliderPreview.appendChild(sliderInstance.cloneNode(true));
                 swiffyslider.init();
                 swiffyslider.extensions.init();
+            } else {
+                swiffyslider.init();
             }
 
 
