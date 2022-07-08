@@ -37,7 +37,7 @@ const swiffyslider = function() {
                 root: sliderElement.querySelector(".slider-container"),
                 threshold: threshold
             });
-            for (let slide of sliderElement.querySelectorAll(".slider-container>*"))
+            for (let slide of this.getSlides(sliderElement))
                 observer.observe(slide);
         },
 
@@ -46,7 +46,7 @@ const swiffyslider = function() {
             const fullpage = sliderElement.classList.contains("slider-nav-page");
             const noloop = sliderElement.classList.contains("slider-nav-noloop");
             const nodelay = sliderElement.classList.contains("slider-nav-nodelay");
-            const slides = container.children;
+            const slides = this.getSlides(sliderElement);
             const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
             const scrollStep = slides[0].offsetWidth + gapWidth;
             let scrollLeftPosition = next ?
@@ -71,10 +71,10 @@ const swiffyslider = function() {
 
         slideToByIndicator() {
             const indicator = window.event.target;
-            const indicatorIndex = Array.from(indicator.parentElement.children).indexOf(indicator);
-            const indicatorCount = indicator.parentElement.children.length;
+            const indicatorIndex = this.getIndicators(indicator.parentElement).indexOf(indicator);
+            const indicatorCount = this.getIndicators(indicator.parentElement).length;
             const sliderElement = indicator.closest(".swiffy-slider");
-            const slideCount = sliderElement.querySelector(".slider-container").children.length;
+            const slideCount = this.getSlides(sliderElement.querySelector(".slider-container")).length;
             const relativeSlideIndex = (slideCount / indicatorCount) * indicatorIndex;
             this.slideTo(sliderElement, relativeSlideIndex);
         },
@@ -82,7 +82,7 @@ const swiffyslider = function() {
         slideTo(sliderElement, slideIndex) {
             const container = sliderElement.querySelector(".slider-container");
             const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
-            const scrollStep = container.children[0].offsetWidth + gapWidth;
+            const scrollStep = this.getSlides(container)[0].offsetWidth + gapWidth;
             const nodelay = sliderElement.classList.contains("slider-nav-nodelay");
             container.scroll({
                 left: (scrollStep * slideIndex),
@@ -117,12 +117,20 @@ const swiffyslider = function() {
             return autoplayTimer;
         },
 
+        getSlides(sliderElement) {
+            return Array.from(sliderElement.children).filter(element => element.tagName.toLowerCase() !== "template")
+        },
+
+        getIndicators(indicator) {
+            return Array.from(indicator.children).filter(element => element.tagName.toLowerCase() !== "template")
+        },
+
         handleIndicators(sliderElement) {
             const container = sliderElement.querySelector(".slider-container");
             const slidingAreaWidth = container.scrollWidth - container.offsetWidth;
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
             for (let scrollIndicatorContainers of sliderElement.querySelectorAll(".slider-indicators")) {
-                let scrollIndicators = scrollIndicatorContainers.children;
+                let scrollIndicators = this.getIndicators(scrollIndicatorContainers);
                 let activeIndicator = Math.abs(Math.round((scrollIndicators.length - 1) * percentSlide));
                 for (let element of scrollIndicators)
                     element.classList.remove("active");
