@@ -402,10 +402,14 @@
     cursor: grab;
 }
 
-.slider-nav-mousedrag .slider-container.dragging {
+.slider-nav-mousedrag.dragging .slider-container {
     scroll-snap-type: unset;
     scroll-behavior: unset;
     user-select: none;
+}
+
+.slider-nav-mousedrag.dragging .slider-nav {
+    visibility: hidden;
 }
 
 @media (hover: hover) {

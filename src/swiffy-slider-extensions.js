@@ -18,24 +18,41 @@ const swiffysliderextensions = function() {
                 return;
 
             const container = sliderElement.querySelector(".slider-container");
-            if (container.classList.contains("dragging")) {
+            if (sliderElement.classList.contains("dragging")) {
                 clearTimeout(this.draggingtimer);
             }
             container.style.cursor = "grabbing";
-            container.classList.add("dragging");
+            sliderElement.classList.add("dragging");
 
             const startingLeftPos = container.scrollLeft;
             const mouseDownStartingXPos = e.clientX;
             const slideWidth = container.children[0].offsetWidth + parseInt(window.getComputedStyle(container).columnGap);
-            let nextSlideLeftPos = 0;
+            const maxLeftPosition = slideWidth * (container.children.length - 1);
+            const startLeftScroll = container.scrollLeft;
+            let nextSlideLeftPos = startLeftScroll;
 
             const moveDelegate = (e) => {
                 const mouseMovedXpos = e.clientX - mouseDownStartingXPos;
-                container.scrollLeft = startingLeftPos - (mouseMovedXpos * 1.8);
-                if (mouseMovedXpos < 0) {
-                    nextSlideLeftPos = container.scrollLeft + (slideWidth + (mouseMovedXpos * 1.8));
+                const nextDraggingLeftPosition = startingLeftPos - (mouseMovedXpos * 1.8);
+
+                if (nextDraggingLeftPosition > 0 && nextDraggingLeftPosition <= maxLeftPosition) {
+                    container.scrollLeft = nextDraggingLeftPosition;
                 } else {
-                    nextSlideLeftPos = container.scrollLeft - (slideWidth - (mouseMovedXpos * 1.8));
+                    return;
+                }
+                if (mouseMovedXpos < 0) {
+                    //Dragging from right to left
+                    if (maxLeftPosition <= startLeftScroll) {
+                        //Dragging right on last slide which is should not try to move the slides
+                        nextSlideLeftPos = startLeftScroll;
+                    } else {
+                        nextSlideLeftPos = container.scrollLeft + (slideWidth + (mouseMovedXpos * 1.8));
+                    }
+                } else {
+                    //Dragging from left to right
+                    if (startLeftScroll > 0) {
+                        nextSlideLeftPos = container.scrollLeft - (slideWidth - (mouseMovedXpos * 1.8));
+                    }
                 }
             }
 
@@ -43,14 +60,12 @@ const swiffysliderextensions = function() {
             document.addEventListener('mouseup', () => {
                 container.removeEventListener('mousemove', moveDelegate);
                 container.style.cursor = null;
-                if (nextSlideLeftPos != 0) {
-                    console.log(nextSlideLeftPos);
-                    container.scroll({
-                        left: nextSlideLeftPos,
-                        behavior: "smooth"
-                    });
-                }
-                this.draggingtimer = setTimeout(() => { container.classList.remove("dragging"); }, 550);
+                if (nextSlideLeftPos < 0) { nextSlideLeftPos = 0; }
+                container.scroll({
+                    left: nextSlideLeftPos,
+                    behavior: "smooth"
+                });
+                this.draggingtimer = setTimeout(() => { sliderElement.classList.remove("dragging"); }, 550);
             }, { once: true, passive: true });
         }
     };
