@@ -1,4 +1,4 @@
-export const swiffyslider = function() {
+export const swiffyslider = function () {
     return {
         version: "1.5.3",
         init(rootElement = document.body) {
@@ -92,7 +92,7 @@ export const swiffyslider = function() {
 
         onSlideEnd(sliderElement, delegate, timeout = 125) {
             let isScrolling;
-            sliderElement.querySelector(".slider-container").addEventListener("scroll", function() {
+            sliderElement.querySelector(".slider-container").addEventListener("scroll", function () {
                 window.clearTimeout(isScrolling);
                 isScrolling = setTimeout(delegate, timeout);
             }, { capture: false, passive: true });
@@ -103,13 +103,13 @@ export const swiffyslider = function() {
             let autoplayTimer = setInterval(() => this.slide(sliderElement), timeout);
             const autoplayer = () => this.autoPlay(sliderElement, timeout, autopause);
             if (autopause) {
-                ["mouseover", "touchstart"].forEach(function(event) {
-                    sliderElement.addEventListener(event, function() {
+                ["mouseover", "touchstart"].forEach(function (event) {
+                    sliderElement.addEventListener(event, function () {
                         window.clearTimeout(autoplayTimer);
                     }, { once: true, passive: true });
                 });
-                ["mouseout", "touchend"].forEach(function(event) {
-                    sliderElement.addEventListener(event, function() {
+                ["mouseout", "touchend"].forEach(function (event) {
+                    sliderElement.addEventListener(event, function () {
                         autoplayer();
                     }, { once: true, passive: true });
                 });
@@ -118,6 +118,7 @@ export const swiffyslider = function() {
         },
 
         handleIndicators(sliderElement) {
+            if (!sliderElement) return;
             const container = sliderElement.querySelector(".slider-container");
             const slidingAreaWidth = container.scrollWidth - container.offsetWidth;
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
