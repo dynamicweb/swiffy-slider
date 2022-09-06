@@ -438,6 +438,7 @@
     }
     .slider-nav-animation.slider-nav-animation-fadein .slider-container>*>* {
         opacity: 0.5;
+        visibility: hidden;
     }
     .slider-nav-animation.slider-nav-animation-scale .slider-container>*>* {
         transform: scale(.9);
@@ -467,6 +468,7 @@
     .slider-nav-animation .slider-container>*.slide-visible>* {
         opacity: 1;
         transform: none;
+        visibility: visible;
     }
 }
 
