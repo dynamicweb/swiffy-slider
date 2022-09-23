@@ -118,6 +118,7 @@ const swiffyslider = function() {
         },
 
         handleIndicators(sliderElement) {
+            if (!sliderElement) return;
             const container = sliderElement.querySelector(".slider-container");
             const slidingAreaWidth = container.scrollWidth - container.offsetWidth;
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
@@ -134,7 +135,13 @@ const swiffyslider = function() {
 
 window.swiffyslider = swiffyslider;
 if (!document.currentScript.hasAttribute("data-noinit")) {
-    window.addEventListener("load", () => {
+    if (document.currentScript.hasAttribute("defer")) {
         swiffyslider.init();
-    });
+    } else {
+        document.onreadystatechange = () => {
+            if (document.readyState === 'interactive') {
+                swiffyslider.init();
+            }
+        }
+    }
 }

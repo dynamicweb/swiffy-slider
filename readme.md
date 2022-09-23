@@ -66,6 +66,7 @@ This project utilizes what is available in modern browsers resulting in a super 
     - [Animation options](#animation-options)
   - [Javascript](#javascript)
   - [Javascript loading and binding](#javascript-loading-and-binding)
+    - [Optimized loading](#optimized-loading)
   - [CSS variables](#css-variables)
   - [Safari smooth scrolling polyfill](#safari-smooth-scrolling-polyfill)
 - [Limitations](#limitations)
@@ -322,6 +323,10 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-item-*</code> optio
             <code>slider-item-show5</code><br>
             <code>slider-item-show6</code></td>
         <td>Shows 2, 3, 4, 5 or 6 slides at a time in the slider wrapper. Each slide is either 1/2, 1/3, 1/4, 1/5 or 1/6 of the slider wrapper width.</td>
+    </tr>
+    <tr>
+      <td><code>slider-item-show2-sm</code></td>
+      <td>Shows 2 slides at a time in the slider wrapper when in small viewport. By default show2-5 will show only one slide when in viewports less than 62rem (992px in most cases). With this option it shows 2 in small viewports</td>
     </tr>
     <tr>
       <td><code>slider-item-reveal</code></td>
@@ -720,6 +725,26 @@ window.addEventListener("load", () => {
 });
 </script>
 ```
+
+#### Optimized loading
+When loading the script with `defer` attribute, the initialization will happen as soon as the script is downloaded. 
+Deferred scripts are requested and run as soon as the document is parsed by the browser. This is the recommended approach.
+
+```
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js" defer>
+```
+
+If the script is loaded without `defer` attribute, the initialization will happen when `document.readyState === 'interactive'` using a `document.onreadystatechange` event listener.
+The script will load and run before the Dom is loaded, but has been parsed.
+
+```
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js">
+```
+
+The above approach ensures the sliders are initialized as soon as possible and earlier in the page life cycle compared to using `load` or `DOMContentLoaded` events.
+This might not always be optimal depending on what else is running on the page. Since the content of Swiffy Slider is always markup and is rendered when the markup is parsed and does not 
+change when initialized, a later loading of the script and initialization of the sliders could be a benefit to leave more power for more important scripts. 
+See "Load as ES module on demand".
 
 ### CSS variables
 The Swiffy Slider CSS is making use of a number of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a> that can be overriden to control behavior and styling

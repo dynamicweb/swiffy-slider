@@ -321,6 +321,11 @@ import "swiffy-slider/css"
                                             <td>Shows 2, 3, 4, 5 or 6 slides at a time in the slider wrapper. Each slide is either 1/2, 1/3, 1/4, 1/5 or 1/6 of the slider wrapper width.</td>
                                         </tr>
                                         <tr>
+                                            <td><code>slider-item-show2-sm</code></td>
+                                            <td>Shows 2 slides at a time in the slider wrapper when in small viewport. By default show2-5 will show only one slide when in viewports less than 62rem (992px in most cases). With this option it shows 2 in small
+                                                viewports</td>
+                                        </tr>
+                                        <tr>
                                             <td><code>slider-item-reveal</code></td>
                                             <td>Reveals some of previous and next slide. Each slide is either 1/1, 1/2, 1/3, 1/4 or 1/6 of the slider wrapper width minus a little to reveal next and previous slides</td>
                                         </tr>
@@ -758,6 +763,22 @@ window.addEventListener(&quot;load&quot;, () =&gt; {
 });
 &lt;/script&gt;
 </code></pre>
+
+                                <h4> Optimized loading</h4>
+                                <p>When loading the script with <code>defer</code> attribute, the initialization will happen as soon as the script is downloaded. Deferred scripts are requested and run as soon as the document is parsed by the browser. This
+                                    is the recommended approach.
+                                </p>
+
+                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&quot; defer&gt;</code></pre> If the script is loaded without <code>defer</code> attribute,
+                                the initialization will happen when <code>document.readyState === 'interactive'</code> using a <code>document.onreadystatechange</code> event listener. The script will load and run before the Dom is loaded, but has been
+                                parsed.
+
+                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&quot;&gt;</code></pre>
+
+
+                                <p>The above approach ensures the sliders are initialized as soon as possible and earlier in the page life cycle compared to using <code>load</code> or <code>DOMContentLoaded</code> events. This might not always be optimal
+                                    depending on what else is running on the page. Since the content of Swiffy Slider is always markup and is rendered when the markup is parsed and does not change when initialized, a later loading of the script and initialization
+                                    of the sliders could be a benefit to leave more power for more important scripts. See "Load as ES module on demand".</p>
 
                                 <h3>Javascript extensions</h3>
                                 <p>Some features of Swiffy Slider is not considered core functionality and is in a seperate js library to keep loading as small as possible.</p>
