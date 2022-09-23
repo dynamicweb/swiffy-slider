@@ -118,6 +118,7 @@ export const swiffyslider = function() {
         },
 
         handleIndicators(sliderElement) {
+            if (!sliderElement) return;
             const container = sliderElement.querySelector(".slider-container");
             const slidingAreaWidth = container.scrollWidth - container.offsetWidth;
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
