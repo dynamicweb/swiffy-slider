@@ -438,6 +438,7 @@
     }
     .slider-nav-animation.slider-nav-animation-fadein .slider-container>*>* {
         opacity: 0.5;
+        visibility: hidden;
     }
     .slider-nav-animation.slider-nav-animation-scale .slider-container>*>* {
         transform: scale(.9);
@@ -467,6 +468,7 @@
     .slider-nav-animation .slider-container>*.slide-visible>* {
         opacity: 1;
         transform: none;
+        visibility: visible;
     }
 }
 
@@ -513,7 +515,7 @@
         --swiffy-slider-item-count: 1;
         --swiffy-slider-nav-zoom: .875;
     }
-    .swiffy-slider .slider-item-show2-sm {
+    .slider-item-show2-sm {
         --swiffy-slider-item-count: 2;
     }
     .slider-item-reveal {
