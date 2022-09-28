@@ -121,7 +121,7 @@
                                     </svg></a>
 
 
-                            <a href="https://github.com/dynamicweb/swiffy-slider/releases/download/v1.5.3/swiffy-slider-1.5.3-dist.zip" target="_blank" rel="noreferrer" class="btn text-white btn-outline-white">Download</a>
+                            <a href="https://github.com/dynamicweb/swiffy-slider/releases/download/v1.6.0/swiffy-slider-1.6.0-dist.zip" target="_blank" rel="noreferrer" class="btn text-white btn-outline-white">Download</a>
                         </div>
                     </div>
                 </div>
@@ -168,8 +168,8 @@
                                 <p class="lead">Installation options, configuration options and scripting of the Swiffy Slider</p>
                                 <h3>CSS and Javascript</h3>
                                 <p>Copy-paste the stylesheet <code>&lt;link&gt;</code> and javascript <code>&lt;script&gt;</code> into your <code>&lt;head&gt;</code> section.</p>
-                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
-&#x3C;link href=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/css/swiffy-slider.min.css&#x22; rel=&#x22;stylesheet&#x22; crossorigin=&#x22;anonymous&#x22;&#x3E;
+                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
+&#x3C;link href=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css&#x22; rel=&#x22;stylesheet&#x22; crossorigin=&#x22;anonymous&#x22;&#x3E;
 </code></pre>
 
                                 <h3>HTML</h3>
@@ -208,7 +208,7 @@
 
                             <section>
                                 <h2 id="additional-installation-options">Additional installation options</h2>
-                                <a href="https://github.com/dynamicweb/swiffy-slider/releases/download/v1.5.3/swiffy-slider-1.5.3-dist.zip">Download the latest release</a>
+                                <a href="https://github.com/dynamicweb/swiffy-slider/releases/download/v1.6.0/swiffy-slider-1.6.0-dist.zip">Download the latest release</a>
                                 <p>Clone the repo: </p>
                                 <pre><code>git clone https://github.com/dynamicweb/swiffy-slider.git</code></pre>
 
@@ -323,7 +323,8 @@ import "swiffy-slider/css"
                                         <tr>
                                             <td><code>slider-item-show2-sm</code></td>
                                             <td>Shows 2 slides at a time in the slider wrapper when in small viewport. By default show2-5 will show only one slide when in viewports less than 62rem (992px in most cases). With this option it shows 2 in small
-                                                viewports</td>
+                                                viewports
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td><code>slider-item-reveal</code></td>
@@ -701,7 +702,7 @@ import "swiffy-slider/src/swiffy-slider.css"
 </code></pre>
 
                                 <p>Avoid autobinding by adding <code>data-noinit</code> attribute on the script tag and then attach the slider manually</p>
-                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&quot; data-noinit defer&gt;
+                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js&quot; data-noinit defer&gt;
 &lt;script&gt;
     window.addEventListener(&#39;load&#39;, () =&gt; {
         //Use only one of the loading options below!
@@ -719,7 +720,7 @@ import "swiffy-slider/src/swiffy-slider.css"
 &lt;/div&gt;
 </code></pre>
 
-                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&#x22; data-noinit defer&#x3E;
+                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js&#x22; data-noinit defer&#x3E;
     &#x3C;script&#x3E;
         window.addEventListener(&#x27;load&#x27;, () =&#x3E; {
             //loads all sliders in main and skip header and footer search for increased init performance.
@@ -739,7 +740,7 @@ import "swiffy-slider/src/swiffy-slider.css"
 
                                 <p>Load as module using ES version of the script</p>
                                 <pre><code class="language-html">&lt;script type=&quot;module&quot;&gt;
-    import {swiffyslider} from &#39;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.esm.min.js&#39;; 
+    import {swiffyslider} from &#39;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.esm.min.js&#39;; 
     window.swiffyslider = swiffyslider; 
     window.swiffyslider.init(); 
 &lt;/script&gt;
@@ -747,7 +748,7 @@ import "swiffy-slider/src/swiffy-slider.css"
                                 <p>Load as ES module on demand, here using load - could be when slider scrolls into view or navigation arrow is clicked the first time. Load module and initialize sliders. </p>
                                 <pre><code class="language-html">&lt;script&gt;
 window.addEventListener(&quot;load&quot;, () =&gt; {
-    import (&#39;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.esm.min.js&#39;).then((swiffysliderModule) =&gt; {
+    import (&#39;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.esm.min.js&#39;).then((swiffysliderModule) =&gt; {
         swiffysliderModule.swiffyslider.init();
     });
 });
@@ -756,7 +757,7 @@ window.addEventListener(&quot;load&quot;, () =&gt; {
                                 <p>Load as ES module on demand. Load module and assign to window for later script manipulation of slides</p>
                                 <pre><code class="language-html">&lt;script&gt;
 window.addEventListener(&quot;load&quot;, () =&gt; {
-    import (&#39;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.esm.min.js&#39;).then((swiffysliderModule) =&gt; {
+    import (&#39;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.esm.min.js&#39;).then((swiffysliderModule) =&gt; {
         window.swiffyslider = swiffysliderModule.swiffyslider;
         window.swiffyslider.init();
     });
@@ -769,11 +770,11 @@ window.addEventListener(&quot;load&quot;, () =&gt; {
                                     is the recommended approach.
                                 </p>
 
-                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&quot; defer&gt;</code></pre> If the script is loaded without <code>defer</code> attribute,
+                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js&quot; defer&gt;</code></pre> If the script is loaded without <code>defer</code> attribute,
                                 the initialization will happen when <code>document.readyState === 'interactive'</code> using a <code>document.onreadystatechange</code> event listener. The script will load and run before the Dom is loaded, but has been
                                 parsed.
 
-                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&quot;&gt;</code></pre>
+                                <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js&quot;&gt;</code></pre>
 
 
                                 <p>The above approach ensures the sliders are initialized as soon as possible and earlier in the page life cycle compared to using <code>load</code> or <code>DOMContentLoaded</code> events. This might not always be optimal
@@ -813,9 +814,9 @@ window.addEventListener(&quot;load&quot;, () =&gt; {
                                 </table>
 
                                 <strong>Load Swiffy slider main script, css and extensions script</strong>
-                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
-&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/js/swiffy-slider-extensions.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
-&#x3C;link href=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.5.3/dist/css/swiffy-slider.min.css&#x22; rel=&#x22;stylesheet&#x22; crossorigin=&#x22;anonymous&#x22;&#x3E;</code></pre>
+                                <pre><code class="language-html">&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
+&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider-extensions.min.js&#x22; crossorigin=&#x22;anonymous&#x22; defer&#x3E;&#x3C;/script&#x3E;
+&#x3C;link href=&#x22;https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css&#x22; rel=&#x22;stylesheet&#x22; crossorigin=&#x22;anonymous&#x22;&#x3E;</code></pre>
                             </section>
 
                             <section>

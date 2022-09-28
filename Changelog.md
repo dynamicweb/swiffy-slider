@@ -1,3 +1,14 @@
+# [v1.6.0] - 28-09-2022
+
+## Added
+
+- Added support for <code>.slider-item-show2-sm</code> to support showing 2 slides on mobile no matter how many slides are shown on desktop [#52](https://github.com/dynamicweb/swiffy-slider/issues/52).  
+
+## Bugfixes
+
+- Fixed the handleIndicators method to not execute if the indicators have been dismounted [[#50](https://github.com/dynamicweb/swiffy-slider/issues/50)]
+- Fixed an issue in the extensions js handling dragging when first or last slide was dragged long distances [[#48](https://github.com/dynamicweb/swiffy-slider/issues/48)]
+ 
 # [v1.5.3] - 08-043-2022
 
 ## Bugfixes
