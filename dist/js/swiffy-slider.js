@@ -2,20 +2,17 @@ const swiffyslider = function() {
     return {
         version: "1.6.0",
         init(rootElement = document.body) {
-            for (let sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {
-                this.initSlider(sliderElement);
-            }
+            rootElement.querySelectorAll(".swiffy-slider").forEach(sliderElement => this.initSlider(sliderElement));
         },
 
         initSlider(sliderElement) {
-            for (let navElement of sliderElement.querySelectorAll(".slider-nav")) {
-                let next = navElement.classList.contains("slider-nav-next");
-                navElement.addEventListener("click", () => this.slide(sliderElement, next), { passive: true });
-            }
-            for (let indicatorElement of sliderElement.querySelectorAll(".slider-indicators")) {
+            sliderElement.querySelectorAll(".slider-nav").forEach(navElement =>
+                navElement.addEventListener("click", () => this.slide(sliderElement, navElement.classList.contains("slider-nav-next")), { passive: true })
+            );
+            sliderElement.querySelectorAll(".slider-indicators").forEach((indicatorElement) => {
                 indicatorElement.addEventListener("click", () => this.slideToByIndicator());
                 this.onSlideEnd(sliderElement, () => this.handleIndicators(sliderElement), 60);
-            }
+            });
             if (sliderElement.classList.contains("slider-nav-autoplay")) {
                 const timeout = sliderElement.getAttribute("data-slider-nav-autoplay-interval") ? sliderElement.getAttribute("data-slider-nav-autoplay-interval") : 2500;
                 this.autoPlay(sliderElement, timeout, sliderElement.classList.contains("slider-nav-autopause"));
@@ -37,8 +34,7 @@ const swiffyslider = function() {
                 root: sliderElement.querySelector(".slider-container"),
                 threshold: threshold
             });
-            for (let slide of sliderElement.querySelectorAll(".slider-container>*"))
-                observer.observe(slide);
+            sliderElement.querySelectorAll(".slider-container>*").forEach(slide => observer.observe(slide));
         },
 
         slide(sliderElement, next = true) {
@@ -57,12 +53,10 @@ const swiffyslider = function() {
                     container.scrollLeft + container.offsetWidth :
                     container.scrollLeft - container.offsetWidth;
             }
-            if (container.scrollLeft < 1 && !next && !noloop) {
+            if (container.scrollLeft < 1 && !next && !noloop)
                 scrollLeftPosition = (container.scrollWidth - container.offsetWidth);
-            }
-            if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop) {
+            if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop)
                 scrollLeftPosition = 0;
-            }
             container.scroll({
                 left: scrollLeftPosition,
                 behavior: nodelay ? "auto" : "smooth"
@@ -92,7 +86,7 @@ const swiffyslider = function() {
 
         onSlideEnd(sliderElement, delegate, timeout = 125) {
             let isScrolling;
-            sliderElement.querySelector(".slider-container").addEventListener("scroll", function() {
+            sliderElement.querySelector(".slider-container").addEventListener("scroll", () => {
                 window.clearTimeout(isScrolling);
                 isScrolling = setTimeout(delegate, timeout);
             }, { capture: false, passive: true });
@@ -103,13 +97,13 @@ const swiffyslider = function() {
             let autoplayTimer = setInterval(() => this.slide(sliderElement), timeout);
             const autoplayer = () => this.autoPlay(sliderElement, timeout, autopause);
             if (autopause) {
-                ["mouseover", "touchstart"].forEach(function(event) {
-                    sliderElement.addEventListener(event, function() {
+                ["mouseover", "touchstart"].forEach((event) => {
+                    sliderElement.addEventListener(event, () => {
                         window.clearTimeout(autoplayTimer);
                     }, { once: true, passive: true });
                 });
-                ["mouseout", "touchend"].forEach(function(event) {
-                    sliderElement.addEventListener(event, function() {
+                ["mouseout", "touchend"].forEach((event) => {
+                    sliderElement.addEventListener(event, () => {
                         autoplayer();
                     }, { once: true, passive: true });
                 });
@@ -122,13 +116,13 @@ const swiffyslider = function() {
             const container = sliderElement.querySelector(".slider-container");
             const slidingAreaWidth = container.scrollWidth - container.offsetWidth;
             const percentSlide = (container.scrollLeft / slidingAreaWidth);
-            for (let scrollIndicatorContainers of sliderElement.querySelectorAll(".slider-indicators")) {
+            sliderElement.querySelectorAll(".slider-indicators").forEach((scrollIndicatorContainers) => {
                 let scrollIndicators = scrollIndicatorContainers.children;
                 let activeIndicator = Math.abs(Math.round((scrollIndicators.length - 1) * percentSlide));
                 for (let element of scrollIndicators)
                     element.classList.remove("active");
                 scrollIndicators[activeIndicator].classList.add("active");
-            }
+            });
         }
     };
 }();
