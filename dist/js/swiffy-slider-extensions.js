@@ -3,9 +3,7 @@ const swiffysliderextensions = function() {
         version: "1.6.0",
         draggingtimer: null,
         init(rootElement = document.body) {
-            for (const sliderElement of rootElement.querySelectorAll(".swiffy-slider")) {
-                this.initSlider(sliderElement);
-            }
+            rootElement.querySelectorAll(".swiffy-slider").forEach(sliderElement => this.initSlider(sliderElement));
         },
 
         initSlider(sliderElement) {
