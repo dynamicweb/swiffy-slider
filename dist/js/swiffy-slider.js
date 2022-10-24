@@ -1,3 +1,13 @@
+///// Introduces/changes the following functionalities:
+///// 1. Autoplay stops when the user interacts (clicks/taps prev or next buttons or slider indicators)
+/////    Should the design feature a pause button shown onhover (to indicate the "pause on hover" functionality), the class "slider-nav-autopause" is removed
+///// 2. Easier way to set the delay with which the indicators react
+
+///// Autoplay is deactivated when using the prev/next buttons. (If [button], then [stopped])
+let stopped = false;
+///// Slide indicators may change immediately, not only after 60ms
+let indicatorDelay = 0;
+
 const swiffyslider = function() {
     return {
         version: "1.6.0",
@@ -7,11 +17,12 @@ const swiffyslider = function() {
 
         initSlider(sliderElement) {
             sliderElement.querySelectorAll(".slider-nav").forEach(navElement =>
-                navElement.addEventListener("click", () => this.slide(sliderElement, navElement.classList.contains("slider-nav-next")), { passive: true })
+///// Call "stop on click" function
+                navElement.addEventListener("click", () => this.clickslide(sliderElement, navElement.classList.contains("slider-nav-next")), { passive: true })
             );
             sliderElement.querySelectorAll(".slider-indicators").forEach((indicatorElement) => {
                 indicatorElement.addEventListener("click", () => this.slideToByIndicator());
-                this.onSlideEnd(sliderElement, () => this.handleIndicators(sliderElement), 60);
+                this.onSlideEnd(sliderElement, () => this.handleIndicators(sliderElement), indicatorDelay); 
             });
             if (sliderElement.classList.contains("slider-nav-autoplay")) {
                 const timeout = sliderElement.getAttribute("data-slider-nav-autoplay-interval") ? sliderElement.getAttribute("data-slider-nav-autoplay-interval") : 2500;
@@ -62,8 +73,15 @@ const swiffyslider = function() {
                 behavior: nodelay ? "auto" : "smooth"
             });
         },
+///// If the slide event is fired by click, stop Autoplay
+        clickslide(sliderElement, next = true) {
+            stopped= true;
+            this.slide(sliderElement, next);
+        },
 
         slideToByIndicator() {
+/////
+            stopped= true;
             const indicator = window.event.target;
             const indicatorIndex = Array.from(indicator.parentElement.children).indexOf(indicator);
             const indicatorCount = indicator.parentElement.children.length;
@@ -89,26 +107,31 @@ const swiffyslider = function() {
             sliderElement.querySelector(".slider-container").addEventListener("scroll", () => {
                 window.clearTimeout(isScrolling);
                 isScrolling = setTimeout(delegate, timeout);
+///// If showing a "pause button" onhover, this behavior can be switched off by removing the class
+                if(stopped) sliderElement.classList.remove("slider-nav-autopause");
             }, { capture: false, passive: true });
         },
 
         autoPlay(sliderElement, timeout, autopause) {
-            timeout = timeout < 750 ? 750 : timeout;
-            let autoplayTimer = setInterval(() => this.slide(sliderElement), timeout);
-            const autoplayer = () => this.autoPlay(sliderElement, timeout, autopause);
-            if (autopause) {
-                ["mouseover", "touchstart"].forEach((event) => {
-                    sliderElement.addEventListener(event, () => {
-                        window.clearTimeout(autoplayTimer);
-                    }, { once: true, passive: true });
-                });
-                ["mouseout", "touchend"].forEach((event) => {
-                    sliderElement.addEventListener(event, () => {
-                        autoplayer();
-                    }, { once: true, passive: true });
-                });
+///// Autoplay only if not already stopped through a click
+            if(!stopped) {
+                timeout = timeout < 750 ? 750 : timeout;
+                let autoplayTimer = setInterval(() => this.slide(sliderElement), timeout);
+                const autoplayer = () => this.autoPlay(sliderElement, timeout, autopause);
+                if (autopause) {
+                    ["mouseover", "touchstart"].forEach((event) => {
+                        sliderElement.addEventListener(event, () => {
+                            window.clearTimeout(autoplayTimer);
+                        }, { once: true, passive: true });
+                    });
+                    ["mouseout", "touchend"].forEach((event) => {
+                        sliderElement.addEventListener(event, () => {
+                            autoplayer();
+                        }, { once: true, passive: true });
+                    });
+                }
+                return autoplayTimer;
             }
-            return autoplayTimer;
         },
 
         handleIndicators(sliderElement) {
