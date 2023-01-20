@@ -146,3 +146,4 @@ if (!document.currentScript.hasAttribute("data-noinit")) {
             }
         }
     }
+}
