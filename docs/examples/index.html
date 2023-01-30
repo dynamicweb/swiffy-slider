@@ -1247,6 +1247,85 @@
                 <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
             </div>
         </div>
+        <a id="animatedText"></a>
+        <div class="container pt-3">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <h2 id="infinite">Image carousel with animated text</h2>
+                    <p>Trick using the animation class to trigger that visible slides gets the <code>.slide-visible</code> class and that is used to animate the text.</p>
+
+                    <div class="swiffy-slider slider-nav-visible slider-nav-animation slider-nav-animation-slow" id="animatedText">
+
+                        <ul class="slider-container" id="container1">
+                            <li id="slide1">
+                                <div>
+                                    <img src="../assets/img/photos/img5.webp" alt="..." loading="lazy" class="w-100">
+                                    <h1 class="display-1 text-white custom-animated-text position-absolute top-50 start-50 translate-middle">Porsche</h1>
+                                </div>
+
+                            </li>
+                            <li id="slide2">
+                                <div>
+                                    <img src="../assets/img/photos/img2.webp" alt="..." loading="lazy" class="w-100">
+                                    <h1 class="display-1 text-white custom-animated-text position-absolute top-50 start-50 translate-middle">Woman</h1>
+                                </div>
+                            </li>
+                            <li id="slide3">
+                                <div>
+                                    <img src="../assets/img/photos/img3.webp" alt="..." loading="lazy" class="w-100">
+                                    <h1 class="display-1 text-white custom-animated-text position-absolute top-50 start-50 translate-middle">Aston</h1>
+                                </div>
+                            </li>
+                            <li id="slide4">
+                                <div>
+                                    <img src="../assets/img/photos/img4.webp" alt="..." loading="lazy" class="w-100">
+                                    <h1 class="display-1 text-white custom-animated-text position-absolute top-50 start-50 translate-middle">Mountain</h1>
+                                </div>
+                            </li>
+                            <li id="slide5">
+                                <div>
+                                    <img src="../assets/img/photos/img1.webp" alt="..." loading="lazy" class="w-100">
+                                    <h1 class="display-1 text-white custom-animated-text position-absolute top-50 start-50 translate-middle">Car</h1>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <button type="button" class="slider-nav" aria-label="Go to previous"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
+
+                        <div class="slider-indicators">
+                            <button aria-label="Go to slide" class="active"></button>
+                            <button aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                        </div>
+
+                        <style>
+                            /*The starting point of text to animate*/
+                            
+                            #animatedText.slider-nav-animation .slider-container .custom-animated-text {
+                                opacity: 0.25;
+                                transform: scale(.25);
+                                transition: opacity 1.5s ease-in-out, transform .95s ease-in-out;
+                                transition-delay: .5s;
+                                text-align: center;
+                            }
+                            /*The end of animation*/
+                            
+                            #animatedText.slider-nav-animation .slider-container .slide-visible .custom-animated-text {
+                                opacity: 1;
+                                transform: none;
+                            }
+                        </style>
+                    </div>
+
+
+
+                </div>
+                <button onclick="showAndHightlightCode()" class="btn btn-link my-2 my-lg-4">Show code</button>
+            </div>
+        </div>
 
         <div class="container my-5">
             <h2 class="my-5 text-center h1">Full screen image carousel</h2>
