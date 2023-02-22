@@ -34,7 +34,7 @@ const swiffyslider = function() {
                 root: sliderElement.querySelector(".slider-container"),
                 threshold: threshold
             });
-            this.getSlides(sliderElement.querySelectorAll(".slider-container>*")).forEach(slide => observer.observe(slide));
+            sliderElement.querySelectorAll(".slider-container>*:not(template)").forEach(slide => observer.observe(slide));
         },
 
         slide(sliderElement, next = true) {
