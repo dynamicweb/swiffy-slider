@@ -49,19 +49,27 @@ export const swiffyslider = function() {
             const slides = container.children;
             const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
             const scrollStep = slides[0].offsetWidth + gapWidth;
+            const directionSlider = window.getComputedStyle(sliderElement, null).getPropertyValue('direction');
+            let directionFactor = (directionSlider == 'ltr') ? 1 : -1;
+
             let scrollLeftPosition = next ?
-                container.scrollLeft + scrollStep :
-                container.scrollLeft - scrollStep;
+                container.scrollLeft + scrollStep * directionFactor :
+                container.scrollLeft - scrollStep * directionFactor;
             if (fullpage) {
                 scrollLeftPosition = next ?
-                    container.scrollLeft + container.offsetWidth :
-                    container.scrollLeft - container.offsetWidth;
+                    container.scrollLeft + container.offsetWidth * directionFactor :
+                    container.scrollLeft - container.offsetWidth * directionFactor;
             }
-            if (container.scrollLeft < 1 && !next && !noloop) {
-                scrollLeftPosition = (container.scrollWidth - container.offsetWidth);
-            }
-            if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop) {
-                scrollLeftPosition = 0;
+            if (directionSlider == 'ltr') {
+                if (container.scrollLeft < 1 && !next && !noloop)
+                    scrollLeftPosition = (container.scrollWidth - container.offsetWidth);
+                if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop)
+                    scrollLeftPosition = 0;
+            } else {
+                if (container.scrollLeft > -1 && !next && !noloop)
+                    scrollLeftPosition = (container.scrollWidth - container.offsetWidth) * directionFactor;
+                if (container.scrollLeft <= (container.scrollWidth - container.offsetWidth) * directionFactor && next && !noloop)
+                    scrollLeftPosition = 0;
             }
             container.scroll({
                 left: scrollLeftPosition,
@@ -84,8 +92,11 @@ export const swiffyslider = function() {
             const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
             const scrollStep = container.children[0].offsetWidth + gapWidth;
             const nodelay = sliderElement.classList.contains("slider-nav-nodelay");
+
+            const directionSlider = getComputedStyle(sliderElement, null).getPropertyValue('direction');
+            let directionFactor = (directionSlider == 'ltr') ? 1 : -1;
             container.scroll({
-                left: (scrollStep * slideIndex),
+                left: (scrollStep * slideIndex * directionFactor),
                 behavior: nodelay ? "auto" : "smooth"
             });
         },
