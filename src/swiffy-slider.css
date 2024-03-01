@@ -102,7 +102,7 @@
 
 .slider-item-ratio .slider-container>*::after {
     display: block;
-    padding-block-start: calc( 100% / (var(--swiffy-slider-item-ratio)));
+    padding-top: calc( 100% / (var(--swiffy-slider-item-ratio)));
     content: "";
 }
 
