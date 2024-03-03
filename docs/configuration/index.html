@@ -73,6 +73,8 @@
             //sliderInstance.style = "";
             sliderInstance.removeAttribute("data-slider-nav-autoplay-interval");
             sliderInstance.removeAttribute("style");
+            sliderInstance.removeAttribute("dir");
+
             sliderInstance.classList.add("swiffy-slider");
 
             var reloadSlider = false;
@@ -88,7 +90,7 @@
                 if (key.startsWith("data-") && parseInt(value) > 0) {
                     sliderInstance.setAttribute(key, value);
                 }
-                if (value === 'rtl') {
+                if (key === 'direction') {
                     sliderInstance.setAttribute('dir', value);
                 }
                 if (key.startsWith("--") && value.length > 0) {
@@ -544,8 +546,8 @@
             <div class="mb-3">
                 <strong class="text-uppercase">Direction</strong>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="rtl" id="direction-rtl" name="direction-rtl">
-                    <label class="form-check-label" for="direction-rtl">Right to Left <code>dir="rtl"</code></label>
+                    <input class="form-check-input" type="checkbox" value="rtl" id="direction" name="direction">
+                    <label class="form-check-label" for="direction">Right to Left <code>dir="rtl"</code></label>
                 </div>
             </div>
 
