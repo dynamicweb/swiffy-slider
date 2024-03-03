@@ -90,7 +90,7 @@
 .slider-item-ratio .slider-container>*>* {
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -102,7 +102,7 @@
 
 .slider-item-ratio .slider-container>*::after {
     display: block;
-    padding-top: calc( 100% / (var(--swiffy-slider-item-ratio)));
+    padding-block-start: calc( 100% / (var(--swiffy-slider-item-ratio)));
     content: "";
 }
 
@@ -148,9 +148,9 @@
 
 .slider-indicators {
     position: absolute;
-    right: 2rem;
+    inset-inline-end: 2rem;
     bottom: 0;
-    left: 2rem;
+    inset-inline-start: 2rem;
     display: flex;
     justify-content: center;
     padding: 0;
@@ -217,7 +217,7 @@
 .slider-nav {
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     bottom: 0;
     border: 0;
     background-color: transparent;
@@ -250,6 +250,9 @@
     background-origin: content-box;
     width: 3rem;
     height: 3rem;
+}
+[dir=rtl] .slider-nav::after {
+    transform: rotate(180deg);
 }
 
 .slider-nav-arrow .slider-nav::after {
@@ -339,10 +342,13 @@
 .slider-nav.slider-nav-next::after {
     transform: rotate(180deg);
 }
+[dir=rtl] .slider-nav.slider-nav-next::after {
+    transform: unset;
+}
 
 .slider-nav.slider-nav-next {
-    right: 0;
-    left: unset;
+    inset-inline-end:0;
+    inset-inline-start: unset;
 }
 
 .slider-nav-visible .slider-nav {
@@ -482,7 +488,7 @@
         content: " ";
         display: block;
         position: absolute;
-        left: calc((var(--swiffy-slider-item-gap)/2)*-1);
+        inset-inline-start: calc((var(--swiffy-slider-item-gap)/2)*-1);
         top: 0;
         /*FF fix setting w+h to 1 px - otherwise snap will not occur*/
         width: 1px;
@@ -490,16 +496,16 @@
         scroll-snap-align: var(--swiffy-slider-snap-align);
     }
     .slider-nav-outside-expand .slider-nav {
-        margin-left: -4rem;
+        margin-inline-start: -4rem;
     }
     .slider-nav-outside-expand .slider-nav.slider-nav-next {
-        margin-right: -4rem;
+        margin-inline-end: -4rem;
     }
     .slider-nav-sm.slider-nav-outside-expand .slider-nav {
-        margin-left: -3.5rem;
+        margin-inline-start: -3.5rem;
     }
     .slider-nav-sm.slider-nav-outside-expand .slider-nav.slider-nav-next {
-        margin-right: -3.5rem;
+        margin-inline-end: -3.5rem;
     }
     .slider-indicators-sm.slider-indicators {
         display: none;
@@ -535,7 +541,7 @@
         content: " ";
         display: block;
         position: absolute;
-        left: calc((var(--swiffy-slider-item-gap)/2)*-1);
+        inset-inline-start: calc((var(--swiffy-slider-item-gap)/2)*-1);
         top: 0;
         /*FF fix setting w+h to 1 px - otherwise snap will not occur*/
         width: 1px;

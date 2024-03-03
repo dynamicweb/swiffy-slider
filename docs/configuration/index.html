@@ -73,6 +73,8 @@
             //sliderInstance.style = "";
             sliderInstance.removeAttribute("data-slider-nav-autoplay-interval");
             sliderInstance.removeAttribute("style");
+            sliderInstance.removeAttribute("dir");
+
             sliderInstance.classList.add("swiffy-slider");
 
             var reloadSlider = false;
@@ -87,6 +89,9 @@
                 }
                 if (key.startsWith("data-") && parseInt(value) > 0) {
                     sliderInstance.setAttribute(key, value);
+                }
+                if (key === 'direction') {
+                    sliderInstance.setAttribute('dir', value);
                 }
                 if (key.startsWith("--") && value.length > 0) {
                     cssVariables += `${key}:${value};`;
@@ -147,83 +152,83 @@
             border: 1px solid #ececec;
             border-radius: .25rem;
         }
-        
+
         .preview-images #slide1 {
             background-image: url("../assets/img/photos/img1.webp");
         }
-        
+
         .preview-images #slide2 {
             background-image: url("../assets/img/photos/img2.webp");
         }
-        
+
         .preview-images #slide3 {
             background-image: url("../assets/img/photos/img3.webp");
         }
-        
+
         .preview-images #slide4 {
             background-image: url("../assets/img/photos/img4.webp");
         }
-        
+
         .preview-images #slide5 {
             background-image: url("../assets/img/photos/img5.webp");
         }
-        
+
         .preview-images #slide6 {
             background-image: url("../assets/img/photos/img6.webp");
         }
-        
+
         .preview-images #slide7 {
             background-image: url("../assets/img/photos/img7.webp");
         }
-        
+
         .preview-images #slide8 {
             background-image: url("../assets/img/photos/img8.webp");
         }
-        
+
         .preview-images #slide9 {
             background-image: url("../assets/img/photos/img9.webp");
         }
-        
+
         .preview-colors #slide1 {
             background-color: #277da1 !important;
         }
-        
+
         .preview-colors #slide2 {
             background-color: #577590 !important;
         }
-        
+
         .preview-colors #slide3 {
             background-color: #4d908e !important;
         }
-        
+
         .preview-colors #slide4 {
             background-color: #43aa8b !important;
         }
-        
+
         .preview-colors #slide5 {
             background-color: #90be6d !important;
         }
-        
+
         .preview-colors #slide6 {
             background-color: #f9c74f !important;
         }
-        
+
         .preview-colors #slide7 {
             background-color: #f9844a !important;
         }
-        
+
         .preview-colors #slide8 {
             background-color: #f3722c !important;
         }
-        
+
         .preview-colors #slide9 {
             background-color: #f94144 !important;
         }
-        
+
         .swiffy-slider:not(.slider-item-ratio) .slider-container>* {
             min-height: 30rem;
         }
-        
+
         .swiffy-slider .slider-container>*,
         .swiffy-slider .slider-container>*>* {
             background-size: cover;
@@ -234,72 +239,72 @@
             width: 100%;
             height: 100%;
         }
-        
+
         .slider-item-show2:not(.slider-item-ratio) .slider-container>* {
             min-height: 25rem;
         }
-        
+
         .slider-item-show3:not(.slider-item-ratio) .slider-container>* {
             min-height: 20rem;
         }
-        
+
         .slider-item-show4:not(.slider-item-ratio) .slider-container>* {
             min-height: 15rem;
         }
-        
+
         .slider-item-show5:not(.slider-item-ratio) .slider-container>* {
             min-height: 13.5rem;
         }
-        
+
         .slider-item-show6:not(.slider-item-ratio) .slider-container>* {
             min-height: 12rem;
         }
-        
+
         html,
         body {
             font-family: 'Barlow Semi Condensed', sans-serif;
             scroll-snap-type: y proximity;
             scroll-behavior: smooth;
         }
-        
+
         .navbar-toggler {
             border: none;
             border-radius: 0;
         }
-        
+
         .navbar-toggler:focus {
             box-shadow: none;
         }
-        
+
         .lead {
             font-size: 1.5rem;
             font-weight: 300;
         }
-        
+
         .btn-primary {
             color: #fff;
             background-color: #DF1E1E;
             border-color: #DF1E1E;
         }
-        
+
         .btn-outline-primary {
             color: #DF1E1E;
             border-color: #DF1E1E;
         }
-        
+
         .btn-outline-white {
             color: #fff;
             border-color: #fff;
         }
-        
+
         .btn-link {
             color: #DF1E1E;
         }
-        
+
         .nav-link.active {
             position: relative;
         }
-        
+
         .nav-link.active::after {
             position: absolute;
             border-bottom: 2px solid #fff;
@@ -309,7 +314,7 @@
             height: 2px;
             content: "";
         }
-        
+
         @media(max-width: 992px) {
             .position-sticky {
                 position: inherit !important;
@@ -534,8 +539,16 @@
                     <option value="slider-item-ratio-4x3">4:3 ratio / 75% (.slider-item-ratio-4x3)</option>
                     <option value="slider-item-ratio-1x1">1:1 ratio / 100% (.slider-item-ratio-1x1)</option>
                     <option value="slider-item-ratio-3x4">3:4 ratio / 125% (.slider-item-ratio-1x1)</option>
-                    
+
                 </select>
+            </div>
+
+            <div class="mb-3">
+                <strong class="text-uppercase">Direction</strong>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="rtl" id="direction" name="direction">
+                    <label class="form-check-label" for="direction">Right to Left <code>dir="rtl"</code></label>
+                </div>
             </div>
 
             <div class="mb-3">

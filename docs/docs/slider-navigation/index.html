@@ -34,17 +34,17 @@
         body {
             font-family: 'Barlow Semi Condensed', sans-serif;
         }
-        
+
         main h3,
         main h2 {
             margin-top: 2rem;
         }
-        
+
         .btn-outline-white {
             color: #fff;
             border-color: #fff;
         }
-        
+
         .sw-nav .btn {
             padding: .25rem .5rem;
             font-weight: 600;
@@ -53,20 +53,20 @@
             border: 0;
             text-align: left;
         }
-        
+
         .sw-nav .btn:hover,
         .sw-nav .btn.active {
             color: rgba(0, 0, 0, 0.85);
         }
-        
+
         .sw-nav .btn:hover {
             background-color: rgba(223, 30, 30, 0.25);
         }
-        
+
         .nav-link.active {
             position: relative;
         }
-        
+
         .nav-link.active::after {
             position: absolute;
             border-bottom: 2px solid #fff;
@@ -76,39 +76,39 @@
             height: 2px;
             content: "";
         }
-        
+
         .slider-container>*:nth-child(1) {
             background-color: #277da1!important;
         }
-        
+
         .slider-container>*:nth-child(2) {
             background-color: #577590!important;
         }
-        
+
         .slider-container>*:nth-child(3) {
             background-color: #4d908e!important;
         }
-        
+
         .slider-container>*:nth-child(4) {
             background-color: #43aa8b!important;
         }
-        
+
         .slider-container>*:nth-child(5) {
             background-color: #90be6d!important;
         }
-        
+
         .slider-container>*:nth-child(6) {
             background-color: #f9c74f!important;
         }
-        
+
         .slider-container>*:nth-child(7) {
             background-color: #f9844a!important;
         }
-        
+
         .slider-container>*:nth-child(8) {
             background-color: #f3722c!important;
         }
-        
+
         .slider-container>*:nth-child(9) {
             background-color: #f94144!important;
         }
@@ -223,6 +223,23 @@
 
                                     <button type="button" class="slider-nav"></button>
                                     <button type="button" class="slider-nav slider-nav-next"></button>
+                                </div>
+
+                                <div dir="rtl">
+                                    <h3>RTL Default navigation</h3>
+                                    <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart ">
+                                        <ul class="slider-container">
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                        </ul>
+
+                                        <button type="button" class="slider-nav"></button>
+                                        <button type="button" class="slider-nav slider-nav-next"></button>
+                                    </div>
                                 </div>
 
                                 <h3>Round navigation <code>.slider-nav-round</code></h3>
@@ -420,6 +437,23 @@
                                     <button type="button" class="slider-nav slider-nav-next"></button>
                                 </div>
 
+                                <div dir="rtl">
+                                    <h3>RTL: Auto hide navigation arrrows when on first or last slide <code>.slider-nav-autohide .slider-item-first-visible</code></h3>
+                                    <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-snapstart slider-nav-autohide slider-item-first-visible">
+                                        <ul class="slider-container">
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                        </ul>
+
+                                        <button type="button" class="slider-nav"></button>
+                                        <button type="button" class="slider-nav slider-nav-next"></button>
+                                    </div>
+                                </div>
+
                                 <h3>No navigation buttons but with scrollbar <code>.slider-nav-scrollbar</code></h3>
                                 <div class="swiffy-slider slider-nav-visible slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-scrollbar">
                                     <ul class="slider-container">
@@ -510,20 +544,6 @@
                                     <button type="button" class="slider-nav slider-nav-next"></button>
                                 </div>
 
-                                <h3>Navigation with autoplay and autopause <code>.slider-nav-autoplay .slider-nav-autopause</code></h3>
-                                <div class="swiffy-slider  slider-item-helper slider-item-show2 slider-item-snapstart slider-nav-round slider-nav-autoplay slider-nav-autopause">
-                                    <ul class="slider-container">
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                    </ul>
-
-                                    <button type="button" class="slider-nav"></button>
-                                    <button type="button" class="slider-nav slider-nav-next"></button>
-                                </div>
                             </section>
                         </div>
                     </div>
