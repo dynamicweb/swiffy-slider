@@ -101,7 +101,13 @@ export const swiffyslider = function() {
         autoPlay(sliderElement, timeout, autopause) {
             timeout = timeout < 750 ? 750 : timeout;
             let autoplayTimer = setInterval(() => this.slide(sliderElement), timeout);
-            const autoplayer = () => this.autoPlay(sliderElement, timeout, autopause);
+            const autoplayer = () => {
+                ["mouseout", "touchend"].forEach(function(event) {
+                    sliderElement.removeEventListener(event, autoplayer);
+                });
+
+                this.autoPlay(sliderElement, timeout, autopause);
+            }
             if (autopause) {
                 ["mouseover", "touchstart"].forEach(function(event) {
                     sliderElement.addEventListener(event, function() {
@@ -109,9 +115,7 @@ export const swiffyslider = function() {
                     }, { once: true, passive: true });
                 });
                 ["mouseout", "touchend"].forEach(function(event) {
-                    sliderElement.addEventListener(event, function() {
-                        autoplayer();
-                    }, { once: true, passive: true });
+                    sliderElement.addEventListener(event, autoplayer, { once: true, passive: true });
                 });
             }
             return autoplayTimer;
