@@ -24,7 +24,7 @@ const swiffysliderextensions = function() {
 
             const startingLeftPos = container.scrollLeft;
             const mouseDownStartingXPos = e.clientX;
-            const slideWidth = container.children[0].offsetWidth + parseInt(window.getComputedStyle(container).columnGap);
+            const slideWidth = this.getSlides(container)[0].offsetWidth + parseInt(window.getComputedStyle(container).columnGap);
             const maxLeftPosition = slideWidth * (container.children.length - 1);
             const startLeftScroll = container.scrollLeft;
             let nextSlideLeftPos = startLeftScroll;
@@ -65,6 +65,10 @@ const swiffysliderextensions = function() {
                 });
                 this.draggingtimer = setTimeout(() => { sliderElement.classList.remove("dragging"); }, 550);
             }, { once: true, passive: true });
+        },
+
+        getSlides(sliderElement) {
+            return Array.from(sliderElement.children).filter(element => element.tagName.toLowerCase() !== "template")
         }
     };
 }();
