@@ -1,25 +1,25 @@
 {
     "name": "swiffy-slider",
     "description": "Swiffy slider is a touch enabled super lightweight html slider and carousel using browser scroll, css grid and scroll snap align and less than 1.5 kb javascript. Comes in css mode only version",
-    "version": "1.6.0",
-    "config": {
-        "version_short": "1.5"
-    },
+    "version": "2.0.0",
     "type": "module",
     "exports": {
         ".": {
-            "import": "./src/swiffy-slider.esm.js"
+            "types": "./dist/js/swiffy-slider.d.ts",
+            "default": "./dist/js/swiffy-slider.js"
         },
-        "./css": {
-            "import": "./dist/css/swiffy-slider.min.css"
+        "./extensions": {
+            "types": "./dist/js/swiffy-slider-extensions.d.ts",
+            "default": "./dist/js/swiffy-slider-extensions.js"
         },
+        "./css": "./dist/css/swiffy-slider.css",
         "./src/": "./src/"
     },
-    "style": "dist/css/swiffy-slider.min.css",
-    "browser": "dist/js/swiffy-slider.min.js",
+    "types": "./dist/js/swiffy-slider.d.ts",
+    "style": "dist/css/swiffy-slider.css",
     "files": [
-        "dist/{css,js}/*.{css,js,map}",
-        "src/*.{css,js}"
+        "dist/{css,js}/*.{css,js,map,d.ts}",
+        "src/*.{css,js,d.ts}"
     ],
     "repository": {
         "type": "git",
@@ -50,10 +50,17 @@
     },
     "homepage": "https://swiffyslider.com",
     "engines": {
-        "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+        "node": ">=18"
     },
     "license": "MIT",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 0"
+        "build": "node build.js",
+        "watch": "node build.js --watch",
+        "dev": "concurrently \"node build.js --watch\" \"npx serve docs -l 5501\""
+    },
+    "devDependencies": {
+        "concurrently": "^9.0.0",
+        "esbuild": "^0.25.0",
+        "lightningcss-cli": "^1.29.0"
     }
 }

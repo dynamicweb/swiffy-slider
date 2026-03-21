@@ -1,3 +1,43 @@
+# [v2.0.0] - 2026-03-21
+
+## Breaking changes
+
+- **ESM only** — IIFE build removed. Use `<script type="module">` or a bundler. No more `window.swiffyslider` global.
+- **No auto-initialization** — `data-noinit` is gone. Always call `swiffyslider.init()` explicitly.
+- **Extensions API changed** — `swiffyslider.extensions.*` replaced by the separate `swiffysliderextensions` named export from `swiffy-slider/extensions`.
+- **Dist file paths changed** — `swiffy-slider.min.js`, `swiffy-slider.esm.min.js`, `swiffy-slider.min.css` removed. Use `swiffy-slider.js` and `swiffy-slider.css`.
+- **`slideToByIndicator(event)`** — now requires a click `Event` argument; not intended for direct use, use `slideTo()` instead.
+
+## Added
+
+- TypeScript declaration files (`swiffy-slider.d.ts`, `swiffy-slider-extensions.d.ts`) shipped in the package — no `@types/` package needed.
+- JSDoc annotations on all public methods for JavaScript IntelliSense in VS Code and `// @ts-check` users.
+- GitHub Actions workflow for automatic npm publish on merge to `main`.
+- `@media (prefers-reduced-motion: reduce)` disables smooth scroll for users with reduced-motion OS preference.
+- `slider-item-ratio-contain` option added to configuration page.
+
+## Changed
+
+- Build system replaced with esbuild + lightningcss — no VS Code extension dependency.
+- `dist/` cleaned on each build; old minified artefacts removed.
+- CSS: `grid-gap` replaced with `gap`; `-webkit-overflow-scrolling: touch` removed (obsolete since Safari 13).
+- CSS: media queries modernised to range syntax (`width >= 62rem`, `width < 62rem`).
+- CSS: `position: relative` added to `.slider-container` so mousedrag overlay positions correctly.
+- CSS: `left: unset` corrected to `left: auto` on `.slider-nav-next`.
+- CSS: duplicate `padding: 0` declaration removed from `.slider-nav`.
+- CSS: impossible selector `.swiffy-slider.slider-indicators-outside.slider-indicators` removed.
+- CSS: square and round indicator shared properties merged to eliminate duplicate declarations.
+- Copyright year updated to 2021–2026.
+- package.json version bumped to 2.0.0; `browser` field removed; exports updated to conditional format with `types`.
+
+## Bugfixes
+
+- Fixed shared `draggingTimer` state in extensions causing timer leak across multiple drag interactions.
+- Fixed `slideToByIndicator` to use `event.target.closest()` preventing incorrect slide navigation on indicator container clicks.
+- Fixed `handleIndicators` divide-by-zero when `scrollableWidth === 0`.
+- Fixed `autoPlay` using `window.clearTimeout` instead of `clearInterval`.
+- Fixed ratio select labels in configuration page (`slider-item-ratio-32x9` and `slider-item-ratio-3x4` showed wrong class names).
+
 # [v1.6.0] - 28-09-2022
 
 ## Added
