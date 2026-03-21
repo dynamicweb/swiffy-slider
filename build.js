@@ -1,6 +1,6 @@
 import * as esbuild from "esbuild";
 import { execSync } from "child_process";
-import { copyFileSync, mkdirSync, rmSync } from "fs";
+import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 
 const watch = process.argv.includes("--watch");
 
@@ -26,7 +26,9 @@ function copyToDocs() {
     copyFileSync(`${jsDist}/swiffy-slider.js.map`, `${docsJs}/swiffy-slider.js.map`);
     copyFileSync(`${jsDist}/swiffy-slider-extensions.js`, `${docsJs}/swiffy-slider-extensions.js`);
     copyFileSync(`${jsDist}/swiffy-slider-extensions.js.map`, `${docsJs}/swiffy-slider-extensions.js.map`);
-    copyFileSync(`${cssDist}/swiffy-slider.css`, `${docsCss}/swiffy-slider.css`);
+    const css = readFileSync(`${cssDist}/swiffy-slider.css`, "utf8")
+        .replace(/sourceMappingURL=.*swiffy-slider\.css\.map/, "sourceMappingURL=swiffy-slider.css.map");
+    writeFileSync(`${docsCss}/swiffy-slider.css`, css);
     copyFileSync(`${cssDist}/swiffy-slider.css.map`, `${docsCss}/swiffy-slider.css.map`);
 }
 

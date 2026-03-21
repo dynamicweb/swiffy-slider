@@ -10,11 +10,11 @@
 
     <link rel="stylesheet" href="../assets/css/swiffy-slider.css">
     <script type="module">
-        import('../assets/js/swiffy-slider.js').then(({ swiffyslider }) => {
+        Promise.all([
+            import('../assets/js/swiffy-slider.js'),
+            import('../assets/js/swiffy-slider-extensions.js')
+        ]).then(([{ swiffyslider }, { swiffysliderextensions }]) => {
             window.swiffyslider = swiffyslider;
-        });
-        import('../assets/js/swiffy-slider-extensions.js').then(({ swiffysliderextensions }) => {
-            window.swiffyslider = window.swiffyslider || {};
             window.swiffyslider.extensions = swiffysliderextensions;
         });
     </script>

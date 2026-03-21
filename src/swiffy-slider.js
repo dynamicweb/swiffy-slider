@@ -59,7 +59,7 @@ export const swiffyslider = {
             root: this._c(sliderElement),
             threshold
         });
-        for (const slide of this._c(sliderElement).querySelectorAll("*")) {
+        for (const slide of this._c(sliderElement).querySelectorAll(":scope > *")) {
             observer.observe(slide);
         }
     },
