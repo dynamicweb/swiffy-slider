@@ -20,12 +20,10 @@
 </p>
 
 [![](https://data.jsdelivr.com/v1/package/npm/swiffy-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/swiffy-slider)
-![version](https://img.shields.io/badge/Version-1.6.0-green.svg)
+![version](https://img.shields.io/badge/Version-2.0.0-green.svg)
 [![npm version](https://img.shields.io/npm/v/swiffy-slider)](https://www.npmjs.com/package/swiffy-slider)
-[![CSS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.min.css?compression=gzip&label=CSS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.min.css)
-[![CSS Brotli size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.min.css?compression=brotli&label=CSS%20Brotli%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.min.css)
-[![JS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.min.js?compression=gzip&label=JS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.min.js)
-[![JS Brotli size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.min.js?compression=brotli&label=JS%20Brotli%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.min.js)
+[![CSS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.css?compression=gzip&label=CSS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.css)
+[![JS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.js?compression=gzip&label=JS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.js)
 
 <h2> Swiffy Slider</h2>
 
@@ -42,7 +40,7 @@ This project utilizes what is available in modern browsers resulting in a super 
 - WCAG friendly - all content is in pure markup and can be annotated accordingly, supports tabbing, keyboard navigation, aria attributing and all what is needed.
 - Setup is done in pure markup and css classes, no scripting required
 - No js loading of slides, configuration or initialization
-- Vanilla javascript, less than 1.3kb ~110 lines
+- Vanilla javascript, ESM only
 - Very low overall footprint ~3.5kb in total (css+js gzip'ed)
 
 <h2> Table of contents</h2>
@@ -51,7 +49,9 @@ This project utilizes what is available in modern browsers resulting in a super 
     - [1. Add CSS and JS to website head section](#1-add-css-and-js-to-website-head-section)
     - [2. Add markup](#2-add-markup)
 - [Additional installation options](#additional-installation-options)
+- [Why Swiffy Slider](#why-swiffy-slider)
 - [Features](#features)
+- [Browser support](#browser-support)
 - [What's included](#whats-included)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Documentation](#documentation)
@@ -64,12 +64,15 @@ This project utilizes what is available in modern browsers resulting in a super 
     - [Navigation options](#navigation-options)
     - [Indicator options](#indicator-options)
     - [Animation options](#animation-options)
+    - [Extensions](#extensions)
   - [Javascript](#javascript)
   - [Javascript loading and binding](#javascript-loading-and-binding)
-    - [Optimized loading](#optimized-loading)
+  - [TypeScript and IntelliSense](#typescript-and-intellisense)
   - [CSS variables](#css-variables)
-  - [Safari smooth scrolling polyfill](#safari-smooth-scrolling-polyfill)
+  - [Safari smooth scrolling](#safari-smooth-scrolling)
 - [Limitations](#limitations)
+- [Migrating from v1](#migrating-from-v1)
+- [Development](#development)
 - [Contributing](#contributing)
 - [Star gazers](#star-gazers)
 - [Examples of sites using Swiffy Slider](#examples-of-sites-using-swiffy-slider)
@@ -82,8 +85,11 @@ This project utilizes what is available in modern browsers resulting in a super 
 
 #### 1. Add CSS and JS to website head section
 ```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" defer>
-<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet">
+<script type="module">
+    import { swiffyslider } from 'https://cdn.jsdelivr.net/npm/swiffy-slider@2.0.0/dist/js/swiffy-slider.js';
+    window.addEventListener('load', () => swiffyslider.init());
+</script>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@2.0.0/dist/css/swiffy-slider.css" rel="stylesheet">
 ```
 
 #### 2. Add markup
@@ -105,7 +111,7 @@ This project utilizes what is available in modern browsers resulting in a super 
     </div>
 </div>
 ```
-Swiffy Slider script automatically binds to all `.swiffy-slider` instances
+Call `swiffyslider.init()` after the DOM is ready to bind all `.swiffy-slider` instances.
 
 ## Additional installation options
 - [Download the latest release](https://github.com/dynamicweb/swiffy-slider/releases/latest)
@@ -113,23 +119,37 @@ Swiffy Slider script automatically binds to all `.swiffy-slider` instances
 - Install with [npm](https://www.npmjs.com/): `npm install swiffy-slider`
 - Install with [yarn](https://yarnpkg.com/): `yarn add swiffy-slider`
 
-Loading (ESM)
+Loading via bundler (ESM)
 
 ```javascript
-// import Swiffy Slider JS
-import { swiffyslider } from 'swiffy-slider'
-window.swiffyslider = swiffyslider;
+import { swiffyslider } from 'swiffy-slider';
+import 'swiffy-slider/css';
 
-window.addEventListener("load", () => {
-    window.swiffyslider.init();
-});
+window.addEventListener('load', () => swiffyslider.init());
+```
 
-// import Swiffy Slider CSS
-import "swiffy-slider/css"
+Loading extensions (optional mouse drag support)
 
+```javascript
+import { swiffysliderextensions } from 'swiffy-slider/extensions';
+
+window.addEventListener('load', () => swiffysliderextensions.init());
 ```
 
 Read the [Getting started page](https://www.swiffyslider.com/docs/) for examples, configuration options and a visual configurator.
+
+## Why Swiffy Slider
+
+Most slider libraries ship a large JavaScript runtime that reimplements scrolling, snapping, and touch handling from scratch. Modern browsers already do all of this natively. Swiffy Slider is a thin layer of CSS and a small amount of JavaScript that wires up what the browser already provides.
+
+| Library | JS size (gzip) |
+|---|---|
+| Swiper | ~40KB |
+| Splide | ~11KB |
+| Glide.js | ~7KB |
+| **Swiffy Slider** | **~1.3KB** |
+
+The result is better scroll performance (native momentum and snap), full accessibility via native focus/tab/keyboard, and no dependencies to maintain.
 
 ## Features
 
@@ -155,6 +175,17 @@ Read the [Getting started page](https://www.swiffyslider.com/docs/) for examples
 - Scripting - Execute scripts when an item is done sliding using `swiffyslider.onSlideEnd`
 - Scripting - Start and stop automatic sliding using script
 
+## Browser support
+
+Swiffy Slider requires CSS scroll-snap and CSS Grid, which are supported in all modern browsers. No IE support.
+
+| Browser | Minimum version |
+|---|---|
+| Chrome | 69 |
+| Firefox | 99 |
+| Safari | 11 |
+| Edge | 79 |
+
 ## What's included
 
 Within the download you'll find the following directories and files. You'll see something like this:
@@ -164,26 +195,21 @@ swiffy-slider/
 ├── dist/
 │   ├── css/
 │   │   ├── swiffy-slider.css
-│   │   ├── swiffy-slider.min.css.map
-│   │   ├── swiffy-slider.min.css.map
+│   │   ├── swiffy-slider.css.map
 │   ├── js/
-│   │   ├── swiffy-slider-extensions.js
-│   │   ├── swiffy-slider-extensions.min.js
-│   │   ├── swiffy-slider-extensions.min.js.map
-│   │   ├── swiffy-slider.esm.js
-│   │   ├── swiffy-slider.esm.min.js
-│   │   ├── swiffy-slider.esm.min.js.map
 │   │   ├── swiffy-slider.js
-│   │   ├── swiffy-slider.min.js
-│   │   ├── swiffy-slider.min.js.map
+│   │   ├── swiffy-slider.js.map
+│   │   ├── swiffy-slider.d.ts
+│   │   ├── swiffy-slider-extensions.js
+│   │   ├── swiffy-slider-extensions.js.map
+│   │   ├── swiffy-slider-extensions.d.ts
 ├── src/
-│   ├── swiffy-slider.extensions.js
-│   ├── swiffy-slider.css
-│   ├── swiffy-slider.esm.js
 │   ├── swiffy-slider.js
+│   ├── swiffy-slider-extensions.js
+│   ├── swiffy-slider.css
 ```
 
-The download contains compiled and minified CSS and JS (`swiffy-slider.min.*`). [source maps](https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps) (`swiffy-slider.*.map`) are available for use with certain browsers' developer tools. 
+All distributed files are ESM. [Source maps](https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps) are included for use with browser developer tools.
 
 ## Bugs and feature requests
 
@@ -528,16 +554,51 @@ For the <code>swiffy-slider</code> wrapper. The <code>slider-nav-animation-*</co
       <td>Slide up animation using translateY - starts at 60% of the height</td>
     </tr>
     <tr>
+      <td><code>slider-nav-animation-zoomout</code></td>
+      <td>Zoom out animation - slides start scaled up at 130% and scale down to normal size as they enter view</td>
+    </tr>
+    <tr>
       <td><code>data-slider-nav-animation-threshold</code> attribute</td>
       <td>Changes the default animation threshold - value is between 0-1. <code>data-slider-nav-animation-threshold="0.3"</code>. Default value is 0.3. This setting defines how many percent of a slide should be visible before the animation starts</td>
     </tr>
   </tbody>
 </table>
 
-### Javascript
-The Swiffy Slider script can be accessed using `window.swiffyslider` or simply `swiffyslider`
+#### Extensions
 
-All options and behavior is handled by the css classes, so using the scripts directly is only for more advanced scenarios. 
+Mouse drag support is provided as an optional separate module to keep the core small.
+
+Import and initialize alongside the main slider:
+
+```javascript
+import { swiffyslider } from 'swiffy-slider';
+import { swiffysliderextensions } from 'swiffy-slider/extensions';
+
+window.addEventListener('load', () => {
+    swiffyslider.init();
+    swiffysliderextensions.init();
+});
+```
+
+Then add the class to any slider wrapper that should support mouse drag:
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS class<br>_______________________________</th>
+      <th>Description<br>_______________________________</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>slider-nav-mousedrag</code></td>
+      <td>Enables click-and-drag navigation with the mouse. Requires the extensions module to be loaded and initialized.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Javascript
+Import `swiffyslider` from the package and call `init()` to set up all sliders. All options and behavior is handled by CSS classes — using the methods directly is only needed for advanced scenarios.
 <table class="table">
   <thead>
     <tr>
@@ -563,8 +624,8 @@ All options and behavior is handled by the css classes, so using the scripts dir
       <td>Slides to the next slide or next page depending on the nav settings. The passed slider element has to be a <code>.swiffy-slider</code> element. By default this method slides next, but call it with <code>false</code> to slide to previous</td>
     </tr>
     <tr>
-      <td><code>swiffyslider.slideToByIndicator();</code></td>
-      <td>This method is called when an indicator button is clicked. Should not be called directly. Instead call <code>slideTo</code></td>
+      <td><code>swiffyslider.slideToByIndicator(event);</code></td>
+      <td>Called internally when an indicator button is clicked. Pass the click event. To navigate programmatically, use <code>slideTo</code> instead.</td>
     </tr>
     <tr>
       <td><code>swiffyslider.slideTo(sliderElement, slideIndex);</code></td>
@@ -598,153 +659,80 @@ swiffyslider.onSlideEnd(sliderElement, function() {
 ```
 
 **Listening for sliding ends for a container and find visible slides**
-```html
-<script>
-window.addEventListener(&#39;load&#39;, () =&gt; {
-    const sliderElement = document.getElementById(&#39;myslider&#39;);
-    swiffyslider.onSlideEnd(sliderElement, function() {
+```javascript
+window.addEventListener('load', () => {
+    const sliderElement = document.getElementById('myslider');
+    swiffyslider.onSlideEnd(sliderElement, () => {
         const visibleSlideElements = getVisibleSlides(sliderElement);
-        const visible = [];
-        for (const slide of visibleSlideElements) {
-            visible.push(slide.innerText);
-        }
-        console.log(visible);
-        console.log(visibleSlideElements);
+        console.log(visibleSlideElements.map(s => s.innerText));
     });
 });
 
 function getVisibleSlides(sliderElement) {
     const container = sliderElement.querySelector('.slider-container');
-    //returns an array of slide elements that are fully or partially visible
-    const visibleSlides = [];
-    //We are using a grid layout and the slides left and right properties include the width of the gap, so when comparing with container width add a gap for each side of the slide gap.
     const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
-    for (const slide of container.children) {
-        var slideScrollLeftPosition = slide.getBoundingClientRect().left - container.getBoundingClientRect().left;
-        var slideScrollRightPosition = slideScrollLeftPosition + slide.offsetWidth - gapWidth;
-        if (slideScrollLeftPosition &gt;= 0 &amp;&amp; slideScrollRightPosition &lt;= container.offsetWidth) {
-            visibleSlides.push(slide);
-        }
-    }
-    return visibleSlides;
+    return [...container.children].filter(slide => {
+        const left = slide.getBoundingClientRect().left - container.getBoundingClientRect().left;
+        const right = left + slide.offsetWidth - gapWidth;
+        return left >= 0 && right <= container.offsetWidth;
+    });
 }
-</script>
 ```
 
 ### Javascript loading and binding
 
-Load Swiffy slider using webpack, ESBuild and other build tools. In your index.js (or whatever you call it).
-NOTE: Swiffy slider is an ES Module and you need a supported processing ECMAScript compiler - i.e. webpack 5+ etc.
+Swiffy Slider v2 is ESM only. Import and initialize in your entry point:
 
 ```javascript
-// import Swiffy Slider JS
-import { swiffyslider } from 'swiffy-slider'
-window.swiffyslider = swiffyslider;
+import { swiffyslider } from 'swiffy-slider';
+import 'swiffy-slider/css';
 
-window.addEventListener("load", () => {
-    window.swiffyslider.init();
+window.addEventListener('load', () => swiffyslider.init());
+```
+
+To initialize only part of the page (e.g. skip header/footer for faster init):
+
+```javascript
+window.addEventListener('load', () => {
+    swiffyslider.init(document.getElementById('content'));
 });
-
-// import Swiffy Slider CSS
-import "swiffy-slider/css"
-
-```
-```css
-// import Swiffy Slider src CSS unminified
-import "swiffy-slider/src/swiffy-slider.css"
 ```
 
-Avoid autobinding by adding `data-noinit` attribute on the script tag and then attach the slider manually
-```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" data-noinit defer>
-<script>
-    window.addEventListener('load', () => {
-        //Use only one of the loading options below!
-        //loads all sliders
-        swiffyslider.init();
-        //loads specific slider
-        swiffyslider.initSlider(document.getElementById('myslider'));
-    });
-</script>
-<div class="swiffy-slider" id="myslider">
-  <div class="slider-container">
-    <div></div>
-  </div>
-  ...
-</div>
+To initialize a single slider:
+
+```javascript
+swiffyslider.initSlider(document.getElementById('myslider'));
 ```
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" data-noinit defer>
-<script>
-    window.addEventListener('load', () => {
-        //loads all sliders in main and skip header and footer search for increased init performance.
-        swiffyslider.init(document.getElementById('content'));
-    });
-</script>
-<header>...</header>
-<main id="content">
-  <div class="swiffy-slider" id="myslider">
-    <div class="slider-container">
-      <div></div>
-    </div>
-    ...
-  </div>
-</main>
-<footer>...</footer>
-```
+Load on demand via dynamic import (e.g. when slider scrolls into view):
 
-Load as module using ES version of the script
 ```html
 <script type="module">
-    import {swiffyslider} from 'https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.esm.min.js'; 
-    window.swiffyslider = swiffyslider; 
-    window.swiffyslider.init(); 
-</script>
-```
-
-Load as ES module on demand, here using load - could be when slider scrolls into view or navigation arrow is clicked the first time. Load module and initialize sliders. 
-```html
-<script>
-window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
-        swiffysliderModule.swiffyslider.init();
+window.addEventListener('load', () => {
+    import('https://cdn.jsdelivr.net/npm/swiffy-slider@2.0.0/dist/js/swiffy-slider.js').then(({ swiffyslider }) => {
+        swiffyslider.init();
     });
 });
 </script>
 ```
 
-Load as ES module on demand. Load module and assign to window for later script manipulation of slides
-```html
-<script>
-window.addEventListener("load", () => {
-    import ('https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.esm.min.js').then((swiffysliderModule) => {
-        window.swiffyslider = swiffysliderModule.swiffyslider;
-        window.swiffyslider.init();
-    });
+### TypeScript and IntelliSense
+
+The package ships TypeScript declaration files (`.d.ts`) for both the core and the extensions module. No `@types/` package is needed.
+
+TypeScript users get full type checking automatically:
+
+```typescript
+import { swiffyslider } from 'swiffy-slider';
+import { swiffysliderextensions } from 'swiffy-slider/extensions';
+
+window.addEventListener('load', () => {
+    swiffyslider.init();
+    swiffysliderextensions.init();
 });
-</script>
 ```
 
-#### Optimized loading
-When loading the script with `defer` attribute, the initialization will happen as soon as the script is downloaded. 
-Deferred scripts are requested and run as soon as the document is parsed by the browser. This is the recommended approach.
-
-```
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" defer>
-```
-
-If the script is loaded without `defer` attribute, the initialization will happen when `document.readyState === 'interactive'` using a `document.onreadystatechange` event listener.
-The script will load and run before the Dom is loaded, but has been parsed.
-
-```
-<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js">
-```
-
-The above approach ensures the sliders are initialized as soon as possible and earlier in the page life cycle compared to using `load` or `DOMContentLoaded` events.
-This might not always be optimal depending on what else is running on the page. Since the content of Swiffy Slider is always markup and is rendered when the markup is parsed and does not 
-change when initialized, a later loading of the script and initialization of the sliders could be a benefit to leave more power for more important scripts. 
-See "Load as ES module on demand".
+JavaScript users with `// @ts-check` or VS Code's implicit type checking get full IntelliSense from the JSDoc annotations in the source without any extra setup.
 
 ### CSS variables
 The Swiffy Slider CSS is making use of a number of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a> that can be overriden to control behavior and styling
@@ -856,18 +844,6 @@ style="
 ```
 
 
-### Safari smooth scrolling polyfill
-UPDATE: Safari 15.4 introduces smooth scrolling: [See release notes](https://developer.apple.com/documentation/safari-release-notes/safari-15_4-release-notes)
-Sliding the carousel on touch devices **using fingers are not affected** by this issue.
-
-When sliding using buttons, indicators and javascript, the new slides are shown instantly with no smoothing when using Safari.
-
-In Safari based browsers, smooth scrolling is not supported because it is still lacking browser support. [See Can I use](https://caniuse.com/css-scroll-behavior)
-
-If you want to support smoooth scrolling on Safari based browsers, add this polyfill to your head section
-```html
-<script src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js"></script>
-```
 
 ## Limitations
 These limitations are known and intentionally there to keep this library small, fast and smooth.
@@ -879,23 +855,85 @@ These limitations are known and intentionally there to keep this library small, 
 
 Use other sliders and carousels if these limitations is important in your project.
 
+## Migrating from v1
+
+v2 is ESM only and removes auto-initialization. Here is what changed:
+
+**Script loading**
+
+```html
+<!-- v1 -->
+<script src="swiffy-slider.min.js" defer></script>
+
+<!-- v2 -->
+<script type="module">
+    import { swiffyslider } from 'swiffy-slider';
+    window.addEventListener('load', () => swiffyslider.init());
+</script>
+```
+
+**No more `window.swiffyslider`** — import the named export instead:
+
+```javascript
+// v1
+window.swiffyslider.init();
+
+// v2
+import { swiffyslider } from 'swiffy-slider';
+swiffyslider.init();
+```
+
+**`data-noinit` is removed** — v2 never auto-initializes. Always call `swiffyslider.init()` yourself.
+
+**`slideToByIndicator()` now requires an event argument** — this is called internally and you should not need to call it directly. Use `slideTo()` instead.
+
+**Dist file paths changed:**
+
+| v1 | v2 |
+|---|---|
+| `dist/js/swiffy-slider.min.js` | `dist/js/swiffy-slider.js` |
+| `dist/js/swiffy-slider.esm.min.js` | `dist/js/swiffy-slider.js` (same file) |
+| `dist/css/swiffy-slider.min.css` | `dist/css/swiffy-slider.css` |
+
+**npm package exports changed:**
+
+```javascript
+// v1
+import { swiffyslider } from 'swiffy-slider'          // → src/swiffy-slider.esm.js
+import 'swiffy-slider/css'
+
+// v2
+import { swiffyslider } from 'swiffy-slider'          // → dist/js/swiffy-slider.js
+import { swiffysliderextensions } from 'swiffy-slider/extensions'
+import 'swiffy-slider/css'
+```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build once (outputs to dist/ and docs/assets/)
+npm run build
+
+# Watch mode — rebuilds on every save
+npm run watch
+
+# Watch + local dev server at http://localhost:5501
+npm run dev
+```
+
+Source files are in `src/`. The build is handled by `build.js` using esbuild (JS) and lightningcss (CSS) — no bundler config files needed. After each build, output is automatically copied to `docs/assets/` so the local docs site reflects your changes immediately.
+
 ## Contributing
 
-You are more than welcome to contribute by opening issues and create pull requests.
-Keep in mind that this project is meant to be very simple in nature and support recent browsers only.
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for full details.
 
-This project is not going into a race of adding as many features as possible - but quite the opposite.
-Performance and filesize has high priority.
-
-The general rule is, that Swiffy Slider is covering the most common usages, and that more exotic usages are made in examples.
-If not at least 50% of all installations need a feature, the feature probably belong somewhere else.
-
-Examples of more exotic use cases are more than welcome as part of the examples, so please create pulls for that.
-
-Open tasks that you could help with:
-- Svelte component
-- Vue component
-- React component
+**Open tasks you could help with:**
+- Svelte component wrapper
+- Vue component wrapper
+- React component wrapper
 
 Thank you for your understanding.
 
@@ -908,7 +946,7 @@ Feel free to star this project and help spread the word.
 
 ## Examples of sites using Swiffy Slider
 
-Send an email to https://github.com/nicped if you would like your site on this list.
+Open an issue or reach out via [@nicped on GitHub](https://github.com/nicped) to have your site added to this list.
 
 - [Ärzte ohne Grenzen Österreich](https://msf.at)
 - [Swiffy slider documentation](https://swiffyslider.com) 

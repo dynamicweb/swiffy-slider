@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(sed -i 's|<link rel=\"\"stylesheet\"\" href=\"\"../../assets/css/swiffy-slider.min.css\"\">|<link rel=\"\"stylesheet\"\" href=\"\"../../assets/css/swiffy-slider.css\"\">|g' \"$f\")",
+      "Bash(sed -i 's|<script src=\"\"../../assets/js/swiffy-slider.min.js\"\" defer></script>|<script type=\"\"module\"\">\\\\n        import\\(\"\"../../assets/js/swiffy-slider.js\"\"\\).then\\(\\({ swiffyslider }\\) => {\\\\n            window.addEventListener\\(\"\"load\"\", \\(\\) => swiffyslider.init\\(\\)\\);\\\\n        }\\);\\\\n    </script>|g' \"$f\")",
+      "Bash(sed -i 's|https://github.com/dynamicweb/swiffy-slider/archive/refs/tags/v1.6.0.zip|https://github.com/dynamicweb/swiffy-slider/archive/refs/tags/v2.0.0.zip|g' \"$f\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}
