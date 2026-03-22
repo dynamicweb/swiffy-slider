@@ -20,7 +20,7 @@
 </p>
 
 [![](https://data.jsdelivr.com/v1/package/npm/swiffy-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/swiffy-slider)
-![version](https://img.shields.io/badge/Version-2.0.0-green.svg)
+![version](https://img.shields.io/badge/Version-2.1.0-green.svg)
 [![npm version](https://img.shields.io/npm/v/swiffy-slider)](https://www.npmjs.com/package/swiffy-slider)
 [![CSS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/css/swiffy-slider.css?compression=gzip&label=CSS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/css/swiffy-slider.css)
 [![JS gzip size](https://img.badgesize.io/dynamicweb/swiffy-slider/main/dist/js/swiffy-slider.js?compression=gzip&label=JS%20gzip%20size)](https://github.com/dynamicweb/swiffy-slider/blob/main/dist/js/swiffy-slider.js)
@@ -86,10 +86,10 @@ This project utilizes what is available in modern browsers resulting in a super 
 #### 1. Add CSS and JS to website head section
 ```html
 <script type="module">
-    import { swiffyslider } from 'https://cdn.jsdelivr.net/npm/swiffy-slider@2.0.0/dist/js/swiffy-slider.js';
+    import { swiffyslider } from 'https://cdn.jsdelivr.net/npm/swiffy-slider@2.1.0/dist/js/swiffy-slider.js';
     window.addEventListener('load', () => swiffyslider.init());
 </script>
-<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@2.0.0/dist/css/swiffy-slider.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@2.1.0/dist/css/swiffy-slider.css" rel="stylesheet">
 ```
 
 #### 2. Add markup
@@ -709,7 +709,7 @@ Load on demand via dynamic import (e.g. when slider scrolls into view):
 ```html
 <script type="module">
 window.addEventListener('load', () => {
-    import('https://cdn.jsdelivr.net/npm/swiffy-slider@2.0.0/dist/js/swiffy-slider.js').then(({ swiffyslider }) => {
+    import('https://cdn.jsdelivr.net/npm/swiffy-slider@2.1.0/dist/js/swiffy-slider.js').then(({ swiffyslider }) => {
         swiffyslider.init();
     });
 });
