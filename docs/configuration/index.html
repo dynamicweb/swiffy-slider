@@ -79,6 +79,7 @@
             sliderInstance.className = "";
             //sliderInstance.style = "";
             sliderInstance.removeAttribute("data-slider-nav-autoplay-interval");
+            sliderInstance.removeAttribute("dir");
             sliderInstance.removeAttribute("style");
             sliderInstance.classList.add("swiffy-slider");
 
@@ -99,6 +100,10 @@
                     cssVariables += `${key}:${value};`;
                 }
                 if (value === 'slider-nav-autoplay' || value === 'slider-nav-animation' || value === 'slider-nav-mousedrag' || value === 'slider-nav-autohide') {
+                    reloadSlider = true;
+                }
+                if (key === 'dir-rtl') {
+                    sliderInstance.setAttribute("dir", value);
                     reloadSlider = true;
                 }
             }
@@ -137,13 +142,12 @@
             document.getElementById("codeSample").innerHTML = highlightedCode;
 
             if (reloadSlider) {
-                console.log("Resetting...")
                 sliderPreview.innerHTML = '';
                 sliderPreview.appendChild(sliderInstance.cloneNode(true));
-                window.swiffyslider.init();
-                window.swiffyslider.extensions.init();
+                window.swiffyslider.init(sliderPreview);
+                window.swiffyslider.extensions.init(sliderPreview);
             } else {
-                window.swiffyslider.init();
+                window.swiffyslider.init(sliderPreview);
             }
 
 
@@ -854,6 +858,14 @@
                     <input type="text" class="form-control form-control-sm" value="" placeholder="ease-in-out" aria-label="Navigation dark color" name="--swiffy-slider-animation-timing">
                 </div>
                 <code>--swiffy-slider-animation-timing</code> variable
+            </div>
+
+            <div class="mb-3">
+                <strong class="text-uppercase">Direction</strong>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="rtl" id="dir-rtl" name="dir-rtl">
+                    <label class="form-check-label" for="dir-rtl">Right to left <code>dir="rtl"</code></label>
+                </div>
             </div>
 
             <div class="mb-3">
