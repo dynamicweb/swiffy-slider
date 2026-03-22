@@ -1,11 +1,13 @@
 export const swiffyslider = {
     /** @type {string} */
-    version: "2.0.0",
+    version: "2.1.0",
 
     /** @param {Element} el @returns {Element} */
     _c(el) { return el.querySelector(".slider-container"); },
     /** @param {Element} el @param {string} cls @returns {boolean} */
     _has(el, cls) { return el.classList.contains(cls); },
+    /** @param {Element} el @returns {boolean} */
+    _rtl(el) { return getComputedStyle(el).direction === "rtl"; },
 
     /**
      * Initializes all `.swiffy-slider` elements found within `rootElement`.
@@ -22,6 +24,7 @@ export const swiffyslider = {
      * @param {Element} sliderElement
      */
     initSlider(sliderElement) {
+        if (this._rtl(sliderElement)) sliderElement.setAttribute("dir", "rtl");
         for (const navElement of sliderElement.querySelectorAll(".slider-nav")) {
             const next = this._has(navElement, "slider-nav-next");
             navElement.addEventListener("click", () => this.slide(sliderElement, next), { passive: true });
@@ -75,15 +78,25 @@ export const swiffyslider = {
         const fullpage = this._has(sliderElement, "slider-nav-page");
         const noloop = this._has(sliderElement, "slider-nav-noloop");
         const nodelay = this._has(sliderElement, "slider-nav-nodelay");
+        const rtl = this._rtl(sliderElement);
+        const dir = rtl ? -1 : 1;
         const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
         const scrollStep = container.children[0].offsetWidth + gapWidth;
+        const scrollAmount = dir * (fullpage ? container.offsetWidth : scrollStep);
         let scrollLeftPosition = next
-            ? container.scrollLeft + (fullpage ? container.offsetWidth : scrollStep)
-            : container.scrollLeft - (fullpage ? container.offsetWidth : scrollStep);
-        if (container.scrollLeft < 1 && !next && !noloop)
-            scrollLeftPosition = container.scrollWidth - container.offsetWidth;
-        if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop)
-            scrollLeftPosition = 0;
+            ? container.scrollLeft + scrollAmount
+            : container.scrollLeft - scrollAmount;
+        if (rtl) {
+            if (container.scrollLeft > -1 && !next && !noloop)
+                scrollLeftPosition = -(container.scrollWidth - container.offsetWidth);
+            if (container.scrollLeft <= -(container.scrollWidth - container.offsetWidth) && next && !noloop)
+                scrollLeftPosition = 0;
+        } else {
+            if (container.scrollLeft < 1 && !next && !noloop)
+                scrollLeftPosition = container.scrollWidth - container.offsetWidth;
+            if (container.scrollLeft >= (container.scrollWidth - container.offsetWidth) && next && !noloop)
+                scrollLeftPosition = 0;
+        }
         container.scroll({ left: scrollLeftPosition, behavior: nodelay ? "auto" : "smooth" });
     },
 
@@ -112,7 +125,8 @@ export const swiffyslider = {
         const gapWidth = parseInt(window.getComputedStyle(container).columnGap);
         const scrollStep = container.children[0].offsetWidth + gapWidth;
         const nodelay = this._has(sliderElement, "slider-nav-nodelay");
-        container.scroll({ left: scrollStep * slideIndex, behavior: nodelay ? "auto" : "smooth" });
+        const dir = this._rtl(sliderElement) ? -1 : 1;
+        container.scroll({ left: scrollStep * slideIndex * dir, behavior: nodelay ? "auto" : "smooth" });
     },
 
     /**
@@ -161,7 +175,7 @@ export const swiffyslider = {
         const container = this._c(sliderElement);
         const scrollableWidth = container.scrollWidth - container.offsetWidth;
         if (scrollableWidth === 0) return;
-        const percentSlide = container.scrollLeft / scrollableWidth;
+        const percentSlide = Math.abs(container.scrollLeft) / scrollableWidth;
         for (const indicatorContainer of sliderElement.querySelectorAll(".slider-indicators")) {
             const indicators = indicatorContainer.children;
             const activeIndex = Math.abs(Math.round((indicators.length - 1) * percentSlide));

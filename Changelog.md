@@ -1,3 +1,10 @@
+# [v2.1.0] - 2026-03-21
+
+## Added
+
+- RTL (right-to-left) support — `slide()`, `slideTo()`, `handleIndicators()` and mouse drag now work correctly when `dir="rtl"` is set on the slider or any ancestor element
+- CSS: nav arrows automatically flip direction in RTL via `[dir=rtl]` selectors
+
 # [v2.0.0] - 2026-03-21
 
 ## Breaking changes

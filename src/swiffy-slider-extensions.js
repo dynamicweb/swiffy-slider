@@ -1,6 +1,6 @@
 export const swiffysliderextensions = {
     /** @type {string} */
-    version: "2.0.0",
+    version: "2.1.0",
 
     /**
      * Initializes mouse drag on all `.swiffy-slider` elements found within `rootElement`.
@@ -38,6 +38,8 @@ export const swiffysliderextensions = {
         container.style.cursor = "grabbing";
         sliderElement.classList.add("dragging");
 
+        const rtl = getComputedStyle(sliderElement).direction === "rtl";
+        const dir = rtl ? -1 : 1;
         const startingLeftPos = container.scrollLeft;
         const mouseDownStartingXPos = e.clientX;
         const slideWidth = container.children[0].offsetWidth + parseInt(window.getComputedStyle(container).columnGap);
@@ -47,19 +49,19 @@ export const swiffysliderextensions = {
 
         const moveDelegate = (e) => {
             const mouseMovedXpos = e.clientX - mouseDownStartingXPos;
-            const nextDraggingLeftPosition = startingLeftPos - (mouseMovedXpos * 1.8);
-            if (nextDraggingLeftPosition > 0 && nextDraggingLeftPosition <= maxLeftPosition) {
+            const nextDraggingLeftPosition = startingLeftPos - (mouseMovedXpos * 1.8 * dir);
+            if (Math.abs(nextDraggingLeftPosition) > 0 && Math.abs(nextDraggingLeftPosition) <= maxLeftPosition) {
                 container.scrollLeft = nextDraggingLeftPosition;
             } else {
                 return;
             }
             if (mouseMovedXpos < 0) {
-                nextSlideLeftPos = maxLeftPosition <= startingLeftPos
+                nextSlideLeftPos = maxLeftPosition <= Math.abs(startingLeftPos)
                     ? startingLeftPos
-                    : container.scrollLeft + (slideWidth + (mouseMovedXpos * 1.8));
+                    : container.scrollLeft + (slideWidth + (mouseMovedXpos * 1.8)) * dir;
             } else {
-                if (startingLeftPos > 0)
-                    nextSlideLeftPos = container.scrollLeft - (slideWidth - (mouseMovedXpos * 1.8));
+                if (Math.abs(startingLeftPos) > 0)
+                    nextSlideLeftPos = container.scrollLeft - (slideWidth - (mouseMovedXpos * 1.8)) * dir;
             }
         };
 
@@ -67,7 +69,8 @@ export const swiffysliderextensions = {
         document.addEventListener("mouseup", () => {
             container.removeEventListener("mousemove", moveDelegate);
             container.style.cursor = null;
-            if (nextSlideLeftPos < 0) nextSlideLeftPos = 0;
+            if (rtl && nextSlideLeftPos > 0) nextSlideLeftPos = 0;
+            if (!rtl && nextSlideLeftPos < 0) nextSlideLeftPos = 0;
             container.scroll({ left: nextSlideLeftPos, behavior: "smooth" });
             clearTimeout(draggingTimer);
             draggingTimer = setTimeout(() => sliderElement.classList.remove("dragging"), 550);
