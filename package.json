@@ -59,7 +59,7 @@
         "dev": "concurrently \"node build.js --watch\" \"npx serve docs -l 5501\""
     },
     "devDependencies": {
-        "concurrently": "^9.0.0",
+        "concurrently": "^9.2.4",
         "esbuild": "^0.25.0",
         "lightningcss-cli": "^1.29.0"
     }
