@@ -1,3 +1,10 @@
+# [v2.1.1] - 2026-07-15
+
+## Fixed
+
+- Invalid `calc()` with an extra wrapping parenthesis around `var(--swiffy-slider-item-ratio)` in the `padding-top` ratio hack, which failed W3C CSS validation ([#111](https://github.com/dynamicweb/swiffy-slider/issues/111))
+- `.slider-nav::after` mask now uses separate `mask-image`/`mask-size` longhands instead of the `mask` shorthand, so the build no longer emits a combined `url(...) 0 0/cover` value that failed W3C CSS validation ([#111](https://github.com/dynamicweb/swiffy-slider/issues/111))
+
 # [v2.1.0] - 2026-03-21
 
 ## Added

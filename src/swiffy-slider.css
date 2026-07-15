@@ -102,7 +102,7 @@
 
 .slider-item-ratio .slider-container>*::after {
     display: block;
-    padding-top: calc( 100% / (var(--swiffy-slider-item-ratio)));
+    padding-top: calc(100% / var(--swiffy-slider-item-ratio));
     content: "";
 }
 
@@ -241,7 +241,7 @@
 
 .slider-nav::after {
     content: "";
-    mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'></path></svg>");
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'></path></svg>");
     mask-size: cover;
     background-color: var(--swiffy-slider-nav-light);
     background-origin: content-box;
