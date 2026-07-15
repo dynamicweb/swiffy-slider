@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Git Conventions
+
+Never add "Generated with Claude Code", "Co-Authored-By: Claude", or any other Claude/AI attribution to commit messages, PR descriptions, or code comments.
+
 ## Project Overview
 
 Swiffy Slider is a lightweight (~3.5KB gzipped), zero-dependency vanilla JavaScript carousel/slider library. It leverages native browser scroll behavior, CSS Grid, and scroll-snap for touch/mobile performance.
