@@ -10,15 +10,6 @@ Never add "Generated with Claude Code", "Co-Authored-By: Claude", or any other C
 
 Swiffy Slider is a lightweight (~3.5KB gzipped), zero-dependency vanilla JavaScript carousel/slider library. It leverages native browser scroll behavior, CSS Grid, and scroll-snap for touch/mobile performance.
 
-## Commands
-
-```bash
-npm install          # install dev deps (esbuild, lightningcss-cli, concurrently)
-npm run build        # one-off build → dist/ and docs/assets/
-npm run watch        # rebuild on source changes
-npm run dev          # watch + serve docs/ on http://localhost:5501
-```
-
 ## Build System
 
 [build.js](build.js) orchestrates the entire pipeline — no webpack/rollup/vite:

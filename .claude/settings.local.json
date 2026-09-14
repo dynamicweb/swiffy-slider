@@ -8,5 +8,10 @@
       "Bash(sed -i 's|https://github.com/dynamicweb/swiffy-slider/archive/refs/tags/v1.6.0.zip|https://github.com/dynamicweb/swiffy-slider/archive/refs/tags/v2.0.0.zip|g' \"$f\")",
       "Bash(npm run:*)"
     ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
   }
 }

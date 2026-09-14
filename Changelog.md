@@ -1,3 +1,9 @@
+# [v2.1.2] - 2026-09-14
+
+## Fixed
+
+- `padding-top: calc(100% / var(--swiffy-slider-item-ratio))` computed the wrong aspect ratio because `--swiffy-slider-item-ratio` holds an unparenthesized division expression (e.g. `16/9`) — without wrapping parentheses, `calc()`'s left-to-right division treated `100% / 16/9` as `(100% / 16) / 9` instead of `100% / (16/9)`. Restored the wrapping parenthesis around the variable
+
 # [v2.1.1] - 2026-07-15
 
 ## Fixed
